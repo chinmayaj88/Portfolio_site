@@ -1,3 +1,6 @@
+"use client";
+
+import { motion } from "framer-motion";
 import OnlineStatus from "./OnlineStatus";
 import { HeroSectionProps } from "./types";
 import styles from "./HeroSection.module.css";
@@ -10,46 +13,89 @@ export default function HeroSection({
 }: HeroSectionProps) {
   return (
     <div className={styles.container}>
-      <div className={styles.statusSection}>
+      <motion.div
+        className={styles.statusSection}
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+      >
         <OnlineStatus status={status} />
-      </div>
+      </motion.div>
 
       <div className={styles.greetingSection}>
-        <div className={styles.greetingRow}>
-          <div className={styles.greetingLabel}>
+        <motion.div
+          className={styles.greetingRow}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          <motion.div
+            className={styles.greetingLabel}
+            whileHover={{ scale: 1.05, rotate: 5 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
             <p className={styles.labelText}>Hi!</p>
-          </div>
-          <div className={styles.namePill}>
+          </motion.div>
+          <motion.div
+            className={styles.namePill}
+            whileHover={{ scale: 1.02 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
             <div className={styles.namePillContent}>
               <p className={styles.nameText}>
-                <span className={styles.nameGradient}>{name}</span>
+                <motion.span
+                  className={styles.nameGradient}
+                  initial={{ backgroundPosition: "0% 50%" }}
+                  animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+                  transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+                >
+                  {name}
+                </motion.span>
               </p>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         <div className={styles.descriptionRow}>
-          <div className={styles.roleRow}>
+          <motion.div
+            className={styles.roleRow}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
             <div className={styles.roleLabel}>
               <p className={styles.labelText}>a</p>
             </div>
-            <div className={styles.rolePill}>
+            <motion.div
+              className={styles.rolePill}
+              whileHover={{ scale: 1.02, x: 2 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
               <div className={styles.rolePillContent}>
                 <p className={styles.roleText}>{role}</p>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
-          <div className={styles.locationRow}>
+          <motion.div
+            className={styles.locationRow}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+          >
             <div className={styles.locationLabel}>
               <p className={styles.labelText}>from</p>
             </div>
-            <div className={styles.locationPill}>
+            <motion.div
+              className={styles.locationPill}
+              whileHover={{ scale: 1.02, x: 2 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
               <div className={styles.locationPillContent}>
                 <p className={styles.locationText}>{location}</p>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </div>

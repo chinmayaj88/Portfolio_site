@@ -1,0 +1,54 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.header {
+  margin-bottom: 20px;
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.5);
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background: #a3ff12;
+  border-radius: 50%;
+}
+
+.title {
+  font-size: 64px;
+  font-weight: 400;
+  color: #000000;
+  margin: 0;
+  letter-spacing: -0.03em;
+}
+
+.bioWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.bioText {
+  font-size: 18px;
+  line-height: 1.6;
+  color: rgba(0, 0, 0, 0.8);
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 48px;
+  }
+}
+

@@ -1,80 +1,38 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { AboutProfile, AboutContent, ContactForm } from "@/components/About";
+import styles from "./page.module.css";
+
 export default function About() {
   return (
-    <main style={{ padding: "40px" }}>
-      <div style={{ maxWidth: "1320px", margin: "0 auto" }}>
-        <h1
-          style={{
-            fontSize: "48px",
-            fontWeight: "600",
-            marginBottom: "30px",
-            color: "rgb(47, 47, 47)",
-            fontFamily: "Manrope, sans-serif",
-          }}
-        >
-          About & Contact
-        </h1>
-        
-        <section style={{ marginBottom: "60px" }}>
-          <h2
-            style={{
-              fontSize: "32px",
-              fontWeight: "600",
-              marginBottom: "20px",
-              color: "rgb(47, 47, 47)",
-              fontFamily: "Manrope, sans-serif",
-            }}
-          >
-            About Me
-          </h2>
-          <p
-            style={{
-              fontSize: "18px",
-              lineHeight: "1.6",
-              color: "rgb(47, 47, 47)",
-              opacity: 0.7,
-              fontFamily: "Manrope, sans-serif",
-            }}
-          >
-            Add your bio, background, experience, and design philosophy here.
-          </p>
-        </section>
+    <motion.main
+      className={styles.main}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
+      <div className={styles.container}>
+        <div className={styles.grid}>
+          {/* Left Column - Sticky Profile */}
+          <div className={styles.leftColumn}>
+            <div className={styles.stickyWrapper}>
+              <AboutProfile />
+            </div>
+          </div>
 
-        <section>
-          <h2
-            style={{
-              fontSize: "32px",
-              fontWeight: "600",
-              marginBottom: "20px",
-              color: "rgb(47, 47, 47)",
-              fontFamily: "Manrope, sans-serif",
-            }}
-          >
-            Contact
-          </h2>
-          <p
-            style={{
-              fontSize: "18px",
-              lineHeight: "1.6",
-              color: "rgb(47, 47, 47)",
-              opacity: 0.7,
-              fontFamily: "Manrope, sans-serif",
-            }}
-          >
-            Email: <strong>akshayshetty61@gmail.com</strong>
-          </p>
-          <p
-            style={{
-              fontSize: "18px",
-              lineHeight: "1.6",
-              color: "rgb(47, 47, 47)",
-              opacity: 0.7,
-              fontFamily: "Manrope, sans-serif",
-            }}
-          >
-            Feel free to reach out for collaborations or inquiries.
-          </p>
-        </section>
+          {/* Right Column - Scrollable Content */}
+          <div className={styles.rightColumn}>
+            <section className={styles.section}>
+              <AboutContent />
+            </section>
+            
+            <section className={styles.section}>
+              <ContactForm />
+            </section>
+          </div>
+        </div>
       </div>
-    </main>
+    </motion.main>
   );
 }

@@ -1,0 +1,191 @@
+.section {
+  padding: 120px 20px;
+  background: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background Pattern */
+.backgroundPattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.line1, .line2, .line3, .line4 {
+  position: absolute;
+  border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+/* Creating the isometric/diamond grid lines */
+.line1 {
+  width: 600px;
+  height: 600px;
+  top: -200px;
+  left: 100px;
+  transform: rotate(45deg);
+}
+
+.line2 {
+  width: 600px;
+  height: 600px;
+  top: -100px;
+  left: 250px;
+  transform: rotate(45deg);
+}
+
+.line3 {
+  width: 600px;
+  height: 600px;
+  top: -300px;
+  left: 0px;
+  transform: rotate(45deg);
+}
+
+.line4 {
+  width: 100%;
+  top: 150px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.header {
+  margin-bottom: 60px;
+  text-align: left;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.5);
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background: #a3ff12;
+  border-radius: 50%;
+}
+
+.title {
+  font-size: clamp(48px, 6vw, 72px);
+  font-weight: 400;
+  line-height: 1.1;
+  color: #000000;
+  margin: 0;
+  letter-spacing: -0.03em;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  width: 100%;
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 12px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 200px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+}
+
+.card:hover {
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+  transform: translateY(-4px);
+}
+
+.cardLabel {
+  font-size: 15px;
+  color: #000000;
+  font-weight: 500;
+}
+
+.iconWrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: auto;
+}
+
+.iconCircle {
+  width: 32px;
+  height: 32px;
+  background: #a3ff12;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: #000000;
+}
+
+.iconText {
+  line-height: 1;
+}
+
+/* Green CTA Card Styling */
+.ctaCard {
+  background: #a3ff12;
+  border: none;
+}
+
+.ctaCard:hover {
+  background: #b5ff3a;
+  box-shadow: 0 12px 30px rgba(163, 255, 18, 0.4);
+}
+
+.ctaLabel {
+  font-size: 16px;
+  color: #000000;
+  font-weight: 500;
+}
+
+.arrowIcon {
+  font-size: 20px;
+  color: #000000;
+  font-weight: 500;
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .title {
+    font-size: 42px;
+  }
+  
+  .card {
+    min-height: 160px;
+    padding: 24px;
+  }
+}

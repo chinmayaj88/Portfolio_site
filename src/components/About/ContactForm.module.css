@@ -1,0 +1,73 @@
+.formCard {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 48px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.formTitle {
+  font-size: 32px;
+  font-weight: 400;
+  color: #000000;
+  margin: 0 0 32px 0;
+  letter-spacing: -0.02em;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.inputGroup {
+  width: 100%;
+}
+
+.input, .textarea {
+  width: 100%;
+  padding: 16px 20px;
+  background: #f8f8f8;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 16px;
+  color: #000000;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.input:focus, .textarea:focus {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 0 2px rgba(163, 255, 18, 0.2);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.submitButton {
+  width: 100%;
+  padding: 16px;
+  background: #1a1a1a;
+  color: #ffffff;
+  border: none;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 12px;
+}
+
+.submitButton:hover {
+  background: #000000;
+}
+
+@media (max-width: 768px) {
+  .formCard {
+    padding: 32px;
+  }
+}
+

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { brandsData } from "@/data/brandsData";
 import styles from "./BrandsCarousel.module.css";
 
@@ -9,7 +10,13 @@ export default function BrandsCarousel() {
   const duplicatedBrands = [...brandsData, ...brandsData];
 
   return (
-    <section className={styles.section}>
+    <motion.section
+      className={styles.section}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 0.6 }}
+    >
       <div className={styles.container}>
         <div className={styles.background}>
           <div className={styles.backgroundContent} />
@@ -17,12 +24,29 @@ export default function BrandsCarousel() {
         <div className={styles.content}>
           <ul className={styles.ul}>
             {duplicatedBrands.map((brand, index) => (
-              <li key={`${brand.id}-${index}`} className={styles.li}>
+              <motion.li
+                key={`${brand.id}-${index}`}
+                className={styles.li}
+                whileHover={{
+                  scale: 1.1,
+                  y: -5,
+                }}
+                transition={{
+                  type: "spring",
+                  stiffness: 400,
+                  damping: 15,
+                }}
+              >
                 <div className={styles.itemWrapper}>
                   <div className={styles.iconPlaceholder} />
                   <div className={styles.imageContainer}>
                     <div className={styles.imageContent}>
-                      <div className={styles.imageBox}>
+                      <motion.div
+                        className={styles.imageBox}
+                        whileHover={{
+                          filter: "brightness(1.2) contrast(1.1)",
+                        }}
+                      >
                         <Image
                           src={brand.src}
                           alt={brand.alt}
@@ -31,15 +55,15 @@ export default function BrandsCarousel() {
                           className={styles.image}
                           priority={index < brandsData.length}
                         />
-                      </div>
+                      </motion.div>
                     </div>
                   </div>
                 </div>
-              </li>
+              </motion.li>
             ))}
           </ul>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
