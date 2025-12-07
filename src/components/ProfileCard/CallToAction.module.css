@@ -1,0 +1,103 @@
+.button {
+  align-content: center;
+  align-items: center;
+  background-color: rgb(140, 255, 46);
+  border-radius: 35px;
+  cursor: pointer;
+  display: flex;
+  gap: 20px;
+  height: 70px;
+  justify-content: center;
+  padding: 33px 15px 33px 30px;
+  position: relative;
+  text-decoration: none;
+  width: min-content;
+  will-change: transform;
+  box-shadow: rgba(132, 255, 31, 0.32) 0px 12px 40px 0px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: rgba(132, 255, 31, 0.4) 0px 16px 50px 0px;
+}
+
+.button:active {
+  transform: translateY(0px);
+}
+
+.textContainer {
+  align-content: center;
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  height: min-content;
+  justify-content: center;
+  position: relative;
+  width: min-content;
+}
+
+.buttonText {
+  border-color: rgb(47, 47, 47);
+  color: rgb(47, 47, 47);
+  cursor: pointer;
+  font-family: Manrope, "Manrope Placeholder", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.8px;
+  line-height: 20px;
+  margin: 0;
+  outline-color: rgb(47, 47, 47);
+  text-decoration-color: rgb(47, 47, 47);
+  text-wrap: nowrap;
+  white-space: pre;
+  white-space-collapse: preserve;
+}
+
+.iconContainer {
+  align-content: center;
+  align-items: center;
+  aspect-ratio: 1 / 1;
+  background-color: rgb(255, 255, 255);
+  border-radius: 23px;
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  width: 46px;
+}
+
+.iconBox {
+  border-color: rgb(0, 0, 238);
+  color: rgb(0, 0, 238);
+  cursor: pointer;
+  height: 22px;
+  outline-color: rgb(0, 0, 238);
+  position: relative;
+  text-decoration-color: rgb(0, 0, 238);
+  width: 22px;
+}
+
+.iconContent {
+  border-color: rgb(0, 0, 238);
+  color: rgb(0, 0, 238);
+  cursor: pointer;
+  display: contents;
+  outline-color: rgb(0, 0, 238);
+  text-decoration-color: rgb(0, 0, 238);
+}
+
+.icon {
+  border-color: rgb(47, 47, 47);
+  color: rgb(47, 47, 47);
+  cursor: pointer;
+  display: inline-block;
+  fill: rgb(47, 47, 47);
+  height: 100%;
+  outline-color: rgb(47, 47, 47);
+  text-decoration-color: rgb(47, 47, 47);
+  user-select: none;
+  width: 100%;
+}

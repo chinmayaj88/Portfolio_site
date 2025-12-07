@@ -1,0 +1,28 @@
+.container {
+  align-content: center;
+  align-items: center;
+  display: flex;
+  gap: 0;
+  height: min-content;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  width: min-content;
+}
+
+.imageWrapper {
+  border-radius: 16px;
+  height: 128px;
+  position: relative;
+  width: 90px;
+  will-change: transform;
+  transform: matrix(1, 0, 0, 1, 0, 0);
+}
+
+.image {
+  aspect-ratio: 1000 / 1000;
+  border-radius: 16px;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}

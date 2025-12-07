@@ -1,0 +1,344 @@
+.header {
+  align-content: center;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  height: min-content;
+  justify-content: space-between;
+  padding: 30px 40px;
+  position: relative;
+  width: 100%;
+  border-bottom: 1px solid rgba(47, 47, 47, 0.1);
+}
+
+.container {
+  align-content: center;
+  align-items: center;
+  display: flex;
+  height: min-content;
+  justify-content: space-between;
+  max-width: 1320px;
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.logoSection {
+  align-content: center;
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  height: min-content;
+  justify-content: flex-start;
+  position: relative;
+  width: min-content;
+}
+
+.logoLink {
+  align-content: center;
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
+  height: min-content;
+  justify-content: flex-start;
+  position: relative;
+  text-decoration: none;
+  width: min-content;
+  transition: opacity 0.2s ease;
+}
+
+.logoLink:hover {
+  opacity: 0.7;
+}
+
+.logoIcon {
+  align-content: center;
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  height: min-content;
+  justify-content: center;
+  position: relative;
+  width: min-content;
+  will-change: transform;
+}
+
+.logoSvg {
+  border-color: rgb(0, 0, 238);
+  color: rgb(0, 0, 238);
+  cursor: pointer;
+  height: 100%;
+  outline-color: rgb(0, 0, 238);
+  text-decoration-color: rgb(0, 0, 238);
+  width: 22px;
+  fill: rgb(47, 47, 47);
+}
+
+.logoText {
+  border-color: rgb(47, 47, 47);
+  color: rgb(47, 47, 47);
+  cursor: pointer;
+  font-family: Arsenal, "Arsenal Placeholder", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.96px;
+  line-height: 31.2px;
+  margin: 0;
+  outline-color: rgb(47, 47, 47);
+  text-decoration-color: rgb(47, 47, 47);
+  text-wrap: nowrap;
+  white-space: pre;
+  white-space-collapse: preserve;
+}
+
+.contentWrapper {
+  align-content: center;
+  align-items: center;
+  display: flex;
+  gap: 60px;
+  height: min-content;
+  justify-content: flex-start;
+  position: relative;
+  width: auto;
+  flex: 1;
+}
+
+.nav {
+  align-content: center;
+  align-items: center;
+  display: flex;
+  gap: 38px;
+  height: min-content;
+  justify-content: flex-start;
+  position: relative;
+  width: min-content;
+}
+
+.navItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+  text-wrap: nowrap;
+  white-space: pre;
+  white-space-collapse: preserve;
+}
+
+.navLink {
+  border-color: rgb(47, 47, 47);
+  color: rgb(47, 47, 47);
+  cursor: pointer;
+  display: inline;
+  font-family: Manrope, "Manrope Placeholder", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.72px;
+  line-height: 20px;
+  outline-color: rgb(47, 47, 47);
+  text-decoration: none;
+  text-decoration-color: rgb(47, 47, 47);
+  text-emphasis-color: rgb(47, 47, 47);
+  text-wrap: nowrap;
+  transition: color 0.2s cubic-bezier(0.12, 0.23, 0.5, 1);
+  white-space: pre;
+  white-space-collapse: preserve;
+}
+
+.navLink:hover {
+  color: rgba(47, 47, 47, 0.7);
+}
+
+.navLink.active {
+  color: rgb(140, 255, 46);
+  font-weight: 700;
+}
+
+.rightSection {
+  align-content: center;
+  align-items: center;
+  display: flex;
+  gap: 33px;
+  height: min-content;
+  justify-content: flex-start;
+  position: relative;
+  width: min-content;
+  margin-left: auto;
+}
+
+.emailSection {
+  align-content: center;
+  align-items: center;
+  display: flex;
+  gap: 5px;
+  height: min-content;
+  justify-content: center;
+  position: relative;
+  width: min-content;
+}
+
+.emailLabel {
+  border-color: rgba(47, 47, 47, 0.5);
+  color: rgba(47, 47, 47, 0.5);
+  font-family: Manrope, "Manrope Placeholder", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.6px;
+  line-height: 21.6px;
+  margin: 0;
+  outline-color: rgba(47, 47, 47, 0.5);
+  text-decoration-color: rgba(47, 47, 47, 0.5);
+  text-wrap: nowrap;
+  white-space: pre;
+  white-space-collapse: preserve;
+}
+
+.emailValue {
+  border-color: rgb(47, 47, 47);
+  color: rgb(47, 47, 47);
+  font-family: Manrope, "Manrope Placeholder", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.6px;
+  line-height: 21.6px;
+  margin: 0;
+  outline-color: rgb(47, 47, 47);
+  text-decoration-color: rgb(47, 47, 47);
+  text-wrap: nowrap;
+  white-space: pre;
+  white-space-collapse: preserve;
+}
+
+.resumeButton {
+  align-content: center;
+  align-items: center;
+  aspect-ratio: 3.1 / 1;
+  background-color: rgb(47, 47, 47);
+  border-radius: 50px;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  display: flex;
+  font-family: Manrope, "Manrope Placeholder", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  gap: 10px;
+  height: 40px;
+  justify-content: center;
+  justify-items: center;
+  line-height: 16px;
+  outline-color: rgb(255, 255, 255);
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  text-decoration-color: rgb(255, 255, 255);
+  text-emphasis-color: rgb(255, 255, 255);
+  text-wrap: nowrap;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  user-select: none;
+  white-space: nowrap;
+  width: auto;
+}
+
+.resumeButton:hover {
+  background-color: rgb(60, 60, 60);
+  transform: translateY(-2px);
+}
+
+.resumeButton:active {
+  transform: translateY(0);
+}
+
+.resumeIcon {
+  border-color: rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  fill: rgb(255, 255, 255);
+  height: 16px;
+  outline-color: rgb(255, 255, 255);
+  text-decoration-color: rgb(255, 255, 255);
+  text-emphasis-color: rgb(255, 255, 255);
+  width: 16px;
+}
+
+/* Responsive styles */
+@media (max-width: 1024px) {
+  .contentWrapper {
+    gap: 40px;
+  }
+
+  .nav {
+    gap: 30px;
+  }
+
+  .rightSection {
+    gap: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 20px 24px;
+  }
+
+  .container {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .contentWrapper {
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+  }
+
+  .nav {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 24px;
+  }
+
+  .rightSection {
+    flex-direction: column;
+    width: 100%;
+    margin-left: 0;
+    gap: 20px;
+  }
+
+  .emailSection {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .resumeButton {
+    width: 100%;
+  }
+
+  .navLink {
+    font-size: 16px;
+  }
+
+  .logoText {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 16px;
+  }
+
+  .resumeButton {
+    flex-direction: column;
+    aspect-ratio: 1;
+    height: 40px;
+  }
+
+  .resumeButton span {
+    display: none;
+  }
+
+  .navLink {
+    font-size: 14px;
+  }
+}

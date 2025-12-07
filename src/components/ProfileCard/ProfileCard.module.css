@@ -1,0 +1,362 @@
+.section {
+  align-content: center;
+  align-items: center;
+  background-color: rgb(248, 248, 248);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  height: min-content;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+.container {
+  align-content: center;
+  align-items: center;
+  display: flex;
+  gap: 0;
+  height: min-content;
+  justify-content: center;
+  overflow: hidden;
+  padding: 40px;
+  position: relative;
+  width: 100%;
+}
+
+.grid {
+  display: grid;
+  flex-basis: 0;
+  flex-grow: 1;
+  gap: 24px;
+  grid-auto-rows: min-content;
+  grid-template: repeat(2, min-content) / repeat(3, minmax(50px, 1fr));
+  height: min-content;
+  justify-content: center;
+  max-width: 1320px;
+  padding: 280px 0 160px 0;
+  position: relative;
+  width: 1px;
+}
+
+/* Profile card section - left side with avatar */
+.profileCardWrapper {
+  align-content: flex-start;
+  align-items: flex-start;
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: min-content;
+  justify-content: center;
+  justify-self: start;
+  padding-top: 62px;
+  position: relative;
+  width: 100%;
+}
+
+.profileCard {
+  align-content: center;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  border-radius: 24px;
+  display: flex;
+  gap: 26px;
+  height: min-content;
+  justify-content: flex-start;
+  padding: 12px;
+  position: relative;
+  width: min-content;
+  box-shadow: rgba(132, 255, 31, 0.25) 0px 12px 40px 0px;
+}
+
+.profileInfo {
+  align-content: flex-start;
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  height: min-content;
+  justify-content: flex-start;
+  position: relative;
+  width: 180px;
+  will-change: transform;
+}
+
+.nameSection {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  height: min-content;
+  justify-content: flex-start;
+  position: relative;
+  width: 86%;
+}
+
+.name {
+  border-color: rgb(47, 47, 47);
+  color: rgb(47, 47, 47);
+  font-family: Manrope, "Manrope Placeholder", sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.88px;
+  line-height: 30.8px;
+  margin: 0;
+  outline-color: rgb(47, 47, 47);
+  text-decoration-color: rgb(47, 47, 47);
+  text-wrap: nowrap;
+  white-space: pre;
+  white-space-collapse: preserve;
+}
+
+.roleSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  opacity: 0.5;
+  overflow-wrap: break-word;
+  position: relative;
+  white-space: pre-wrap;
+  white-space-collapse: preserve;
+  width: 100%;
+}
+
+.role {
+  border-color: rgb(47, 47, 47);
+  color: rgb(47, 47, 47);
+  font-family: Manrope, "Manrope Placeholder", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.6px;
+  line-height: 19.5px;
+  margin: 0;
+  outline-color: rgb(47, 47, 47);
+  overflow-wrap: break-word;
+  text-decoration-color: rgb(47, 47, 47);
+  white-space: pre-wrap;
+  white-space-collapse: preserve;
+  word-break: break-word;
+  word-wrap: break-word;
+}
+
+.socialLinksSection {
+  position: relative;
+}
+
+/* Hero section - center with greeting */
+.heroWrapper {
+  align-content: flex-start;
+  align-items: flex-start;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  grid-area: auto / span 2;
+  height: min-content;
+  justify-content: flex-start;
+  justify-self: start;
+  position: relative;
+  width: 100%;
+}
+
+.heroContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+  width: 100%;
+}
+
+/* Experience section */
+.experienceWrapper {
+  align-content: flex-start;
+  align-items: flex-start;
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: min-content;
+  justify-content: flex-start;
+  justify-self: start;
+  padding-top: 50px;
+  position: relative;
+  width: 100%;
+  will-change: transform;
+}
+
+.experienceContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+}
+
+.experience {
+  border-color: rgb(47, 47, 47);
+  color: rgb(47, 47, 47);
+  font-family: Manrope, "Manrope Placeholder", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.8px;
+  line-height: 28px;
+  margin: 0;
+  outline-color: rgb(47, 47, 47);
+  text-decoration-color: rgb(47, 47, 47);
+  text-wrap: nowrap;
+  white-space: pre;
+  white-space-collapse: preserve;
+}
+
+/* Description and CTA section */
+.descriptionWrapper {
+  align-content: flex-start;
+  align-items: flex-start;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  grid-area: auto / span 2;
+  height: min-content;
+  justify-content: center;
+  justify-self: center;
+  padding-top: 50px;
+  position: relative;
+  width: 100%;
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  max-width: 760px;
+  opacity: 0.7;
+  position: relative;
+  width: 100%;
+  will-change: transform;
+}
+
+.descriptionText {
+  border-color: rgb(47, 47, 47);
+  color: rgb(47, 47, 47);
+  font-family: Manrope, "Manrope Placeholder", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.96px;
+  line-height: 36px;
+  margin: 0;
+  outline-color: rgb(47, 47, 47);
+  text-decoration-color: rgb(47, 47, 47);
+}
+
+.ctaWrapper {
+  display: contents;
+}
+
+.ctaContent {
+  height: 70px;
+  position: relative;
+  will-change: transform;
+}
+
+/* Background decoration */
+.backgroundDecoration {
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  will-change: transform;
+  z-index: -1;
+}
+
+.decorationContent {
+  display: contents;
+  pointer-events: none;
+}
+
+.decorationShape {
+  background-image: url("https://framerusercontent.com/images/wGAHOWhVswEtWkOKTJN6s2CW0.svg?width=96&height=96");
+  background-position: 50% 0%;
+  background-size: 52px;
+  bottom: 0;
+  height: 986.467px;
+  left: -322px;
+  opacity: 0.09;
+  pointer-events: none;
+  position: absolute;
+  right: -322px;
+  top: calc(45.858% - 493.234px);
+  will-change: transform;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .container {
+    padding: 24px;
+  }
+
+  .grid {
+    grid-template: auto / 1fr;
+    padding: 160px 0 100px 0;
+  }
+
+  .profileCardWrapper {
+    width: 100%;
+  }
+
+  .profileCard {
+    width: 100%;
+  }
+
+  .heroWrapper {
+    grid-area: auto;
+  }
+
+  .descriptionWrapper {
+    grid-area: auto;
+  }
+
+  .experience {
+    font-size: 18px;
+  }
+
+  .descriptionText {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 16px;
+  }
+
+  .grid {
+    padding: 100px 0 80px 0;
+  }
+
+  .profileCard {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profileInfo {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+
+  .name {
+    font-size: 18px;
+  }
+
+  .experience {
+    font-size: 16px;
+  }
+
+  .descriptionText {
+    font-size: 18px;
+  }
+}

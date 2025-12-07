@@ -1,0 +1,38 @@
+.container {
+  align-content: center;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  border-radius: 100px;
+  display: flex;
+  gap: 8px;
+  height: min-content;
+  justify-content: flex-start;
+  padding: 4px 6px 4px 4px;
+  position: relative;
+  width: min-content;
+  will-change: transform;
+}
+
+.statusDot {
+  aspect-ratio: 1 / 1;
+  background-color: rgb(140, 255, 46);
+  border-radius: 100%;
+  position: relative;
+  width: 10px;
+}
+
+.statusText {
+  border-color: rgb(47, 47, 47);
+  color: rgb(47, 47, 47);
+  font-family: Manrope, "Manrope Placeholder", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.42px;
+  line-height: 20px;
+  margin: 0;
+  outline-color: rgb(47, 47, 47);
+  text-decoration-color: rgb(47, 47, 47);
+  text-wrap: nowrap;
+  white-space: pre;
+  white-space-collapse: preserve;
+}
