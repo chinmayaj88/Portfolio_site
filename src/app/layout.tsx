@@ -35,7 +35,7 @@ const superChiby = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Akshay L Shetty - Product Designer",
+  title: "Chinmaya Jena - Developer, Devops & Cloud Engineer",
   description: "Product Designer & Artist specializing in user experience, design systems, and visual storytelling.",
 };
 

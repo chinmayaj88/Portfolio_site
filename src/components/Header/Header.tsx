@@ -72,7 +72,7 @@ export default function Header() {
               whileHover={{ x: 3, scale: 1.02 }}
               transition={{ duration: 0.15 }}
             >
-              AXY STY
+              Chinmaya Jena
             </motion.h3>
           </Link>
         </motion.div>
@@ -125,15 +125,15 @@ export default function Header() {
               transition={{ duration: 0.3, delay: 0.25 }}
             >
               <p className={styles.emailLabel}>Email:</p>
-              <p className={styles.emailValue}>akshayshetty61@gmail.com</p>
+              <p className={styles.emailValue}>jenachinmaya51@gmail.com</p>
             </motion.div>
 
             {/* Resume Download Button */}
             <motion.a
-              href="https://framerusercontent.com/assets/GoQ3Kr9huiXoJwjm3Ft1w3Cs4.pdf"
-              target="_blank"
+              href="#"
+              // target="_blank"
               rel="noopener noreferrer"
-              download
+              // download
               title="Download Resume"
               className={styles.resumeButton}
               whileHover={{
