@@ -76,7 +76,7 @@
   align-items: flex-start;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  /* gap: 18px; */
   height: min-content;
   justify-content: flex-start;
   position: relative;
@@ -141,7 +141,7 @@
 }
 
 .socialLinksSection {
-  position: relative;
+  margin-top: 6;
 }
 
 /* Hero section - center with greeting */

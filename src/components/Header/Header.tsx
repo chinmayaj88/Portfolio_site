@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import styles from "./Header.module.css";
-import { FileDown } from "lucide-react";
+import { FaRegFileAlt } from "react-icons/fa";
 
 interface NavLink {
   label: string;
@@ -132,7 +132,7 @@ export default function Header() {
               whileTap={{ scale: 0.92 }}
               transition={{ type: "spring", stiffness: 500, damping: 15 }}
             >
-              <FileDown />
+              <FaRegFileAlt />
               My Resume
             </motion.a>
           </motion.div>

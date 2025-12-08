@@ -1,10 +1,10 @@
 import ProfileImage from "./ProfileImage";
-import SocialLinks from "./SocialLinks";
-import OnlineStatus from "./OnlineStatus";
 import HeroSection from "./HeroSection";
 import CallToAction from "./CallToAction";
 import { ProfileCardProps } from "./types";
 import styles from "./ProfileCard.module.css";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import Link from "next/link";
 
 export default function ProfileCard({ data }: ProfileCardProps) {
   return (
@@ -28,7 +28,35 @@ export default function ProfileCard({ data }: ProfileCardProps) {
                   <p className={styles.role}>{data.role}</p>
                 </div>
                 <div className={styles.socialLinksSection}>
-                  <SocialLinks links={data.socialLinks} />
+                  <Link
+                    href={"https://github.com/chinmayaj88"}
+                    style={{
+                      marginLeft: 4,
+                      marginRight: 4,
+                    }}
+                  >
+                    <FaGithub size={20} color="#6fa717ff" />
+                  </Link>
+                  <Link
+                    href={
+                      "https://www.linkedin.com/in/chinmaya-jena-934ba71b2/"
+                    }
+                    style={{
+                      marginLeft: 4,
+                      marginRight: 4,
+                    }}
+                  >
+                    <FaLinkedin size={20} color="#6fa717ff" />
+                  </Link>
+                  <Link
+                    href={""}
+                    style={{
+                      marginLeft: 4,
+                      marginRight: 4,
+                    }}
+                  >
+                    <FaGithub size={20} color="#6fa717ff" />
+                  </Link>
                 </div>
               </div>
             </div>

@@ -1,13 +1,3 @@
-export interface SocialLink {
-  id: string;
-  name: string;
-  href: string;
-  ariaLabel: string;
-  iconSrc: string;
-  width: number;
-  height: number;
-}
-
 export interface ProfileData {
   avatar: {
     src: string;
@@ -21,7 +11,6 @@ export interface ProfileData {
   status: string;
   bio: string;
   experience: string;
-  socialLinks: SocialLink[];
   cta: {
     text: string;
     href: string;
@@ -30,48 +19,19 @@ export interface ProfileData {
 
 export const profileData: ProfileData = {
   avatar: {
-    src: "https://framerusercontent.com/images/5oVs0K6gBX5p6TNFWKBQHThlQ10.png?scale-down-to=512&width=1000&height=1000",
-    alt: "Avatar of the website author",
+    src: "/cj_profile_2.jpg",
+    alt: "Avatar of Chinmaya Jena",
     width: 1000,
     height: 1000,
   },
-  name: "Akshay L Shetty",
-  role: "Digital Product Designer",
-  location: "Bengaluru 🇮🇳",
+  name: "Chinmaya Jena",
+  role: "Developer, DevOps / Cloud Engineer",
+  location: "Bhubaneswar 🇮🇳",
   status: "Online Now",
-  bio: "Product Designer & Artist specializing in user experience, design systems, and visual storytelling.",
-  experience: "7+ Years of Designing…",
-  socialLinks: [
-    {
-      id: "linkedin",
-      name: "LinkedIn",
-      href: "https://www.linkedin.com/in/akshaylshetty/",
-      ariaLabel: "Link to social network",
-      iconSrc: "https://framerusercontent.com/images/1Y2KG9fpqu7mkU0WxG1P9UODs0.svg?width=24&height=24",
-      width: 24,
-      height: 24,
-    },
-    {
-      id: "instagram",
-      name: "Instagram",
-      href: "https://www.instagram.com/axy__sty/",
-      ariaLabel: "Link to social network",
-      iconSrc: "https://framerusercontent.com/images/Cw60tKtmS1dIG4c5tG24TKC8X5U.svg?width=22&height=22",
-      width: 22,
-      height: 22,
-    },
-    {
-      id: "youtube",
-      name: "YouTube",
-      href: "https://www.youtube.com/@Axysty",
-      ariaLabel: "Link to social network",
-      iconSrc: "https://framerusercontent.com/images/1zfgEHKWN1nF6UoM7vgpiwxt7no.svg?width=24&height=24",
-      width: 24,
-      height: 24,
-    },
-  ],
+  bio: "Software Developer and Cloud/DevOps Engineer focused on scalable backend systems, Kubernetes, and production-grade cloud architecture.",
+  experience: "2+ Years of Experience",
   cta: {
-    text: "See what i can do",
-    href: "https://akshaylshetty.framer.website/#projects",
+    text: "See what I can do",
+    href: "#projects",
   },
 };

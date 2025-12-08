@@ -1,4 +1,4 @@
-import { ProfileData, SocialLink } from "@/data/profileData";
+import { ProfileData } from "@/data/profileData";
 
 export interface ProfileImageProps {
   src: string;
@@ -9,14 +9,6 @@ export interface ProfileImageProps {
 
 export interface OnlineStatusProps {
   status: string;
-}
-
-export interface SocialLinksProps {
-  links: SocialLink[];
-}
-
-export interface SocialLinkItemProps {
-  link: SocialLink;
 }
 
 export interface HeroSectionProps {
