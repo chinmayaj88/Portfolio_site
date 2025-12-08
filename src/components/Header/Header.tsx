@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import styles from "./Header.module.css";
-import Image from "next/image";
+import { FileDown } from "lucide-react";
 
 interface NavLink {
   label: string;
@@ -14,7 +14,8 @@ interface NavLink {
 
 const navLinks: NavLink[] = [
   { label: "Projects", href: "/projects" },
-  { label: "About & Contact", href: "/about" },
+  { label: "Contact", href: "/about" },
+  { label: "Blogs", href: "/blog" },
 ];
 
 export default function Header() {
@@ -22,7 +23,6 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const { scrollY } = useScroll();
 
-  const headerOpacity = useTransform(scrollY, [0, 50], [0.8, 0.95]);
   const headerBlur = useTransform(scrollY, [0, 50], [20, 30]);
 
   useEffect(() => {
@@ -120,10 +120,9 @@ export default function Header() {
 
             {/* Resume Download Button */}
             <motion.a
-              href="#"
-              // target="_blank"
+              href="https://drive.google.com/file/d/1dgn70ciGsKTJAyJyKGr5G_X3fGwDg_wh/view?usp=sharing"
+              target="_blank"
               rel="noopener noreferrer"
-              // download
               title="Download Resume"
               className={styles.resumeButton}
               whileHover={{
@@ -133,23 +132,8 @@ export default function Header() {
               whileTap={{ scale: 0.92 }}
               transition={{ type: "spring", stiffness: 500, damping: 15 }}
             >
-              <motion.svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                viewBox="0 0 256 256"
-                className={styles.resumeIcon}
-                animate={{ y: [0, 3, 0] }}
-                transition={{
-                  duration: 1,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              >
-                <path d="M228 152v56a20 20 0 0 1-20 20H48a20 20 0 0 1-20-20v-56a12 12 0 0 1 24 0v52h152v-52a12 12 0 0 1 24 0Zm-108.49 8.49a12 12 0 0 0 17 0l40-40a12 12 0 0 0-17-17L140 123V40a12 12 0 0 0-24 0v83l-19.51-19.49a12 12 0 0 0-17 17Z" />
-              </motion.svg>
-              <span>My Resume</span>
+              <FileDown />
+              My Resume
             </motion.a>
           </motion.div>
         </div>
