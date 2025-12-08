@@ -36,7 +36,7 @@ export default function HeroSection({
             transition={{ type: "spring", stiffness: 300 }}
           >
             <p className={styles.labelText}>
-              <AnimatedText text="Hi!" type="chars" delay={0.2} />
+              <AnimatedText text="Hi! I'm" type="chars" delay={0.2} />
             </p>
           </motion.div>
           <motion.div

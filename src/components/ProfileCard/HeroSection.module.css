@@ -68,7 +68,8 @@
 .namePill {
   align-content: center;
   align-items: center;
-  background-color: rgb(255, 255, 255);
+  /* background-color: rgb(255, 255, 255); */
+  background-color: black;
   border-radius: 110px;
   display: flex;
   gap: 10px;
@@ -174,7 +175,8 @@
 .rolePill {
   align-content: center;
   align-items: center;
-  background-color: rgb(47, 47, 47);
+  /* background-color: rgb(47, 47, 47); */
+  background-color: rgb(175, 175, 175);
   border-radius: 110px;
   display: flex;
   gap: 12px;
@@ -201,7 +203,8 @@
 
 .roleText {
   border-color: rgb(255, 255, 255);
-  color: rgb(255, 255, 255);
+  /* color: rgb(255, 255, 255); */
+  color: #ffffff;
   font-family: var(--font-manrope), sans-serif;
   font-size: 42px;
   font-weight: 600;
@@ -240,7 +243,8 @@
 .locationPill {
   align-content: center;
   align-items: center;
-  background-color: rgb(255, 255, 255);
+  /* background-color: rgb(255, 255, 255); */
+  background-color: black;
   border-radius: 110px;
   display: flex;
   gap: 10px;
@@ -264,7 +268,8 @@
 
 .locationText {
   border-color: rgb(47, 47, 47);
-  color: rgb(47, 47, 47);
+  /* color: rgb(47, 47, 47); */
+  color: #ffffff;
   font-family: var(--font-manrope), sans-serif;
   font-size: 42px;
   font-weight: 600;

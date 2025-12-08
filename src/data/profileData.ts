@@ -26,12 +26,12 @@ export const profileData: ProfileData = {
   },
   name: "Chinmaya Jena",
   role: "Developer, DevOps / Cloud Engineer",
-  location: "Bhubaneswar 🇮🇳",
+  location: "Bhubaneswar",
   status: "Online Now",
   bio: "Software Developer and Cloud/DevOps Engineer focused on scalable backend systems, Kubernetes, and production-grade cloud architecture.",
   experience: "2+ Years of Experience",
   cta: {
-    text: "See what I can do",
+    text: "See my works",
     href: "#projects",
   },
 };

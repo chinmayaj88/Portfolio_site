@@ -4,6 +4,7 @@ import CallToAction from "./CallToAction";
 import { ProfileCardProps } from "./types";
 import styles from "./ProfileCard.module.css";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { SiGmail } from "react-icons/si";
 import Link from "next/link";
 
 export default function ProfileCard({ data }: ProfileCardProps) {
@@ -55,7 +56,7 @@ export default function ProfileCard({ data }: ProfileCardProps) {
                       marginRight: 4,
                     }}
                   >
-                    <FaGithub size={20} color="#6fa717ff" />
+                    <SiGmail size={20} color="#6fa717ff" />
                   </Link>
                 </div>
               </div>
