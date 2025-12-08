@@ -1,7 +1,8 @@
 .footer {
   background: #000000;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 80px 20px 40px;
+  /* padding: 80px 20px 40px; */
+  padding: 90px;
   position: relative;
 }
 
@@ -14,7 +15,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 48px;
-  margin-bottom: 60px;
+  margin-bottom: start;
 }
 
 .logoSection {
@@ -35,28 +36,19 @@
   transform: translateX(4px);
 }
 
-.logoIcon {
-  width: 32px;
-  height: 32px;
-  background: #a3ff12;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.logoSvg {
-  width: 20px;
-  height: 20px;
-  fill: #000000;
-}
-
 .logoText {
-  font-size: 18px;
-  font-weight: 700;
   color: #ffffff;
+  cursor: pointer;
+  font-family: var(--font-autography), sans-serif;
+  font-size: 34px;
+  font-weight: 500;
+  letter-spacing: 4px;
+  line-height: 31.2px;
   margin: 0;
-  letter-spacing: 0.5px;
+  text-wrap: nowrap;
+  white-space: pre;
+  white-space-collapse: preserve;
+  font-family: var(--font-autography), sans-serif;
 }
 
 .credits {
@@ -73,16 +65,11 @@
   line-height: 1.6;
 }
 
-.framerIcon {
-  display: inline-block;
-  font-size: 16px;
-}
-
 .creator {
   display: flex;
   flex-direction: column;
-  gap: 12px;
   align-items: flex-end;
+  text-align: right;
 }
 
 .createdBy {
@@ -100,13 +87,19 @@
 .avatar {
   width: 36px;
   height: 36px;
-  background: rgba(163, 255, 18, 0.15);
   border-radius: 50%;
+  overflow: hidden; /* ✅ clips image */
+  background: rgba(163, 255, 18, 0.15);
+  border: 2px solid rgba(163, 255, 18, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
-  border: 2px solid rgba(163, 255, 18, 0.3);
+}
+
+.avatarImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .creatorName {
@@ -145,6 +138,10 @@
   color: rgba(255, 255, 255, 0.8);
 }
 
+.avatar:hover {
+  box-shadow: 0 0 12px rgba(163, 255, 18, 0.35);
+}
+
 @media (max-width: 1024px) {
   .content {
     grid-template-columns: repeat(2, 1fr);
@@ -153,6 +150,7 @@
   .creator {
     grid-column: 1 / -1;
     align-items: flex-start;
+    text-align: left;
   }
 }
 
@@ -164,15 +162,14 @@
   .content {
     grid-template-columns: 1fr;
     gap: 32px;
-    margin-bottom: 40px;
   }
 
   .creator {
     align-items: flex-start;
+    text-align: left;
   }
 
   .badge {
     padding: 10px 20px;
   }
 }
-
