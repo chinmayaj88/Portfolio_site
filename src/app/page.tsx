@@ -2,7 +2,6 @@
 
 import { motion } from "motion/react";
 import { ProfileCard } from "@/components/ProfileCard";
-import { BrandsCarousel } from "@/components/BrandsCarousel";
 import { ToolsSkills } from "@/components/ToolsSkills";
 import { ProfessionalJourney } from "@/components/ProfessionalJourney";
 import { Statistics } from "@/components/Statistics";
@@ -19,11 +18,10 @@ export default function Home() {
       transition={{ duration: 0.3 }}
     >
       <ProfileCard data={profileData} />
-      {/* <BrandsCarousel /> */}
+      <Projects />
       {/* <ToolsSkills /> */}
       {/* <ProfessionalJourney /> */}
       {/* <Statistics /> */}
-      {/* <Projects /> */}
       {/* <SocialSection /> */}
       {/* <Contact /> */}
     </motion.main>
