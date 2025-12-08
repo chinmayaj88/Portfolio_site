@@ -97,7 +97,7 @@
 .name {
   border-color: rgb(47, 47, 47);
   color: rgb(47, 47, 47);
-  font-family: Manrope, "Manrope Placeholder", sans-serif;
+  font-family: var(--font-manrope), sans-serif;
   font-size: 22px;
   font-weight: 600;
   letter-spacing: -0.88px;
@@ -125,7 +125,7 @@
 .role {
   border-color: rgb(47, 47, 47);
   color: rgb(47, 47, 47);
-  font-family: Manrope, "Manrope Placeholder", sans-serif;
+  font-family: var(--font-manrope), sans-serif;
   font-size: 15px;
   font-weight: 600;
   letter-spacing: -0.6px;
@@ -195,7 +195,7 @@
 .experience {
   border-color: rgb(47, 47, 47);
   color: rgb(47, 47, 47);
-  font-family: Manrope, "Manrope Placeholder", sans-serif;
+  font-family: var(--font-manrope), sans-serif;
   font-size: 20px;
   font-weight: 600;
   letter-spacing: -0.8px;
@@ -239,7 +239,7 @@
 .descriptionText {
   border-color: rgb(47, 47, 47);
   color: rgb(47, 47, 47);
-  font-family: Manrope, "Manrope Placeholder", sans-serif;
+  font-family: var(--font-manrope), sans-serif;
   font-size: 24px;
   font-weight: 600;
   letter-spacing: -0.96px;

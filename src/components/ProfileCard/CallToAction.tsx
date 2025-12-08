@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { CallToActionProps } from "./types";
 import styles from "./CallToAction.module.css";
 

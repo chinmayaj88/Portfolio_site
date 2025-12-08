@@ -1,8 +1,9 @@
 "use client";
 
-import { motion, useInView, useMotionValue, useTransform, animate } from "framer-motion";
+import { motion, useInView, useMotionValue, useTransform, animate } from "motion/react";
 import { useRef, useEffect } from "react";
 import { statsData } from "@/data/statsData";
+import { AnimatedText } from "@/components/TextAnimations";
 import styles from "./Statistics.module.css";
 
 function CounterAnimation({ value, suffix }: { value: number; suffix: string }) {
@@ -14,7 +15,7 @@ function CounterAnimation({ value, suffix }: { value: number; suffix: string }) 
   useEffect(() => {
     if (isInView) {
       const controls = animate(count, value, {
-        duration: 2,
+        duration: 1.5,
         ease: "easeOut",
       });
       return controls.stop;
@@ -23,18 +24,30 @@ function CounterAnimation({ value, suffix }: { value: number; suffix: string }) 
 
   return (
     <span ref={ref}>
-      <motion.span>{rounded}</motion.span>
-      {suffix}
+      <motion.span
+        initial={{ scale: 0.5 }}
+        animate={isInView ? { scale: 1 } : { scale: 0.5 }}
+        transition={{ type: "spring", stiffness: 200, damping: 15 }}
+      >
+        {rounded}
+      </motion.span>
+      <motion.span
+        initial={{ opacity: 0, x: -5 }}
+        animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -5 }}
+        transition={{ duration: 0.3, delay: 0.5 }}
+      >
+        {suffix}
+      </motion.span>
     </span>
   );
 }
 
 export default function Statistics() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   return (
-    <section className={styles.section} ref={ref}>
+    <section className={`${styles.section} bg-dots`} ref={ref}>
       <div className={styles.container}>
         {statsData.map((stat, index) => (
           <motion.div
@@ -44,20 +57,21 @@ export default function Statistics() {
               backgroundColor: stat.bgColor,
               color: stat.textColor,
             }}
-            initial={{ opacity: 0, scale: 0.9, y: 30 }}
+            initial={{ opacity: 0, scale: 0.85, y: 30 }}
             animate={
               isInView
                 ? { opacity: 1, scale: 1, y: 0 }
-                : { opacity: 0, scale: 0.9, y: 30 }
+                : { opacity: 0, scale: 0.85, y: 30 }
             }
             transition={{
-              duration: 0.6,
-              delay: index * 0.15,
+              duration: 0.4,
+              delay: index * 0.06,
               ease: [0.4, 0, 0.2, 1],
             }}
             whileHover={{
-              scale: 1.05,
-              transition: { duration: 0.2 },
+              scale: 1.08,
+              rotate: index % 2 === 0 ? 3 : -3,
+              transition: { type: "spring", stiffness: 400 }
             }}
           >
             <motion.div
@@ -73,8 +87,8 @@ export default function Statistics() {
               initial={{ scale: 0 }}
               animate={isInView ? { scale: 1 } : { scale: 0 }}
               transition={{
-                duration: 0.8,
-                delay: index * 0.15 + 0.2,
+                duration: 0.6,
+                delay: index * 0.06 + 0.15,
                 ease: "easeOut",
               }}
             />
@@ -85,8 +99,8 @@ export default function Statistics() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{
-                  duration: 0.5,
-                  delay: index * 0.15 + 0.3,
+                  duration: 0.4,
+                  delay: index * 0.06 + 0.2,
                 }}
               >
                 <CounterAnimation value={stat.value} suffix={stat.suffix} />
@@ -97,12 +111,26 @@ export default function Statistics() {
                 initial={{ opacity: 0 }}
                 animate={isInView ? { opacity: 1 } : { opacity: 0 }}
                 transition={{
-                  duration: 0.5,
-                  delay: index * 0.15 + 0.5,
+                  duration: 0.3,
+                  delay: index * 0.06 + 0.35,
                 }}
               >
-                <p className={styles.label}>{stat.label}</p>
-                <p className={styles.sublabel}>{stat.sublabel}</p>
+                <motion.p 
+                  className={styles.label}
+                  initial={{ y: 10, opacity: 0 }}
+                  animate={isInView ? { y: 0, opacity: 1 } : { y: 10, opacity: 0 }}
+                  transition={{ duration: 0.3, delay: index * 0.06 + 0.4 }}
+                >
+                  <AnimatedText text={stat.label} type="chars" delay={index * 0.06 + 0.45} />
+                </motion.p>
+                <motion.p 
+                  className={styles.sublabel}
+                  initial={{ opacity: 0 }}
+                  animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+                  transition={{ duration: 0.3, delay: index * 0.06 + 0.5 }}
+                >
+                  {stat.sublabel}
+                </motion.p>
               </motion.div>
             </div>
           </motion.div>

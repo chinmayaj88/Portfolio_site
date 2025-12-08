@@ -1,8 +1,9 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
+import { motion, useInView } from "motion/react";
 import { useRef } from "react";
 import { contactData } from "@/data/contactData";
+import { AnimatedText, GradientText } from "@/components/TextAnimations/AnimatedText";
 import styles from "./SocialSection.module.css";
 
 export default function SocialSection() {
@@ -21,15 +22,24 @@ export default function SocialSection() {
       <div className={styles.container}>
         <motion.div
           className={styles.header}
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
         >
-          <span className={styles.badge}>
+          <motion.span 
+            className={styles.badge}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.3 }}
+          >
             <span className={styles.dot}></span>
-            [04] — Contact me
-          </span>
-          <h2 className={styles.title}>{contactData.title}</h2>
+            <AnimatedText text="[04] — Contact me" delay={0.1} type="chars" />
+          </motion.span>
+          <h2 className={styles.title}>
+            <GradientText>
+              <AnimatedText text={contactData.title} delay={0.2} type="words" />
+            </GradientText>
+          </h2>
         </motion.div>
 
         <div className={styles.grid}>
@@ -41,21 +51,34 @@ export default function SocialSection() {
               target="_blank"
               rel="noopener noreferrer"
               className={styles.card}
-              initial={{ opacity: 0, y: 40 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{
-                duration: 0.6,
-                delay: index * 0.1,
+                duration: 0.3,
+                delay: index * 0.05,
                 ease: "easeOut",
               }}
-              whileHover={{ scale: 1.02, y: -4 }}
-              whileTap={{ scale: 0.98 }}
+              whileHover={{ 
+                scale: 1.08, 
+                y: -8,
+                boxShadow: "0 15px 40px rgba(0,0,0,0.15)",
+                transition: { type: "spring", stiffness: 500 }
+              }}
+              whileTap={{ scale: 0.92 }}
             >
-              <span className={styles.cardLabel}>{link.name}</span>
+              <motion.span 
+                className={styles.cardLabel}
+                initial={{ opacity: 0, y: 10 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+                transition={{ duration: 0.3, delay: index * 0.05 + 0.1 }}
+              >
+                {link.name}
+              </motion.span>
               <div className={styles.iconWrapper}>
                 <motion.div 
                   className={styles.iconCircle}
-                  whileHover={{ scale: 1.1 }}
+                  whileHover={{ rotate: 20, scale: 1.3 }}
+                  transition={{ type: "spring", stiffness: 400 }}
                 >
                   <span className={styles.iconText}>{link.icon}</span>
                 </motion.div>
@@ -67,22 +90,32 @@ export default function SocialSection() {
           <motion.a
             href={`mailto:${contactData.email}`}
             className={`${styles.card} ${styles.ctaCard}`}
-            initial={{ opacity: 0, y: 40 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{
-              duration: 0.6,
-              delay: 0.4,
+              duration: 0.3,
+              delay: 0.2,
               ease: "easeOut",
             }}
-            whileHover={{ scale: 1.02, y: -4 }}
-            whileTap={{ scale: 0.98 }}
+            whileHover={{ 
+              scale: 1.08, 
+              y: -8,
+              boxShadow: "0 15px 50px rgba(163, 255, 18, 0.5)",
+              transition: { type: "spring", stiffness: 500 }
+            }}
+            whileTap={{ scale: 0.92 }}
           >
             <span className={styles.ctaLabel}>Get in touch</span>
             <div className={styles.iconWrapper}>
               <motion.span 
                 className={styles.arrowIcon}
-                animate={{ x: [0, 4, 0], y: [0, 4, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
+                whileHover={{ rotate: 135, scale: 1.2 }}
+                animate={{ x: [0, 3, 0], y: [0, 3, 0] }}
+                transition={{ 
+                  x: { duration: 1.5, repeat: Infinity },
+                  y: { duration: 1.5, repeat: Infinity },
+                  hover: { duration: 0.2 }
+                }}
               >
                 ↘
               </motion.span>

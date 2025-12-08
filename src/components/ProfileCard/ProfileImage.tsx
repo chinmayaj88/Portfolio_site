@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { ProfileImageProps } from "./types";
 import styles from "./ProfileImage.module.css";
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { ProfileCard } from "@/components/ProfileCard";
 import { BrandsCarousel } from "@/components/BrandsCarousel";
 import { ToolsSkills } from "@/components/ToolsSkills";
@@ -16,7 +16,7 @@ export default function Home() {
     <motion.main
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.3 }}
     >
       <ProfileCard data={profileData} />
       <BrandsCarousel />

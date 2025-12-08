@@ -1,8 +1,9 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
+import { motion, useInView } from "motion/react";
 import { useRef } from "react";
 import { contactData } from "@/data/contactData";
+import { AnimatedText, GradientText, SlideInText } from "@/components/TextAnimations/AnimatedText";
 import styles from "./Contact.module.css";
 import Image from "next/image";
 
@@ -15,24 +16,28 @@ export default function Contact() {
   };
 
   return (
-    <section className={styles.section} ref={ref}>
+    <section className={`${styles.section} bg-dots`} ref={ref}>
       {/* Top Bar */}
       <motion.div
         className={styles.topBar}
         initial={{ opacity: 0, y: -20 }}
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.4 }}
       >
         <div className={styles.topBarContent}>
-          <div className={styles.availabilityBadge}>
+          <motion.div 
+            className={styles.availabilityBadge}
+            whileHover={{ scale: 1.05 }}
+          >
             <span className={styles.greenDot}></span>
-            <span>Available for freelance</span>
-          </div>
+            <AnimatedText text="Available for freelance" delay={0.1} type="chars" />
+          </motion.div>
           <motion.button
             className={styles.backToTop}
             onClick={scrollToTop}
-            whileHover={{ y: -2 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={{ y: -3, scale: 1.05 }}
+            whileTap={{ scale: 0.92 }}
+            transition={{ type: "spring", stiffness: 500 }}
           >
             <span>Back to top</span>
             <div className={styles.arrowCircle}>
@@ -54,32 +59,50 @@ export default function Contact() {
         {/* Left Side - CTA */}
         <motion.div
           className={styles.leftSection}
-          initial={{ opacity: 0, x: -40 }}
-          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          initial={{ opacity: 0, x: -30 }}
+          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
         >
           <h2 className={styles.mainHeading}>
-            Let's create<br />
-            something<br />
-            extraordinary<br />
-            together<span className={styles.greenDot}>.</span>
+            <SlideInText direction="left" delay={0.2}>
+              Let's create
+            </SlideInText>
+            <br />
+            <SlideInText direction="left" delay={0.3}>
+              something
+            </SlideInText>
+            <br />
+            <SlideInText direction="left" delay={0.4}>
+              <GradientText>extraordinary</GradientText>
+            </SlideInText>
+            <br />
+            <SlideInText direction="left" delay={0.5}>
+              together<span className={styles.greenDot}>.</span>
+            </SlideInText>
           </h2>
-          <p className={styles.subtext}>Let's make an impact</p>
+          <motion.p 
+            className={styles.subtext}
+            initial={{ opacity: 0, x: -20 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+            transition={{ duration: 0.4, delay: 0.6 }}
+          >
+            <AnimatedText text="Let's make an impact" delay={0.7} type="chars" />
+          </motion.p>
         </motion.div>
 
         {/* Right Side - Profile Card */}
         <motion.div
           className={styles.rightSection}
-          initial={{ opacity: 0, x: 40 }}
-          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          initial={{ opacity: 0, x: 30 }}
+          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
         >
           <div className={styles.profileCard}>
             <div className={styles.profileHeader}>
               <motion.div
                 className={styles.avatarWrapper}
-                whileHover={{ scale: 1.05, rotate: 3 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                transition={{ type: "spring", stiffness: 400 }}
               >
                 <Image
                   src={contactData.avatar}
@@ -100,8 +123,9 @@ export default function Contact() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className={styles.socialIcon}
-                      whileHover={{ scale: 1.1, y: -2 }}
-                      whileTap={{ scale: 0.95 }}
+                      whileHover={{ scale: 1.2, y: -3 }}
+                      whileTap={{ scale: 0.9 }}
+                      transition={{ type: "spring", stiffness: 500 }}
                     >
                       {link.icon === "in" && (
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -129,8 +153,8 @@ export default function Contact() {
               <motion.a
                 href={`mailto:${contactData.email}`}
                 className={styles.email}
-                whileHover={{ x: 4 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                whileHover={{ x: 5, scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 400 }}
               >
                 {contactData.email}
               </motion.a>
@@ -150,26 +174,21 @@ export default function Contact() {
               target="_blank"
               rel="noopener noreferrer"
               className={styles.behanceButton}
-              whileHover={{ scale: 1.05, boxShadow: "0 8px 30px rgba(163, 255, 18, 0.3)" }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.08, boxShadow: "0 10px 40px rgba(163, 255, 18, 0.4)" }}
+              whileTap={{ scale: 0.92 }}
+              transition={{ type: "spring", stiffness: 500 }}
             >
               <span>My Behance</span>
-              <span className={styles.arrowIcon}>↗</span>
+              <motion.span 
+                className={styles.arrowIcon}
+                whileHover={{ rotate: 45, scale: 1.2 }}
+              >
+                ↗
+              </motion.span>
             </motion.a>
           </div>
         </motion.div>
       </div>
-
-      {/* Made in Framer Badge */}
-      <motion.div
-        className={styles.madeInFramer}
-        initial={{ opacity: 0 }}
-        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-        transition={{ duration: 0.6, delay: 0.8 }}
-      >
-        <span className={styles.framerIcon}>🖼️</span>
-        <span>Made in Framer</span>
-      </motion.div>
     </section>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { brandsData } from "@/data/brandsData";
 import styles from "./BrandsCarousel.module.css";
 
@@ -15,7 +15,7 @@ export default function BrandsCarousel() {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.6 }}
+      transition={{ duration: 0.4 }}
     >
       <div className={styles.container}>
         <div className={styles.background}>
@@ -28,12 +28,13 @@ export default function BrandsCarousel() {
                 key={`${brand.id}-${index}`}
                 className={styles.li}
                 whileHover={{
-                  scale: 1.1,
-                  y: -5,
+                  scale: 1.15,
+                  y: -8,
+                  rotate: 3,
                 }}
                 transition={{
                   type: "spring",
-                  stiffness: 400,
+                  stiffness: 500,
                   damping: 15,
                 }}
               >
@@ -44,8 +45,10 @@ export default function BrandsCarousel() {
                       <motion.div
                         className={styles.imageBox}
                         whileHover={{
-                          filter: "brightness(1.2) contrast(1.1)",
+                          filter: "brightness(1.3) contrast(1.15)",
+                          scale: 1.05,
                         }}
+                        transition={{ duration: 0.2 }}
                       >
                         <Image
                           src={brand.src}

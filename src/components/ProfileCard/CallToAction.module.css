@@ -41,7 +41,7 @@
   border-color: rgb(47, 47, 47);
   color: rgb(47, 47, 47);
   cursor: pointer;
-  font-family: Manrope, "Manrope Placeholder", sans-serif;
+  font-family: var(--font-manrope), sans-serif;
   font-size: 20px;
   font-weight: 600;
   letter-spacing: -0.8px;

@@ -281,27 +281,6 @@
   line-height: 1;
 }
 
-/* Made in Framer Badge */
-.madeInFramer {
-  position: absolute;
-  bottom: 32px;
-  right: 32px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 50px;
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.7);
-  font-weight: 500;
-}
-
-.framerIcon {
-  font-size: 14px;
-}
-
 /* Responsive */
 @media (max-width: 1200px) {
   .container {

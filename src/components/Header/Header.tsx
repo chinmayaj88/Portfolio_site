@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform } from "motion/react";
 import styles from "./Header.module.css";
 
 interface NavLink {
@@ -38,7 +38,7 @@ export default function Header() {
       className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: [0.6, -0.05, 0.01, 0.99] }}
+      transition={{ duration: 0.3, ease: [0.6, -0.05, 0.01, 0.99] }}
       style={{
         backdropFilter: useTransform(headerBlur, (blur) => `blur(${blur}px)`),
       }}
@@ -49,14 +49,14 @@ export default function Header() {
           className={styles.logoSection}
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
+          transition={{ duration: 0.3, delay: 0.1 }}
         >
           <Link href="/" className={styles.logoLink}>
             <motion.div
               className={styles.logoIcon}
-              whileHover={{ scale: 1.05, rotate: 5 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              whileHover={{ scale: 1.1, rotate: 10 }}
+              whileTap={{ scale: 0.9 }}
+              transition={{ type: "spring", stiffness: 500, damping: 15 }}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -69,8 +69,8 @@ export default function Header() {
             </motion.div>
             <motion.h3
               className={styles.logoText}
-              whileHover={{ x: 2 }}
-              transition={{ duration: 0.2 }}
+              whileHover={{ x: 3, scale: 1.02 }}
+              transition={{ duration: 0.15 }}
             >
               AXY STY
             </motion.h3>
@@ -84,7 +84,7 @@ export default function Header() {
             className={styles.nav}
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+            transition={{ duration: 0.3, delay: 0.15 }}
           >
             {navLinks.map((link, index) => (
               <motion.div
@@ -92,7 +92,7 @@ export default function Header() {
                 className={styles.navItem}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
+                transition={{ duration: 0.3, delay: 0.15 + index * 0.05 }}
               >
                 <Link
                   href={link.href}
@@ -101,8 +101,8 @@ export default function Header() {
                   }`}
                 >
                   <motion.span
-                    whileHover={{ y: -2 }}
-                    transition={{ duration: 0.2 }}
+                    whileHover={{ y: -3, scale: 1.05 }}
+                    transition={{ duration: 0.15, type: "spring", stiffness: 500 }}
                   >
                     {link.label}
                   </motion.span>
@@ -116,13 +116,13 @@ export default function Header() {
             className={styles.rightSection}
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
+            transition={{ duration: 0.3, delay: 0.2 }}
           >
             <motion.div
               className={styles.emailSection}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
+              transition={{ duration: 0.3, delay: 0.25 }}
             >
               <p className={styles.emailLabel}>Email:</p>
               <p className={styles.emailValue}>akshayshetty61@gmail.com</p>
@@ -137,11 +137,11 @@ export default function Header() {
               title="Download Resume"
               className={styles.resumeButton}
               whileHover={{
-                scale: 1.05,
-                boxShadow: "0 8px 30px rgba(163, 255, 18, 0.4)",
+                scale: 1.08,
+                boxShadow: "0 8px 30px rgba(163, 255, 18, 0.5)",
               }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              whileTap={{ scale: 0.92 }}
+              transition={{ type: "spring", stiffness: 500, damping: 15 }}
             >
               <motion.svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -150,9 +150,9 @@ export default function Header() {
                 fill="currentColor"
                 viewBox="0 0 256 256"
                 className={styles.resumeIcon}
-                animate={{ y: [0, 2, 0] }}
+                animate={{ y: [0, 3, 0] }}
                 transition={{
-                  duration: 1.5,
+                  duration: 1,
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}

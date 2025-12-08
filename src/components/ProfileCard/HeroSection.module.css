@@ -52,7 +52,7 @@
 .labelText {
   border-color: rgb(47, 47, 47);
   color: rgb(47, 47, 47);
-  font-family: Manrope, "Manrope Placeholder", sans-serif;
+  font-family: var(--font-manrope), sans-serif;
   font-size: 92px;
   letter-spacing: -3.68px;
   line-height: 92px;
@@ -96,7 +96,7 @@
 .nameText {
   border-color: rgb(47, 47, 47);
   color: rgb(47, 47, 47);
-  font-family: Manrope, "Manrope Placeholder", sans-serif;
+  font-family: var(--font-manrope), sans-serif;
   font-size: 42px;
   font-weight: 600;
   line-height: 42px;
@@ -121,7 +121,7 @@
   border-color: rgb(47, 47, 47);
   color: rgb(47, 47, 47);
   display: inline-block;
-  font-family: Manrope, "Manrope Placeholder", sans-serif;
+  font-family: var(--font-manrope), sans-serif;
   font-size: 42px;
   font-weight: 600;
   line-height: 42px;
@@ -202,7 +202,7 @@
 .roleText {
   border-color: rgb(255, 255, 255);
   color: rgb(255, 255, 255);
-  font-family: Manrope, "Manrope Placeholder", sans-serif;
+  font-family: var(--font-manrope), sans-serif;
   font-size: 42px;
   font-weight: 600;
   letter-spacing: -1.68px;
@@ -265,7 +265,7 @@
 .locationText {
   border-color: rgb(47, 47, 47);
   color: rgb(47, 47, 47);
-  font-family: Manrope, "Manrope Placeholder", sans-serif;
+  font-family: var(--font-manrope), sans-serif;
   font-size: 42px;
   font-weight: 600;
   letter-spacing: -1.68px;

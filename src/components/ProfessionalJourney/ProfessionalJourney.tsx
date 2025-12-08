@@ -1,8 +1,9 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
+import { motion, useInView } from "motion/react";
 import { useRef } from "react";
 import { experienceData } from "@/data/experienceData";
+import { AnimatedText, TypewriterText } from "@/components/TextAnimations/AnimatedText";
 import styles from "./ProfessionalJourney.module.css";
 import Image from "next/image";
 
@@ -11,19 +12,26 @@ export default function ProfessionalJourney() {
   const isInView = useInView(ref, { once: true, amount: 0.1 });
 
   return (
-    <section className={styles.section} ref={ref}>
+    <section className={`${styles.section} bg-noise`} ref={ref}>
       <div className={styles.container}>
         <motion.div
           className={styles.header}
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
         >
-          <span className={styles.badge}>
+          <motion.span 
+            className={styles.badge}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.3 }}
+          >
             <span className={styles.dot}></span>
-            [03] — Me
-          </span>
-          <h2 className={styles.title}>Professional Journey</h2>
+            <AnimatedText text="[03] — Me" delay={0.1} type="chars" />
+          </motion.span>
+          <h2 className={styles.title}>
+            {isInView && <TypewriterText text="Professional Journey" speed={0.06} />}
+          </h2>
         </motion.div>
 
         <div className={styles.timeline}>
@@ -31,11 +39,16 @@ export default function ProfessionalJourney() {
             <motion.div
               key={exp.id}
               className={styles.experienceCard}
-              initial={{ opacity: 0, x: -50 }}
-              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+              initial={{ opacity: 0, y: 40 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+              whileHover={{ 
+                y: -8,
+                backgroundColor: "rgba(255, 255, 255, 0.05)",
+                scale: 1.01
+              }}
               transition={{
-                duration: 0.7,
-                delay: index * 0.2,
+                duration: 0.4,
+                delay: index * 0.08,
                 ease: "easeOut",
               }}
             >
@@ -43,8 +56,8 @@ export default function ProfessionalJourney() {
                 <div className={styles.companyInfo}>
                   <motion.div
                     className={styles.logoWrapper}
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ type: "spring", stiffness: 300 }}
+                    whileHover={{ scale: 1.08, rotate: 2 }}
+                    transition={{ type: "spring", stiffness: 400 }}
                   >
                     <Image
                       src={exp.logo}
@@ -69,13 +82,13 @@ export default function ProfessionalJourney() {
                   <motion.div
                     key={idx}
                     className={styles.responsibilityItem}
-                    initial={{ opacity: 0, y: 10 }}
+                    initial={{ opacity: 0, x: -20 }}
                     animate={
-                      isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }
+                      isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }
                     }
                     transition={{
-                      duration: 0.5,
-                      delay: index * 0.2 + idx * 0.1 + 0.3,
+                      duration: 0.3,
+                      delay: index * 0.08 + idx * 0.05 + 0.2,
                     }}
                   >
                     <span className={styles.star}>✦</span>
