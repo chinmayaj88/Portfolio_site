@@ -63,7 +63,7 @@ export default function ProjectsPage() {
           {projects.map((project, index) => (
             <motion.a
               key={project.id}
-              href={project.link}
+              href={`/projects/${project.id}`}
               className={styles.projectLink}
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
