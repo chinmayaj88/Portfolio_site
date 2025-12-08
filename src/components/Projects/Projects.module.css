@@ -166,39 +166,6 @@
   margin-top: 16px;
 }
 
-/* Categories Scroll */
-.categoriesWrapper {
-  width: 100%;
-  overflow: hidden;
-  padding: 32px 0;
-  background: transparent;
-  margin-top: auto;
-}
-
-.categoriesScroll {
-  display: flex;
-  gap: 48px;
-  white-space: nowrap;
-}
-
-.categoryItem {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  font-size: 24px;
-  font-weight: 500;
-  color: rgba(163, 255, 18, 0.8);
-  letter-spacing: -0.01em;
-}
-
-.categoryItem:nth-child(even) {
-  color: #ffffff;
-}
-
-.star {
-  color: #a3ff12;
-  font-size: 20px;
-}
 
 @media (max-width: 1024px) {
   .projectsGrid {

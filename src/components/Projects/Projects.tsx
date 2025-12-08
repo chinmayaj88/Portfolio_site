@@ -6,6 +6,7 @@ import { projectsData, categories } from "@/data/projectsData";
 import { AnimatedText, ScaleInText } from "@/components/TextAnimations";
 import styles from "./Projects.module.css";
 import Image from "next/image";
+import InfiniteScrollMarquee from "../shared/InfiniteScrollMarquee/InfiniteScrollMarquee";
 
 export default function Projects() {
   const ref = useRef(null);
@@ -29,27 +30,29 @@ export default function Projects() {
                 delay: index * 0.08,
                 ease: [0.4, 0, 0.2, 1],
               }}
-              whileHover={{ 
+              whileHover={{
                 y: -12,
                 rotateX: 2,
                 rotateY: 2,
                 scale: 1.02,
-                transition: { type: "spring", stiffness: 400 }
+                transition: { type: "spring", stiffness: 400 },
               }}
               style={{ transformStyle: "preserve-3d" }}
             >
               <div className={styles.projectInfo}>
                 <div className={styles.projectMeta}>
-                  <motion.span 
+                  <motion.span
                     className={styles.category}
                     initial={{ opacity: 0, x: -10 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
+                    animate={
+                      isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }
+                    }
                     transition={{ duration: 0.3, delay: index * 0.08 + 0.1 }}
                   >
                     {`[ ${project.category} ]`}
                   </motion.span>
                   {project.date && (
-                    <motion.span 
+                    <motion.span
                       className={styles.date}
                       initial={{ opacity: 0 }}
                       animate={isInView ? { opacity: 1 } : { opacity: 0 }}
@@ -62,10 +65,12 @@ export default function Projects() {
                 <ScaleInText delay={index * 0.08 + 0.2}>
                   <h3 className={styles.projectTitle}>{project.title}</h3>
                 </ScaleInText>
-                <motion.p 
+                <motion.p
                   className={styles.projectSubtitle}
                   initial={{ opacity: 0, y: 10 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+                  animate={
+                    isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }
+                  }
                   transition={{ duration: 0.3, delay: index * 0.08 + 0.25 }}
                 >
                   {project.subtitle}
@@ -120,7 +125,7 @@ export default function Projects() {
                   <AnimatedText text="View all projects" type="words" />
                 </h3>
               </ScaleInText>
-              <motion.p 
+              <motion.p
                 className={styles.ctaSubtitle}
                 initial={{ opacity: 0 }}
                 animate={isInView ? { opacity: 1 } : { opacity: 0 }}
@@ -128,7 +133,7 @@ export default function Projects() {
               >
                 My Behance
               </motion.p>
-              <motion.div 
+              <motion.div
                 className={styles.ctaIcon}
                 whileHover={{ rotate: 90, scale: 1.2 }}
                 transition={{ type: "spring", stiffness: 400 }}
@@ -140,32 +145,10 @@ export default function Projects() {
         </div>
       </div>
 
-      {/* Scrolling Categories at Bottom */}
-      <div className={styles.categoriesWrapper}>
-        <motion.div
-          className={styles.categoriesScroll}
-          initial={{ x: 0 }}
-          animate={{ x: [0, -1000] }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-        >
-          {[...categories, ...categories, ...categories, ...categories].map((category, index) => (
-            <motion.div 
-              key={index} 
-              className={styles.categoryItem}
-              whileHover={{ scale: 1.1, color: "#a3ff12" }}
-              transition={{ duration: 0.2 }}
-            >
-              <span className={styles.star}>✳</span>
-              <span>{category}</span>
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
+      <InfiniteScrollMarquee
+        items={["React", "Next.js", "Kubernetes", "OCI", "Terraform"]}
+        duration={20}
+      />
     </section>
   );
 }
-
