@@ -19,13 +19,13 @@ export default function Home() {
       transition={{ duration: 0.3 }}
     >
       <ProfileCard data={profileData} />
-      <BrandsCarousel />
-      <ToolsSkills />
-      <ProfessionalJourney />
-      <Statistics />
-      <Projects />
-      <SocialSection />
-      <Contact />
+      {/* <BrandsCarousel /> */}
+      {/* <ToolsSkills /> */}
+      {/* <ProfessionalJourney /> */}
+      {/* <Statistics /> */}
+      {/* <Projects /> */}
+      {/* <SocialSection /> */}
+      {/* <Contact /> */}
     </motion.main>
   );
 }

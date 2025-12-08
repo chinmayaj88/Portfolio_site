@@ -49,22 +49,6 @@
   opacity: 0.7;
 }
 
-.logoIcon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  background: #a3ff12;
-  border-radius: 8px;
-}
-
-.logoSvg {
-  width: 20px;
-  height: 20px;
-  fill: #000000;
-}
-
 .logoText {
   color: #ffffff;
   cursor: pointer;

@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import styles from "./Header.module.css";
+import Image from "next/image";
 
 interface NavLink {
   label: string;
@@ -20,7 +21,7 @@ export default function Header() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const { scrollY } = useScroll();
-  
+
   const headerOpacity = useTransform(scrollY, [0, 50], [0.8, 0.95]);
   const headerBlur = useTransform(scrollY, [0, 50], [20, 30]);
 
@@ -52,21 +53,6 @@ export default function Header() {
           transition={{ duration: 0.3, delay: 0.1 }}
         >
           <Link href="/" className={styles.logoLink}>
-            <motion.div
-              className={styles.logoIcon}
-              whileHover={{ scale: 1.1, rotate: 10 }}
-              whileTap={{ scale: 0.9 }}
-              transition={{ type: "spring", stiffness: 500, damping: 15 }}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 256 256"
-                focusable="false"
-                className={styles.logoSvg}
-              >
-                <path d="M88.08,128a22,22,0,1,1,22-22A22,22,0,0,1,88.08,128Zm92,0a22,22,0,1,1,22-22A22,22,0,0,1,180.08,128Zm-46-74a22,22,0,1,0,22-22A22,22,0,0,0,134.08,54Z" />
-              </svg>
-            </motion.div>
             <motion.h3
               className={styles.logoText}
               whileHover={{ x: 3, scale: 1.02 }}
@@ -102,7 +88,11 @@ export default function Header() {
                 >
                   <motion.span
                     whileHover={{ y: -3, scale: 1.05 }}
-                    transition={{ duration: 0.15, type: "spring", stiffness: 500 }}
+                    transition={{
+                      duration: 0.15,
+                      type: "spring",
+                      stiffness: 500,
+                    }}
                   >
                     {link.label}
                   </motion.span>
