@@ -3,11 +3,33 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 240px 40px 160px 40px;
+  justify-content: flex-start;
+  padding: 120px 40px 160px 40px;
   position: relative;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0);
+  background-color: rgb(248, 248, 248);
+  overflow: hidden;
+}
+
+/* Animated Particles Background */
+.particlesBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(163, 255, 18, 0.15);
+  border-radius: 50%;
+  opacity: 0.1;
 }
 
 .container {
@@ -18,6 +40,8 @@
   justify-content: center;
   max-width: 1100px;
   width: 100%;
+  position: relative;
+  z-index: 1;
 }
 
 .header {
@@ -41,15 +65,16 @@
 
 .badgeDot {
   aspect-ratio: 1 / 1;
-  background-color: rgb(255, 195, 31);
+  background-color: #a3ff12;
   border-radius: 100%;
   position: relative;
   width: 10px;
+  box-shadow: 0 0 10px rgba(163, 255, 18, 0.5);
 }
 
 .badgeText {
-  border-color: rgba(47, 47, 47, 0.5);
-  color: rgba(47, 47, 47, 0.5);
+  border-color: rgba(0, 0, 0, 0.5);
+  color: rgba(0, 0, 0, 0.5);
   font-family: Manrope, sans-serif;
   font-size: 18px;
   font-weight: 600;
@@ -74,14 +99,53 @@
   word-break: break-word;
 }
 
+/* Filter Buttons */
+.filters {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.filterButton {
+  padding: 10px 20px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.8);
+  color: rgba(0, 0, 0, 0.7);
+  font-family: Manrope, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.08s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.filterButton:hover {
+  border-color: #a3ff12;
+  background: rgba(163, 255, 18, 0.15);
+  color: #000000;
+  box-shadow: 0 4px 12px rgba(163, 255, 18, 0.2);
+  transform: translateY(-1px);
+}
+
+.filterButton.active {
+  background: #a3ff12;
+  color: #000000;
+  border-color: #a3ff12;
+  box-shadow: 0 4px 12px rgba(163, 255, 18, 0.3);
+  font-weight: 600;
+}
+
 .projectsGrid {
   align-content: center;
   align-items: center;
   display: flex;
   flex-direction: column;
-  gap: 140px;
+  gap: 100px;
   justify-content: flex-start;
-  margin-top: 80px;
+  margin-top: 60px;
   position: relative;
   width: 100%;
 }
@@ -90,7 +154,8 @@
   align-content: center;
   align-items: center;
   background-color: rgb(255, 255, 255);
-  border-radius: 28px 28px 0px 0px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 28px;
   color: rgb(0, 0, 238);
   cursor: pointer;
   display: flex;
@@ -101,7 +166,35 @@
   position: relative;
   text-decoration: none;
   width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
   z-index: 1;
+  overflow: hidden;
+  transition: all 0.08s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  perspective: 1000px;
+  will-change: transform;
+}
+
+.projectLink:hover {
+  background-color: rgb(255, 255, 255);
+  border-color: rgba(163, 255, 18, 0.4);
+  box-shadow: 0 20px 60px rgba(163, 255, 18, 0.25);
+  transition: all 0.08s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Glow Effect - Removed for performance */
+
+/* Card Gradient */
+.cardGradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 28px;
 }
 
 .imageWrapper {
@@ -120,6 +213,23 @@
   position: absolute;
   right: 0px;
   top: 0px;
+  transform-style: preserve-3d;
+  transition: transform 0.08s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  will-change: transform;
+}
+
+/* Image Overlay */
+.imageOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+  border-radius: 20px;
+  pointer-events: none;
+  z-index: 1;
 }
 
 .image {
@@ -139,6 +249,8 @@
   padding: 0 40px 40px 40px;
   position: relative;
   width: 100%;
+  z-index: 2;
+  overflow: hidden;
 }
 
 .projectMeta {
@@ -160,8 +272,8 @@
 }
 
 .bracket {
-  border-color: rgb(47, 47, 47);
-  color: rgb(47, 47, 47);
+  border-color: rgba(0, 0, 0, 0.4);
+  color: rgba(0, 0, 0, 0.4);
   cursor: pointer;
   font-family: Manrope, sans-serif;
   font-size: 17px;
@@ -171,11 +283,12 @@
   margin: 0;
   text-wrap: nowrap;
   white-space: pre;
+  transition: all 0.08s ease;
 }
 
 .category {
-  border-color: rgb(47, 47, 47);
-  color: rgb(47, 47, 47);
+  border-color: #a3ff12;
+  color: #a3ff12;
   cursor: pointer;
   font-family: Manrope, sans-serif;
   font-size: 17px;
@@ -185,6 +298,7 @@
   margin: 0;
   text-wrap: nowrap;
   white-space: pre;
+  transition: all 0.08s ease;
 }
 
 .projectInfo {
@@ -193,6 +307,7 @@
   display: flex;
   height: min-content;
   justify-content: space-between;
+  gap: 24px;
   overflow-x: hidden;
   overflow-y: hidden;
   position: relative;
@@ -203,13 +318,13 @@
   align-content: flex-start;
   align-items: flex-start;
   display: flex;
-  flex-basis: 0px;
   flex-direction: column;
   flex-grow: 1;
+  flex-shrink: 1;
   gap: 28px;
   justify-content: center;
   position: relative;
-  width: 1px;
+  min-width: 0;
 }
 
 .projectTitle {
@@ -221,13 +336,16 @@
   letter-spacing: -2.4px;
   line-height: 66px;
   margin: 0;
-  text-wrap: balance;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  transition: all 0.08s ease;
 }
 
 .viewMoreButton {
   align-content: center;
   align-items: center;
   background-color: rgb(47, 47, 47);
+  border: none;
   border-radius: 30px;
   cursor: pointer;
   display: flex;
@@ -237,6 +355,19 @@
   padding: 0 28px;
   position: relative;
   width: min-content;
+  flex-shrink: 0;
+  transition: all 0.08s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  align-self: flex-end;
+}
+
+.projectLink:hover .viewMoreButton {
+  background-color: rgb(47, 47, 47);
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
 }
 
 .buttonContent {
@@ -252,11 +383,17 @@
   overflow-x: hidden;
   overflow-y: hidden;
   position: absolute;
-  right: -46px;
+  right: -23px;
   top: 50%;
   transform: translateY(-50%);
   width: 46px;
   z-index: 1;
+  transition: all 0.08s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.projectLink:hover .buttonContent {
+  background-color: rgb(255, 255, 255);
+  transform: translateY(-50%) scale(1.05);
 }
 
 .buttonIcon {
@@ -274,6 +411,7 @@
   height: 100%;
   user-select: none;
   width: 100%;
+  transition: all 0.08s ease;
 }
 
 .viewMoreText {
@@ -288,6 +426,18 @@
   margin: 0;
   text-wrap: nowrap;
   white-space: pre;
+  transition: all 0.08s ease;
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+  pointer-events: auto !important;
+}
+
+.projectLink:hover .viewMoreText {
+  color: rgb(255, 255, 255);
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
 }
 
 @media (max-width: 768px) {

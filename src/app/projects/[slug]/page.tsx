@@ -6,27 +6,96 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useInView } from 'motion/react';
 import { useRef } from 'react';
+import { use } from 'react';
 import styles from './project-detail.module.css';
 
 interface ProjectDetailPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
-  const project = projectsData.find((p) => p.id === params.slug);
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.1 });
+  const { slug } = use(params);
+  const project = projectsData.find((p) => p.id === slug);
+  const heroRef = useRef<HTMLElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
+  const highlightsRef = useRef<HTMLElement>(null);
+  const impactRef = useRef<HTMLElement>(null);
+  const relatedRef = useRef<HTMLElement>(null);
+  
+  const heroInView = useInView(heroRef, { once: true, amount: 0.2 });
+  const imageInView = useInView(imageRef, { once: true, amount: 0.2 });
+  const highlightsInView = useInView(highlightsRef, { once: true, amount: 0.2 });
+  const impactInView = useInView(impactRef, { once: true, amount: 0.2 });
+  const relatedInView = useInView(relatedRef, { once: true, amount: 0.2 });
 
   if (!project) {
     notFound();
   }
 
-  const projectIndex = projectsData.findIndex((p) => p.id === params.slug);
+  const projectIndex = projectsData.findIndex((p) => p.id === slug);
   const relatedProjects = projectsData.filter((_, idx) => idx !== projectIndex).slice(0, 3);
 
   const projectDetails = {
+    'ecommerce-microservices': {
+      description: 'Enterprise-grade E-Commerce Microservices Platform built with Clean Architecture and domain-driven design principles. A scalable backend system deployed on Oracle Cloud Infrastructure (OCI) with comprehensive security, monitoring, and CI/CD pipelines.',
+      highlights: [
+        {
+          title: 'Clean Architecture',
+          description: 'Developed microservices using Clean Architecture and domain-driven principles for maintainability and scalability.',
+        },
+        {
+          title: 'Security & Authentication',
+          description: 'Implemented JWT authentication, role-based access control (RBAC), and secure token management with Vault integration.',
+        },
+        {
+          title: 'Resilience Patterns',
+          description: 'Integrated circuit breakers, caching strategies, and structured logging for production-grade reliability.',
+        },
+        {
+          title: 'Cloud Deployment',
+          description: 'Configured scalable deployment patterns on OCI (OKE) with environment-based runtime configs and graceful shutdown logic.',
+        },
+      ],
+      impact: [
+        'Established scalable microservices foundation for enterprise e-commerce operations.',
+        'Improved system reliability with circuit breakers and comprehensive error handling.',
+        'Enabled secure, multi-tenant architecture with proper access controls.',
+      ],
+      images: [
+        'https://placehold.co/1853x1126/1a1a1a/a3ff12?text=Enterprise+E-Commerce+Backend',
+      ],
+    },
+    'vett-task-tracker': {
+      description: 'Vett - An AI-powered voice-enabled task tracker that allows users to manage their tasks through natural voice commands. Built with modern web technologies and integrated voice recognition for seamless task management.',
+      highlights: [
+        {
+          title: 'Voice Interface',
+          description: 'Integrated advanced voice recognition technology for hands-free task creation and management.',
+        },
+        {
+          title: 'AI-Powered Features',
+          description: 'Leveraged AI to understand natural language commands and provide intelligent task suggestions.',
+        },
+        {
+          title: 'Real-time Updates',
+          description: 'Implemented real-time synchronization across devices for seamless task management experience.',
+        },
+        {
+          title: 'User Experience',
+          description: 'Designed intuitive interface that combines voice and traditional input methods for maximum flexibility.',
+        },
+      ],
+      impact: [
+        'Enabled hands-free task management for improved productivity.',
+        'Demonstrated integration of AI and voice technologies in practical applications.',
+        'Created accessible interface for users with different interaction preferences.',
+      ],
+      images: [
+        'https://placehold.co/1853x1126/1a1a1a/a3ff12?text=Vett+-+Voice+Task+Tracker',
+      ],
+    },
     'lenskart-supercards': {
       description: "Lenskart's Product Listing Page (PLP) using a concept termed \"Supercards.\" The focus is on card-style layouts that appear clean, structured, and visually compelling for users as they browse product listings.",
       highlights: [
@@ -139,31 +208,50 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
   };
 
   const details =
-    projectDetails[params.slug as keyof typeof projectDetails] || projectDetails['lenskart-supercards'];
+    projectDetails[slug as keyof typeof projectDetails] || projectDetails['lenskart-supercards'];
 
   return (
-    <main className={styles.main} ref={ref}>
+    <main className={styles.main}>
       <div className={styles.container}>
         {/* Hero Section */}
         <motion.section
+          ref={heroRef}
           className={styles.hero}
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, y: 30 }}
+          animate={heroInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ 
+            duration: 0.6,
+            ease: [0.4, 0, 0.2, 1]
+          }}
         >
-          <h1 className={styles.title}>{project.title}</h1>
+          <motion.h1 
+            className={styles.title}
+            initial={{ opacity: 0, y: 20 }}
+            animate={heroInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ 
+              duration: 0.6,
+              delay: 0.1,
+              ease: [0.4, 0, 0.2, 1]
+            }}
+          >
+            {project.title}
+          </motion.h1>
         </motion.section>
 
         {/* Project Meta */}
         <motion.div
           className={styles.projectMeta}
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={heroInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ 
+            duration: 0.6,
+            delay: 0.2,
+            ease: [0.4, 0, 0.2, 1]
+          }}
         >
           <div className={styles.metaItem}>
             <p className={styles.metaLabel}>Services</p>
-            <p className={styles.metaValue}>{project.subtitle}</p>
+            <p className={styles.metaValue}>{project.subtitle || 'N/A'}</p>
           </div>
           <div className={styles.divider} />
           <div className={styles.metaItem}>
@@ -181,18 +269,26 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
         <motion.div
           className={styles.description}
           initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
+          animate={heroInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ 
+            duration: 0.6,
+            delay: 0.3,
+            ease: [0.4, 0, 0.2, 1]
+          }}
         >
           <p className={styles.descriptionText}>{details.description}</p>
         </motion.div>
 
         {/* Featured Image */}
         <motion.div
+          ref={imageRef}
           className={styles.imageSection}
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
+          initial={{ opacity: 0, y: 30 }}
+          animate={imageInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ 
+            duration: 0.6,
+            ease: [0.4, 0, 0.2, 1]
+          }}
         >
           <Image
             src={project.image}
@@ -206,18 +302,32 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
 
         {/* Highlights */}
         <motion.section
+          ref={highlightsRef}
           className={styles.highlights}
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={highlightsInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ 
+            duration: 0.6,
+            ease: [0.4, 0, 0.2, 1]
+          }}
         >
           <h2 className={styles.sectionTitle}>Key Highlights</h2>
           <ul className={styles.highlightsList}>
             {details.highlights.map((highlight, idx) => (
-              <li key={idx} className={styles.highlightItem}>
+              <motion.li
+                key={idx}
+                className={styles.highlightItem}
+                initial={{ opacity: 0, x: -20 }}
+                animate={highlightsInView ? { opacity: 1, x: 0 } : {}}
+                transition={{
+                  duration: 0.5,
+                  delay: idx * 0.1,
+                  ease: [0.4, 0, 0.2, 1]
+                }}
+              >
                 <strong className={styles.highlightTitle}>{highlight.title}:</strong>
                 {' ' + highlight.description}
-              </li>
+              </motion.li>
             ))}
           </ul>
         </motion.section>
@@ -227,9 +337,12 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
           <>
             <motion.div
               className={styles.galleryImage}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={imageInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ 
+                duration: 0.6,
+                ease: [0.4, 0, 0.2, 1]
+              }}
             >
               <Image
                 src={details.images[0]}
@@ -242,17 +355,31 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
 
             {/* Impact */}
             <motion.section
+              ref={impactRef}
               className={styles.impact}
-              initial={{ opacity: 0 }}
-              animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-              transition={{ duration: 0.6, delay: 0.7 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={impactInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ 
+                duration: 0.6,
+                ease: [0.4, 0, 0.2, 1]
+              }}
             >
               <h2 className={styles.sectionTitle}>Impact</h2>
               <ul className={styles.impactList}>
                 {details.impact.map((point, idx) => (
-                  <li key={idx} className={styles.impactItem}>
+                  <motion.li
+                    key={idx}
+                    className={styles.impactItem}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={impactInView ? { opacity: 1, x: 0 } : {}}
+                    transition={{
+                      duration: 0.5,
+                      delay: idx * 0.1,
+                      ease: [0.4, 0, 0.2, 1]
+                    }}
+                  >
                     <p className={styles.impactText}>{point}</p>
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
             </motion.section>
@@ -260,9 +387,12 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
             {details.images.length > 1 && (
               <motion.div
                 className={styles.galleryImage}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.6, delay: 0.8 }}
+                initial={{ opacity: 0, y: 30 }}
+                animate={imageInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ 
+                  duration: 0.6,
+                  ease: [0.4, 0, 0.2, 1]
+                }}
               >
                 <Image
                   src={details.images[1]}
@@ -278,42 +408,68 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
 
         {/* Related Projects */}
         <motion.section
+          ref={relatedRef}
           className={styles.relatedProjects}
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 0.6, delay: 0.9 }}
+          initial={{ opacity: 0, y: 30 }}
+          animate={relatedInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ 
+            duration: 0.6,
+            ease: [0.4, 0, 0.2, 1]
+          }}
         >
           <div className={styles.sectionHeader}>
             <div className={styles.badgeIndicator}>
-              <span className={styles.badge} />
+              <motion.span 
+                className={styles.badge}
+                animate={{ 
+                  scale: [1, 1.2, 1],
+                  opacity: [1, 0.7, 1]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: 'easeInOut'
+                }}
+              />
               <p className={styles.badgeText}>Latest projects</p>
             </div>
             <h2 className={styles.sectionHeading}>Some of my other stuff</h2>
           </div>
 
           <div className={styles.relatedGrid}>
-            {relatedProjects.map((relProject) => (
-              <Link key={relProject.id} href={`/projects/${relProject.id}`} className={styles.relatedCard}>
-                <div className={styles.relatedImageWrapper}>
-                  <Image
-                    src={relProject.image}
-                    alt={relProject.title}
-                    width={1853}
-                    height={1126}
-                    className={styles.relatedImage}
-                  />
-                </div>
-                <div className={styles.relatedContent}>
-                  <div className={styles.relatedMeta}>
-                    <span className={styles.bracket}>{'{'}</span>
-                    <span className={styles.relatedCategory}>{relProject.category}</span>
-                    <span className={styles.bracket}>{'}'}</span>
+            {relatedProjects.map((relProject, idx) => (
+              <motion.div
+                key={relProject.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={relatedInView ? { opacity: 1, y: 0 } : {}}
+                transition={{
+                  duration: 0.5,
+                  delay: idx * 0.1,
+                  ease: [0.4, 0, 0.2, 1]
+                }}
+              >
+                <Link href={`/projects/${relProject.id}`} className={styles.relatedCard}>
+                  <div className={styles.relatedImageWrapper}>
+                    <Image
+                      src={relProject.image}
+                      alt={relProject.title}
+                      width={1853}
+                      height={1126}
+                      className={styles.relatedImage}
+                    />
                   </div>
-                  <h3 className={styles.relatedTitle}>{relProject.title}</h3>
-                  {relProject.date && <p className={styles.relatedDate}>{relProject.date}</p>}
-                  <p className={styles.relatedSubtitle}>{relProject.subtitle}</p>
-                </div>
-              </Link>
+                  <div className={styles.relatedContent}>
+                    <div className={styles.relatedMeta}>
+                      <span className={styles.bracket}>{'{'}</span>
+                      <span className={styles.relatedCategory}>{relProject.category}</span>
+                      <span className={styles.bracket}>{'}'}</span>
+                    </div>
+                    <h3 className={styles.relatedTitle}>{relProject.title}</h3>
+                    {relProject.date && <p className={styles.relatedDate}>{relProject.date}</p>}
+                    <p className={styles.relatedSubtitle}>{relProject.subtitle}</p>
+                  </div>
+                </Link>
+              </motion.div>
             ))}
           </div>
         </motion.section>
@@ -322,8 +478,8 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
         <motion.div
           className={styles.backLink}
           initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 0.6, delay: 1 }}
+          animate={relatedInView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.5, delay: 0.3 }}
         >
           <Link href="/projects" className={styles.backButton}>
             ← Back to Projects

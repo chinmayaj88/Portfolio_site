@@ -1,5 +1,5 @@
 .section {
-  padding: 120px 0 0 0;
+  /* padding: 120px 0 0 0; */
   background: #000000;
   overflow: hidden;
   display: flex;
@@ -7,64 +7,79 @@
 }
 
 .container {
-  max-width: 1400px;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 0 20px;
+  /* padding: 0 40px; */
   width: 100%;
 }
 
-.projectsGrid {
+.topGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-  margin-bottom: 80px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  margin-bottom: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.projectCard {
+.bottomGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  /* margin-bottom: 80px; */
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.projectItem,
+.projectItemSmall {
+  position: relative;
+  background: #0a0a0a;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  text-decoration: none;
+  overflow: hidden;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.projectItem {
+  min-height: 600px;
+}
+
+.projectItemSmall {
+  min-height: 500px;
 }
 
 .projectInfo {
+  padding: 32px 32px 24px 32px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-}
-
-.projectMeta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   gap: 12px;
-  margin-bottom: 8px;
+  z-index: 2;
+  position: relative;
 }
 
 .category {
-  font-size: 14px;
+  font-size: 13px;
   color: #a3ff12;
   font-weight: 500;
   letter-spacing: 0.5px;
-}
-
-.date {
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.4);
-  font-weight: 400;
+  margin-bottom: 4px;
 }
 
 .projectTitle {
-  font-size: 24px;
+  font-size: 32px;
   font-weight: 600;
   color: #ffffff;
   margin: 0;
   line-height: 1.2;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
 }
 
 .projectSubtitle {
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.5);
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.6);
   margin: 0;
   line-height: 1.5;
 }
@@ -72,15 +87,17 @@
 .imageWrapper {
   position: relative;
   width: 100%;
-  aspect-ratio: 4/3;
-  border-radius: 20px;
+  flex: 1;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.05);
+  padding: 0 24px 24px 24px;
 }
 
 .imageContainer {
   width: 100%;
   height: 100%;
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
 }
 
 .image {
@@ -89,112 +106,164 @@
   object-fit: cover;
 }
 
-.overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(4px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.projectCard:hover .overlay {
-  opacity: 1;
-}
-
-.viewButton {
-  padding: 12px 24px;
-  background: #a3ff12;
-  color: #000000;
-  border-radius: 50px;
-  font-size: 14px;
-  font-weight: 600;
-  text-decoration: none;
-}
 
 /* Green CTA Card */
 .ctaCard {
   background: #a3ff12;
-  border-radius: 20px;
-  padding: 40px;
+  margin: 45px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-decoration: none;
-  aspect-ratio: 1/1;
-  width: 100%;
-  height: 100%;
-  min-height: 400px;
-  margin-top: auto;
+  min-height: 500px;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.ctaCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  pointer-events: none;
+}
+
+.ctaCard:hover {
+  /* background: #b5ff3a; */
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(163, 255, 18, 0.3), 0 0 0 1px rgba(163, 255, 18, 0.2);
+}
+
+.ctaCard:hover::before {
+  opacity: 1;
 }
 
 .ctaContent {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
   text-align: center;
 }
 
 .ctaTitle {
-  font-size: 28px;
+  font-size: 36px;
   color: #000000;
   font-weight: 600;
   margin: 0;
+  line-height: 1.2;
 }
 
 .ctaSubtitle {
-  font-size: 16px;
+  font-size: 18px;
   color: rgba(0, 0, 0, 0.6);
   margin: 0;
 }
 
 .ctaIcon {
-  width: 48px;
-  height: 48px;
+  width: 56px;
+  height: 56px;
   background: #000000;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #ffffff;
-  font-size: 20px;
+  font-size: 24px;
   margin-top: 16px;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.ctaCard:hover .ctaIcon {
+  background: #ffffff;
+  color: #000000;
+  transform: scale(1.1);
+}
+
+@media (max-width: 1200px) {
+  .container {
+    padding: 0 24px;
+  }
+
+  .projectItem {
+    min-height: 500px;
+  }
+
+  .projectItemSmall {
+    min-height: 450px;
+  }
+
+  .projectTitle {
+    font-size: 28px;
+  }
+
+  .imageWrapper {
+    padding: 0 20px 20px 20px;
+  }
+}
 
 @media (max-width: 1024px) {
-  .projectsGrid {
-    grid-template-columns: repeat(2, 1fr);
+  .topGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
-  
+
+  .bottomGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
   .ctaCard {
-    grid-column: span 2;
-    aspect-ratio: auto;
     min-height: 300px;
   }
 }
 
-@media (max-width: 640px) {
-  .projectsGrid {
-    grid-template-columns: 1fr;
-    gap: 48px;
+@media (max-width: 768px) {
+  .container {
+    padding: 0 20px;
   }
-  
-  .ctaCard {
-    grid-column: span 1;
-    min-height: 300px;
+
+  .projectItem,
+  .projectItemSmall {
+    min-height: 400px;
   }
-  
+
+  .projectInfo {
+    padding: 24px;
+  }
+
+  .projectTitle {
+    font-size: 24px;
+  }
+
+  .projectSubtitle {
+    font-size: 14px;
+  }
+
+  .imageWrapper {
+    padding: 0 16px 16px 16px;
+  }
+
   .section {
     padding-top: 80px;
   }
-  
-  .categoryItem {
-    font-size: 18px;
+
+  .ctaCard {
+    padding: 36px;
+    border-radius: 10px;
+  }
+
+  .ctaTitle {
+    font-size: 28px;
   }
 }

@@ -6,6 +6,7 @@ import styles from "./ProfileCard.module.css";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { SiGmail } from "react-icons/si";
 import Link from "next/link";
+import { socialLinksData } from "@/data/socialLinksData";
 
 export default function ProfileCard({ data }: ProfileCardProps) {
   return (
@@ -29,35 +30,26 @@ export default function ProfileCard({ data }: ProfileCardProps) {
                   <p className={styles.role}>{data.role}</p>
                 </div>
                 <div className={styles.socialLinksSection}>
-                  <Link
-                    href={"https://github.com/chinmayaj88"}
-                    style={{
-                      marginLeft: 4,
-                      marginRight: 4,
-                    }}
-                  >
-                    <FaGithub size={20} color="#6fa717ff" />
-                  </Link>
-                  <Link
-                    href={
-                      "https://www.linkedin.com/in/chinmaya-jena-934ba71b2/"
-                    }
-                    style={{
-                      marginLeft: 4,
-                      marginRight: 4,
-                    }}
-                  >
-                    <FaLinkedin size={20} color="#6fa717ff" />
-                  </Link>
-                  <Link
-                    href={""}
-                    style={{
-                      marginLeft: 4,
-                      marginRight: 4,
-                    }}
-                  >
-                    <SiGmail size={20} color="#6fa717ff" />
-                  </Link>
+                  {socialLinksData.map((social) => (
+                    <Link
+                      key={social.id}
+                      href={social.href}
+                      style={{
+                        marginLeft: 4,
+                        marginRight: 4,
+                      }}
+                    >
+                      {social.icon === "github" && (
+                        <FaGithub size={20} color="#6fa717ff" />
+                      )}
+                      {social.icon === "linkedin" && (
+                        <FaLinkedin size={20} color="#6fa717ff" />
+                      )}
+                      {social.icon === "email" && (
+                        <SiGmail size={20} color="#6fa717ff" />
+                      )}
+                    </Link>
+                  ))}
                 </div>
               </div>
             </div>

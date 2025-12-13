@@ -3,6 +3,7 @@
 import { motion } from "motion/react";
 import Image from "next/image";
 import { contactData } from "@/data/contactData";
+import { aboutData } from "@/data/aboutData";
 import styles from "./AboutProfile.module.css";
 
 export default function AboutProfile() {
@@ -26,7 +27,7 @@ export default function AboutProfile() {
       <h3 className={styles.email}>{contactData.email}</h3>
       
       <p className={styles.shortBio}>
-        I'm Akshay, a passionate Product Designer with a love for crafting intuitive, user-friendly, and visually striking digital experiences.
+        {aboutData.shortBio}
       </p>
 
       <motion.a

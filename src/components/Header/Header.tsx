@@ -6,17 +6,7 @@ import { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import styles from "./Header.module.css";
 import { FaRegFileAlt } from "react-icons/fa";
-
-interface NavLink {
-  label: string;
-  href: string;
-}
-
-const navLinks: NavLink[] = [
-  { label: "Projects", href: "/projects" },
-  { label: "Contact", href: "/about" },
-  { label: "Blogs", href: "/blog" },
-];
+import { headerData } from "@/data/headerData";
 
 export default function Header() {
   const pathname = usePathname();
@@ -58,7 +48,7 @@ export default function Header() {
               whileHover={{ x: 3, scale: 1.02 }}
               transition={{ duration: 0.15 }}
             >
-              Chinmaya Jena
+              {headerData.name}
             </motion.h3>
           </Link>
         </motion.div>
@@ -72,7 +62,7 @@ export default function Header() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: 0.15 }}
           >
-            {navLinks.map((link, index) => (
+            {headerData.navLinks.map((link, index) => (
               <motion.div
                 key={link.href}
                 className={styles.navItem}
@@ -115,12 +105,12 @@ export default function Header() {
               transition={{ duration: 0.3, delay: 0.25 }}
             >
               <p className={styles.emailLabel}>Email:</p>
-              <p className={styles.emailValue}>jenachinmaya51@gmail.com</p>
+              <p className={styles.emailValue}>{headerData.email}</p>
             </motion.div>
 
             {/* Resume Download Button */}
             <motion.a
-              href="https://drive.google.com/file/d/1dgn70ciGsKTJAyJyKGr5G_X3fGwDg_wh/view?usp=sharing"
+              href={headerData.resumeLink}
               target="_blank"
               rel="noopener noreferrer"
               title="Download Resume"

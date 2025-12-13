@@ -3,6 +3,7 @@
 import { motion } from "motion/react";
 import Image from "next/image";
 import { contactData } from "@/data/contactData";
+import { aboutData } from "@/data/aboutData";
 import styles from "./AboutSection.module.css";
 
 export default function AboutSection() {
@@ -17,9 +18,9 @@ export default function AboutSection() {
         >
           <div className={styles.badge}>
             <span className={styles.dot}></span>
-            <span>Available online</span>
+            <span>{aboutData.statusText}</span>
           </div>
-          <h1 className={styles.title}>About me</h1>
+          <h1 className={styles.title}>{aboutData.title}</h1>
         </motion.div>
 
         <div className={styles.content}>
@@ -49,7 +50,7 @@ export default function AboutSection() {
             <h3 className={styles.email}>{contactData.email}</h3>
             
             <p className={styles.shortBio}>
-              I'm Akshay, a passionate Product Designer with a love for crafting intuitive, user-friendly, and visually striking digital experiences.
+              {aboutData.shortBio}
             </p>
 
             <motion.a
@@ -72,15 +73,11 @@ export default function AboutSection() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <p className={styles.bioText}>
-              Hi, I'm Akshay L Shetty, a passionate Product Designer blending UI, UX, and creativity to craft seamless digital experiences. With a love for technology and an obsession with mobile innovation since childhood, I design interfaces that not only look stunning but feel intuitive. Beyond pixels, I'm also a creative artist, bringing imagination and craft into everything I build.
-            </p>
-            <p className={styles.bioText}>
-              With over 7 years of experience, I've worked with a diverse range of clients and products from service-based startups to B2B SaaS platforms and B2C products, learning from each collaboration while helping teams bring their visions to life online.
-            </p>
-            <p className={styles.bioText}>
-              Let's create something amazing together!
-            </p>
+            {aboutData.bioParagraphs.map((paragraph, index) => (
+              <p key={index} className={styles.bioText}>
+                {paragraph}
+              </p>
+            ))}
           </motion.div>
         </div>
       </div>

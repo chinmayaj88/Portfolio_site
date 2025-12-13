@@ -3,6 +3,7 @@
 import { motion } from "motion/react";
 import Image from "next/image";
 import { contactData } from "@/data/contactData";
+import { aboutData } from "@/data/aboutData";
 import styles from "./ContactFormSection.module.css";
 
 export default function ContactFormSection() {
@@ -36,7 +37,7 @@ export default function ContactFormSection() {
             <h3 className={styles.email}>{contactData.email}</h3>
             
             <p className={styles.shortBio}>
-              I'm Akshay, a passionate Product Designer with a love for crafting intuitive, user-friendly, and visually striking digital experiences.
+              {aboutData.shortBio}
             </p>
 
             <motion.a

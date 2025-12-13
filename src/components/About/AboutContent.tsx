@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import styles from "./AboutContent.module.css";
+import { aboutData } from "@/data/aboutData";
 
 export default function AboutContent() {
   return (
@@ -14,9 +15,9 @@ export default function AboutContent() {
       >
         <div className={styles.badge}>
           <span className={styles.dot}></span>
-          <span>Available online</span>
+          <span>{aboutData.statusText}</span>
         </div>
-        <h1 className={styles.title}>About me</h1>
+        <h1 className={styles.title}>{aboutData.title}</h1>
       </motion.div>
 
       <motion.div
@@ -25,15 +26,11 @@ export default function AboutContent() {
         transition={{ duration: 0.6, delay: 0.2 }}
         className={styles.bioWrapper}
       >
-        <p className={styles.bioText}>
-          Hi, I'm Akshay L Shetty, a passionate Product Designer blending UI, UX, and creativity to craft seamless digital experiences. With a love for technology and an obsession with mobile innovation since childhood, I design interfaces that not only look stunning but feel intuitive. Beyond pixels, I'm also a creative artist, bringing imagination and craft into everything I build.
-        </p>
-        <p className={styles.bioText}>
-          With over 7 years of experience, I've worked with a diverse range of clients and products from service-based startups to B2B SaaS platforms and B2C products, learning from each collaboration while helping teams bring their visions to life online.
-        </p>
-        <p className={styles.bioText}>
-          Let's create something amazing together!
-        </p>
+        {aboutData.bioParagraphs.map((paragraph, index) => (
+          <p key={index} className={styles.bioText}>
+            {paragraph}
+          </p>
+        ))}
       </motion.div>
     </div>
   );

@@ -50,27 +50,31 @@ export default function SocialSection() {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className={styles.card}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+              className={`${styles.card} ${styles[`pattern${index}`]}`}
+              initial={{ opacity: 0, y: 20, scale: 0.95 }}
+              animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 20, scale: 0.95 }}
               transition={{
-                duration: 0.3,
-                delay: index * 0.05,
-                ease: "easeOut",
+                duration: 0.4,
+                delay: index * 0.08,
+                ease: [0.4, 0, 0.2, 1],
               }}
               whileHover={{ 
-                scale: 1.08, 
-                y: -8,
-                boxShadow: "0 15px 40px rgba(0,0,0,0.15)",
-                transition: { type: "spring", stiffness: 500 }
+                scale: 1.03, 
+                y: -6,
+                transition: { 
+                  type: "spring", 
+                  stiffness: 400, 
+                  damping: 25,
+                  duration: 0.3 
+                }
               }}
-              whileTap={{ scale: 0.92 }}
+              whileTap={{ scale: 0.98 }}
             >
               <motion.span 
                 className={styles.cardLabel}
                 initial={{ opacity: 0, y: 10 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-                transition={{ duration: 0.3, delay: index * 0.05 + 0.1 }}
+                transition={{ duration: 0.3, delay: index * 0.08 + 0.15 }}
               >
                 {link.name}
               </motion.span>
@@ -78,9 +82,11 @@ export default function SocialSection() {
                 <motion.div 
                   className={styles.iconCircle}
                   whileHover={{ rotate: 20, scale: 1.3 }}
-                  transition={{ type: "spring", stiffness: 400 }}
+                  transition={{ type: "spring", stiffness: 400, duration: 0.2 }}
                 >
-                  <span className={styles.iconText}>{link.icon}</span>
+                  <span className={styles.iconText}>
+                    {link.icon === "gh" ? "gh" : link.icon === "in" ? "in" : link.icon === "ig" ? "ig" : link.icon}
+                  </span>
                 </motion.div>
               </div>
             </motion.a>
@@ -89,21 +95,25 @@ export default function SocialSection() {
           {/* Get in Touch Card (Green) */}
           <motion.a
             href={`mailto:${contactData.email}`}
-            className={`${styles.card} ${styles.ctaCard}`}
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            className={`${styles.card} ${styles.ctaCard} ${styles.pattern4}`}
+            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 20, scale: 0.95 }}
             transition={{
-              duration: 0.3,
-              delay: 0.2,
-              ease: "easeOut",
+              duration: 0.4,
+              delay: contactData.socialLinks.length * 0.08,
+              ease: [0.4, 0, 0.2, 1],
             }}
             whileHover={{ 
-              scale: 1.08, 
-              y: -8,
-              boxShadow: "0 15px 50px rgba(163, 255, 18, 0.5)",
-              transition: { type: "spring", stiffness: 500 }
+              scale: 1.03, 
+              y: -6,
+              transition: { 
+                type: "spring", 
+                stiffness: 400, 
+                damping: 25,
+                duration: 0.3 
+              }
             }}
-            whileTap={{ scale: 0.92 }}
+            whileTap={{ scale: 0.98 }}
           >
             <span className={styles.ctaLabel}>Get in touch</span>
             <div className={styles.iconWrapper}>

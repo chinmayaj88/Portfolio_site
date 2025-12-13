@@ -11,7 +11,7 @@ export interface StatItem {
 export const statsData: StatItem[] = [
   {
     id: "projects",
-    value: 70,
+    value: 10,
     suffix: "+",
     label: "Projects",
     sublabel: "Completed",
@@ -20,21 +20,21 @@ export const statsData: StatItem[] = [
   },
   {
     id: "experience",
-    value: 7,
-    suffix: "+",
+    value: 2,
+    suffix: "",
     label: "Years",
     sublabel: "of experience",
     bgColor: "#1a1a1a",
     textColor: "#ffffff",
   },
   {
-    id: "brands",
-    value: 60,
+    id: "technologies",
+    value: 18,
     suffix: "+",
-    label: "Brand",
-    sublabel: "Collaboration",
-    bgColor: "#f5f5f5",
-    textColor: "#000000",
+    label: "Technologies",
+    sublabel: "Used",
+    bgColor: "grey",
+    textColor: "#ffffff",
   },
 ];
 

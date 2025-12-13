@@ -19,11 +19,11 @@ export default function Home() {
     >
       <ProfileCard data={profileData} />
       <Projects />
-      {/* <ToolsSkills /> */}
-      {/* <ProfessionalJourney /> */}
-      {/* <Statistics /> */}
-      {/* <SocialSection /> */}
-      {/* <Contact /> */}
+      <ToolsSkills />
+      <ProfessionalJourney />
+      <Statistics />
+      <SocialSection />
+      <Contact />
     </motion.main>
   );
 }

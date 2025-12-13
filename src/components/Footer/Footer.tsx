@@ -6,6 +6,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { SiGmail } from "react-icons/si";
+import { headerData } from "@/data/headerData";
+import { socialLinksData } from "@/data/socialLinksData";
+import { profileData } from "@/data/profileData";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -28,7 +31,7 @@ export default function Footer() {
                 whileHover={{ x: 3 }}
                 transition={{ duration: 0.15 }}
               >
-                Chinmaya Jena
+                {headerData.name}
               </motion.h3>
             </Link>
           </motion.div>
@@ -45,33 +48,26 @@ export default function Footer() {
               Copyright © Web Design and Development, {currentYear}
             </motion.p>
             <div>
-              <Link
-                href={"https://github.com/chinmayaj88"}
-                style={{
-                  marginLeft: 4,
-                  marginRight: 4,
-                }}
-              >
-                <FaGithub size={20} color="#6fa717ff" />
-              </Link>
-              <Link
-                href={"https://www.linkedin.com/in/chinmaya-jena-934ba71b2/"}
-                style={{
-                  marginLeft: 4,
-                  marginRight: 4,
-                }}
-              >
-                <FaLinkedin size={20} color="#6fa717ff" />
-              </Link>
-              <Link
-                href={""}
-                style={{
-                  marginLeft: 4,
-                  marginRight: 4,
-                }}
-              >
-                <SiGmail size={20} color="#6fa717ff" />
-              </Link>
+              {socialLinksData.map((social) => (
+                <Link
+                  key={social.id}
+                  href={social.href}
+                  style={{
+                    marginLeft: 4,
+                    marginRight: 4,
+                  }}
+                >
+                  {social.icon === "github" && (
+                    <FaGithub size={20} color="#6fa717ff" />
+                  )}
+                  {social.icon === "linkedin" && (
+                    <FaLinkedin size={20} color="#6fa717ff" />
+                  )}
+                  {social.icon === "email" && (
+                    <SiGmail size={20} color="#6fa717ff" />
+                  )}
+                </Link>
+              ))}
             </div>
           </motion.div>
 
@@ -81,14 +77,14 @@ export default function Footer() {
             <div className={styles.creatorInfo}>
               <div className={styles.avatar}>
                 <Image
-                  src="/cj_profile_2.jpg"
-                  alt="Chinmaya Jena"
+                  src={profileData.avatar.src}
+                  alt={profileData.avatar.alt}
                   width={36}
                   height={36}
                   className={styles.avatarImage}
                 />
               </div>
-              <span className={styles.creatorName}>Chinmaya Jena</span>
+              <span className={styles.creatorName}>{profileData.name}</span>
             </div>
           </div>
         </div>

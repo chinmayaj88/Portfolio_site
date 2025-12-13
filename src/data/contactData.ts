@@ -7,34 +7,36 @@ export interface ContactLink {
 
 export const contactData = {
   title: "I'm all over the internet",
-  email: "akshayshetty61@gmail.com",
-  name: "Akshay L Shetty",
-  role: "Product Designer",
-  avatar: "https://framerusercontent.com/images/5oVs0K6gBX5p6TNFWKBQHThlQ10.png",
+  email: "jenachinmaya51@gmail.com",
+  phone: "+91-6370535011",
+  name: "Chinmaya Jena",
+  role: "Full Stack Developer",
+  avatar: "/cj_profile_2.jpg",
+  location: "Bhubaneswar, Odisha, India",
   socialLinks: [
+    {
+      id: "github",
+      name: "GitHub",
+      icon: "gh",
+      href: "https://github.com/chinmayaj88",
+    },
     {
       id: "linkedin",
       name: "Linkedin",
       icon: "in",
-      href: "https://www.linkedin.com/in/akshaylshetty/",
+      href: "https://www.linkedin.com/in/chinmaya-jena-934ba71b2/",
     },
     {
       id: "instagram",
       name: "Instagram",
       icon: "ig",
-      href: "https://www.instagram.com/axy__sty/",
+      href: "https://instagram.com",
     },
     {
-      id: "youtube",
-      name: "Youtube",
-      icon: "yt",
-      href: "https://www.youtube.com/@Axysty",
-    },
-    {
-      id: "behance",
-      name: "Behance",
-      icon: "Be",
-      href: "https://www.behance.net/akshaylshetty",
+      id: "email",
+      name: "Email",
+      icon: "✉",
+      href: "mailto:jenachinmaya51@gmail.com",
     },
   ],
 };

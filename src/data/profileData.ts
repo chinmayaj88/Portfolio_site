@@ -25,13 +25,13 @@ export const profileData: ProfileData = {
     height: 1000,
   },
   name: "Chinmaya Jena",
-  role: "Developer, DevOps / Cloud Engineer",
-  location: "Bhubaneswar",
+  role: "Developer / Cloud & DevOps Engineer",
+  location: "Bhubaneswar, Odisha, India",
   status: "Online Now",
-  bio: "Software Developer and Cloud/DevOps Engineer focused on scalable backend systems, Kubernetes, and production-grade cloud architecture.",
+  bio: "Full Stack, Cloud & DevOps Engineer with ~2 years of experience building scalable backend systems, cloud-native applications, and high-impact customer integrations. Skilled in Python, Node.js, API design, and deploying reliable solutions on AWS and OCI.",
   experience: "2+ Years of Experience",
   cta: {
-    text: "See my works",
-    href: "#projects",
+    text: "GitHub",
+    href: "https://github.com/chinmayaj88",
   },
 };

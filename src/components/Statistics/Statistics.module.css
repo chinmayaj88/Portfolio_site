@@ -1,6 +1,6 @@
 .section {
   padding: 100px 20px;
-  background: #f8f8f8;
+  background: black;
 }
 
 .container {
@@ -17,12 +17,13 @@
   padding: 60px 40px;
   overflow: hidden;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   min-height: 280px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
 }
+
 
 .decorativeCircle {
   position: absolute;

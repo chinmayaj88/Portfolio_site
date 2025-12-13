@@ -1,3 +1,10 @@
+export interface Project {
+  id: string;
+  title: string;
+  tech: string;
+  achievements: string[];
+}
+
 export interface ExperienceItem {
   id: string;
   company: string;
@@ -9,94 +16,48 @@ export interface ExperienceItem {
     title: string;
     description: string;
   }[];
+  projects: Project[];
 }
 
 export const experienceData: ExperienceItem[] = [
   {
-    id: "lenskart",
-    company: "lenskart",
-    logo: "https://framerusercontent.com/images/H0mVNKzf1rPF5jofhioym8okMVM.svg",
-    position: "Lead/Senior Product Designer",
-    duration: "3+ Years",
+    id: "hyscaler",
+    company: "Hyscaler",
+    logo: "",
+    position: "Junior Software Developer",
+    duration: "04/2024 – 10/2025",
     type: "Full Time",
     responsibilities: [
       {
-        title: "Bottom Funnel:",
-        description: "Redesigned cart & payment screens, boosting conversions.",
+        title: "Collaboration & Client Engagement:",
+        description: "Collaborated with client to understand medical data requirements, troubleshoot inconsistencies, and refine pipeline logic for improved reliability and compliance.",
       },
       {
-        title: "Mid Funnel:",
-        description: "Redesigned PDP, PLP & Created Supercards for consistent UX",
-      },
-      {
-        title: "Membership:",
-        description: "Created Gold page with benefits and transaction history.",
-      },
-      {
-        title: "POS:",
-        description: "Updated designs for LK Stores' Point-of-Sale application",
+        title: "Production Support:",
+        description: "Implemented hotfixes and performance optimizations after production deployments, ensuring system stability and reliability.",
       },
     ],
-  },
-  {
-    id: "convertcart",
-    company: "Convertcart",
-    logo: "https://framerusercontent.com/images/maivdGm4FyHLpAw7qKPsq6XMCIU.svg",
-    position: "Senior UI/UX Designer",
-    duration: "2 Years",
-    type: "Full Time",
-    responsibilities: [
+    projects: [
       {
-        title: "Design System:",
-        description: "Created a full end-to-end design system for the Products",
+        id: "ai-retrieval-system",
+        title: "AI-Powered Retrieval-Augmented Data System",
+        tech: "FastAPI, AWS, Generative AI, PostgreSQL, Vector DB, MySQL",
+        achievements: [
+          "Designed and developed a cloud-based data pipeline to securely ingest medical records from a production MySQL database and transfer them into a PostgreSQL + Vector DB system for downstream AI retrieval tasks.",
+          "Built a FastAPI middleware layer to handle data extraction, transformation, validation, and secure transfer between systems, ensuring consistency and auditability across pipeline stages.",
+          "Integrated AWS services (including AWS Lex) to support HIPAA-aligned data handling workflows, enabling compliant processing of PHI and secure conversational interfaces.",
+          "Implemented encryption-at-rest and in-transit, strict IAM policies, token-based access controls, and environment isolation to protect sensitive healthcare data.",
+        ],
       },
       {
-        title: "Brand Guidelines",
-        description: "Created Brand Guidelines for consistent visual identity",
-      },
-      {
-        title: "Cross Functoing:",
-        description: "Collaboration with Marketing to add collaterals",
-      },
-    ],
-  },
-  {
-    id: "tailwebs",
-    company: "tailwebs.",
-    logo: "https://framerusercontent.com/images/E3t0k2oHZD9le2V7M9xWG9z8yHM.svg",
-    position: "User Experience Consultant",
-    duration: "1 Year",
-    type: "Part Time",
-    responsibilities: [
-      {
-        title: "Design & Development:",
-        description: "Cross functioning with different teams",
-      },
-      {
-        title: "Client collaboration:",
-        description: "Collaborated with clients to create impactful designs",
-      },
-    ],
-  },
-  {
-    id: "palpx",
-    company: "palpx",
-    logo: "https://framerusercontent.com/images/HRmtW41UUTR97IvWFV8H9szrVv4.svg",
-    position: "UI/UX Designer",
-    duration: "2.5 Years",
-    type: "Full Time",
-    responsibilities: [
-      {
-        title: "Design Strategy & User Experience:",
-        description: "Applied design strategy to improve usability and adoption",
-      },
-      {
-        title: "Branding Projects:",
-        description: "Handled diverse branding projects across media.",
-      },
-      {
-        title: "UI/UX Exploration:",
-        description: "Explored digital projects and essential design tools.",
+        id: "construction-platform",
+        title: "Construction Management Platform",
+        tech: "React, React Native, Node.js, Express.js, TypeScript",
+        achievements: [
+          "Revamped iOS application modules using React Native and TypeScript, improving performance and responsiveness by 30%.",
+          "Implemented 25+ interactive forms integrated with REST APIs, improving UX automation for clients.",
+          "Developed Node.js/Express.js APIs supporting high-volume data operations.",
+        ],
       },
     ],
   },

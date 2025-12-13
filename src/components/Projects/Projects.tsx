@@ -2,7 +2,7 @@
 
 import { motion, useInView } from "motion/react";
 import { useRef } from "react";
-import { projectsData, categories } from "@/data/projectsData";
+import { projectsData } from "@/data/projectsData";
 import { AnimatedText, ScaleInText } from "@/components/TextAnimations";
 import styles from "./Projects.module.css";
 import Image from "next/image";
@@ -12,8 +12,9 @@ export default function Projects() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
 
-  // Only take first 2 projects to match the 3-column layout (2 projects + 1 CTA)
-  const displayProjects = projectsData.slice(2, 4);
+  // Take first 4 projects for the layout
+  const topProjects = projectsData.slice(0, 2);
+  const bottomProjects = projectsData.slice(2, 4);
 
   return (
     <>
@@ -23,76 +24,85 @@ export default function Projects() {
       />
       <section className={`${styles.section} bg-gradient-mesh`} ref={ref}>
         <div className={styles.container}>
-          <div className={styles.projectsGrid}>
-            {displayProjects.map((project, index) => (
-              <motion.div
+          {/* Top Row - 2 Large Projects */}
+          <div className={styles.topGrid}>
+            {topProjects.map((project, index) => (
+              <motion.a
                 key={project.id}
-                className={styles.projectCard}
-                initial={{ opacity: 0, y: 40 }}
+                href={project.link}
+                className={styles.projectItem}
+                initial={{ opacity: 0, scale: 0.9, y: 30 }}
                 animate={
-                  isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }
+                  isInView ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.9, y: 30 }
                 }
                 transition={{
-                  duration: 0.4,
-                  delay: index * 0.08,
-                  ease: [0.4, 0, 0.2, 1],
+                  duration: 0.6,
+                  delay: index * 0.15,
+                  ease: [0.34, 1.56, 0.64, 1],
                 }}
-                whileHover={{
-                  y: -12,
-                  rotateX: 2,
-                  rotateY: 2,
-                  scale: 1.02,
-                  transition: { type: "spring", stiffness: 400 },
-                }}
-                style={{ transformStyle: "preserve-3d" }}
               >
                 <div className={styles.projectInfo}>
-                  <div className={styles.projectMeta}>
-                    <motion.span
-                      className={styles.category}
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={
-                        isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }
-                      }
-                      transition={{ duration: 0.3, delay: index * 0.08 + 0.1 }}
-                    >
-                      {`[ ${project.category} ]`}
-                    </motion.span>
-                    {project.date && (
-                      <motion.span
-                        className={styles.date}
-                        initial={{ opacity: 0 }}
-                        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-                        transition={{
-                          duration: 0.3,
-                          delay: index * 0.08 + 0.15,
-                        }}
-                      >
-                        {project.date}
-                      </motion.span>
-                    )}
-                  </div>
-                  <ScaleInText delay={index * 0.08 + 0.2}>
-                    <h3 className={styles.projectTitle}>{project.title}</h3>
-                  </ScaleInText>
-                  <motion.p
-                    className={styles.projectSubtitle}
-                    initial={{ opacity: 0, y: 10 }}
+                  <motion.span
+                    className={styles.category}
+                    initial={{ opacity: 0, x: -10 }}
                     animate={
-                      isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }
+                      isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }
                     }
-                    transition={{ duration: 0.3, delay: index * 0.08 + 0.25 }}
+                    transition={{ duration: 0.3, delay: index * 0.1 + 0.1 }}
                   >
-                    {project.subtitle}
-                  </motion.p>
+                    [ {project.category} ]
+                  </motion.span>
+                  <h3 className={styles.projectTitle}>{project.title}</h3>
+                  <p className={styles.projectSubtitle}>{project.subtitle}</p>
                 </div>
-
                 <div className={styles.imageWrapper}>
-                  <motion.div
-                    className={styles.imageContainer}
-                    whileHover={{ scale: 1.08 }}
-                    transition={{ duration: 0.3, ease: "easeOut" }}
+                  <div className={styles.imageContainer}>
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      width={1200}
+                      height={800}
+                      className={styles.image}
+                    />
+                  </div>
+                </div>
+              </motion.a>
+            ))}
+          </div>
+
+          {/* Bottom Row - 2 Projects + 1 CTA */}
+          <div className={styles.bottomGrid}>
+            {bottomProjects.map((project, index) => (
+              <motion.a
+                key={project.id}
+                href={project.link}
+                className={styles.projectItemSmall}
+                initial={{ opacity: 0, scale: 0.9, y: 30 }}
+                animate={
+                  isInView ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.9, y: 30 }
+                }
+                transition={{
+                  duration: 0.6,
+                  delay: 0.3 + index * 0.15,
+                  ease: [0.34, 1.56, 0.64, 1],
+                }}
+              >
+                <div className={styles.projectInfo}>
+                  <motion.span
+                    className={styles.category}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={
+                      isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }
+                    }
+                    transition={{ duration: 0.3, delay: 0.2 + index * 0.1 + 0.1 }}
                   >
+                    [ {project.category} ]
+                  </motion.span>
+                  <h3 className={styles.projectTitle}>{project.title}</h3>
+                  <p className={styles.projectSubtitle}>{project.subtitle}</p>
+                </div>
+                <div className={styles.imageWrapper}>
+                  <div className={styles.imageContainer}>
                     <Image
                       src={project.image}
                       alt={project.title}
@@ -100,19 +110,9 @@ export default function Projects() {
                       height={600}
                       className={styles.image}
                     />
-                  </motion.div>
-                  <div className={styles.overlay}>
-                    <motion.a
-                      href={project.link}
-                      className={styles.viewButton}
-                      whileHover={{ scale: 1.15 }}
-                      whileTap={{ scale: 0.9 }}
-                    >
-                      View Project
-                    </motion.a>
                   </div>
                 </div>
-              </motion.div>
+              </motion.a>
             ))}
 
             {/* View All Projects Card (Green) */}
@@ -122,15 +122,21 @@ export default function Projects() {
               initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
               transition={{
-                duration: 0.4,
-                delay: 0.16,
-                ease: [0.4, 0, 0.2, 1],
+                duration: 0.1,
+                delay: 0.1,
+                // ease: [0.4, 0, 0.2, 1],
               }}
-              whileHover={{ scale: 1.05, rotate: 2 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ 
+                scale: 1.09,
+                transition: { 
+                  duration: 0.11,
+                  ease: "easeOut"
+                } 
+              }}
+              whileTap={{ scale: 0.98 }}
             >
               <div className={styles.ctaContent}>
-                <ScaleInText delay={0.2}>
+                <ScaleInText delay={0.5}>
                   <h3 className={styles.ctaTitle}>
                     <AnimatedText text="View all projects" type="words" />
                   </h3>
@@ -139,13 +145,13 @@ export default function Projects() {
                   className={styles.ctaSubtitle}
                   initial={{ opacity: 0 }}
                   animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-                  transition={{ duration: 0.3, delay: 0.3 }}
+                  transition={{ duration: 0.3, delay: 0.6 }}
                 >
                   My Behance
                 </motion.p>
                 <motion.div
                   className={styles.ctaIcon}
-                  whileHover={{ rotate: 90, scale: 1.2 }}
+                  whileHover={{ rotate: 45, scale: 1.2 }}
                   transition={{ type: "spring", stiffness: 400 }}
                 >
                   ↗

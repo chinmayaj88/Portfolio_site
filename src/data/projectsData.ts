@@ -1,22 +1,40 @@
 export interface Project {
   id: string;
   title: string;
-  subtitle: string;
+  subtitle?: string;
   category: string;
-  date: string;
+  date?: string;
   image: string;
   link: string;
 }
 
 export const projectsData: Project[] = [
   {
+    id: "ecommerce-microservices",
+    title: "Enterprise E-Commerce Backend",
+    subtitle: "Microservices Platform with Clean Architecture",
+    category: "Backend Development",
+    date: "2024",
+    image: "/construction.webp",
+    link: "/projects/ecommerce-microservices",
+  },
+  {
+    id: "vett-task-tracker",
+    title: "Vett - Voice Enabled Task Tracker",
+    subtitle: "AI-Powered Voice Task Management System",
+    category: "Full Stack Development",
+    date: "2024",
+    image: "/construction.webp",
+    link: "/projects/vett-task-tracker",
+  },
+  {
     id: "lenskart-supercards",
     title: "Lenskart Supercards",
     subtitle: "Product Card Redesign",
     category: "Lenskart Product cards",
     date: "",
-    image: "https://framerusercontent.com/images/IbAWp9mqlqTcJFSbjFSvQzPEqTM.png",
-    link: "#",
+    image: "https://framerusercontent.com/images/eYXqseQzAZ73eDQa7SSWQVuLfEc.jpg?width=1853&height=1126",
+    link: "https://akshaylshetty.framer.website/projects/lenskart-design",
   },
   {
     id: "lenskart-cart",
@@ -24,35 +42,8 @@ export const projectsData: Project[] = [
     subtitle: "Gold Membership Pitch & Design system update",
     category: "Cart Redesign",
     date: "",
-    image: "https://framerusercontent.com/images/NqnvVhYx9yyOz0HaRcL5n6n1tc.png",
-    link: "#",
+    image: "https://framerusercontent.com/images/jKJfZTmBRpve694NdibNW2hX0.jpg?lossless=1&width=1853&height=1126",
+    link: "https://akshaylshetty.framer.website/projects/lenskart-cart-redesign",
   },
-  {
-    id: "merlin",
-    title: "Merlin Digital",
-    subtitle: "Logo Design & Rebranding",
-    category: "Electronic Products",
-    date: "6/20/20",
-    image: "https://framerusercontent.com/images/Vo3nYYcNGUWnH7aKZHVqFJOXOo.jpg",
-    link: "#",
-  },
-  {
-    id: "craft",
-    title: "Craft - Customised for You",
-    subtitle: "Product Design & Shopping Experience",
-    category: "E-commerce store",
-    date: "",
-    image: "https://framerusercontent.com/images/jDd4c8BFSqEoQNVfJ7EgzZOZnRA.png",
-    link: "#",
-  },
-];
-
-export const categories = [
-  "Design System",
-  "Interface Design",
-  "Design System",
-  "Interaction Design",
-  "User Centric Design",
-  "Mobile first",
 ];
 

@@ -5,6 +5,8 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import SmoothScroll from "@/components/SmoothScroll";
 import ScrollProgress from "@/components/ScrollProgress";
+import LoadingScreen from "@/components/LoadingScreen";
+import { profileData } from "@/data/profileData";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -35,8 +37,8 @@ const superChiby = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Chinmaya Jena - Developer, Devops & Cloud Engineer",
-  description: "Product Designer & Artist specializing in user experience, design systems, and visual storytelling.",
+  title: `${profileData.name} - ${profileData.role}`,
+  description: profileData.bio,
 };
 
 export default function RootLayout({
@@ -47,6 +49,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${manrope.variable} ${inter.variable} ${autography.variable} ${christmas.variable} ${superChiby.variable}`}>
+        <LoadingScreen />
         <SmoothScroll />
         <ScrollProgress />
         <Header />
