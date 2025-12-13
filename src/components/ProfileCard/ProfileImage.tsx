@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "motion/react";
+import { useLoading } from "@/contexts/LoadingContext";
 import { ProfileImageProps } from "./types";
 import styles from "./ProfileImage.module.css";
 
@@ -11,14 +12,17 @@ export default function ProfileImage({
   width,
   height,
 }: ProfileImageProps) {
+  const { isLoading } = useLoading();
+  
   return (
     <motion.div
       className={styles.container}
       initial={{ opacity: 0, scale: 0.8 }}
-      animate={{ opacity: 1, scale: 1 }}
+      animate={isLoading ? { opacity: 0, scale: 0.8 } : { opacity: 1, scale: 1 }}
       transition={{
         duration: 0.8,
         ease: [0.6, -0.05, 0.01, 0.99],
+        delay: 0.3,
       }}
     >
       <motion.div

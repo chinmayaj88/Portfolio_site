@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useInView, useMotionValue, useSpring, useTransform } from 'motion/react';
+import { motion, useInView } from 'motion/react';
 import { useRef, useState } from 'react';
 import Image from 'next/image';
 import styles from './projects.module.css';
@@ -8,78 +8,40 @@ import { projectsData, Project } from '@/data/projectsData';
 
 function ProjectCard({ project, index, isInView }: { project: Project; index: number; isInView: boolean }) {
   const cardRef = useRef<HTMLAnchorElement>(null);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [isHovered, setIsHovered] = useState(false);
-  
+
   // Individual scroll tracking for each card
   // First card should be visible immediately, others reveal on scroll
-  const cardInView = useInView(cardRef, { 
-    once: false, 
+  const cardInView = useInView(cardRef, {
+    once: false,
     amount: index === 0 ? 0 : 0.2,
     margin: index === 0 ? "0px" : "0px 0px -150px 0px"
   });
 
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  const rotateXValue = useTransform(mouseY, [0, 1], [5, -5]);
-  const rotateYValue = useTransform(mouseX, [0, 1], [-5, 5]);
-  const rotateX = useSpring(rotateXValue, {
-    stiffness: 600,
-    damping: 40,
-    mass: 0.3,
-  });
-  const rotateY = useSpring(rotateYValue, {
-    stiffness: 600,
-    damping: 40,
-    mass: 0.3,
-  });
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width;
-    const y = (e.clientY - rect.top) / rect.height;
-    mouseX.set(x);
-    mouseY.set(y);
-    setMousePosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
-  };
-
-  const handleMouseLeave = () => {
-    mouseX.set(0.5);
-    mouseY.set(0.5);
-    setIsHovered(false);
-  };
-
-  const handleMouseEnter = () => {
-    setIsHovered(true);
-  };
-
   return (
     <motion.a
       ref={cardRef}
-      href={`/projects/${project.id}`}
+      href={project.link}
       className={styles.projectLink}
       initial={index === 0 ? {
         opacity: 1,
         x: 0,
         scale: 1,
       } : {
-        opacity: 0, 
-        x: -80, 
+        opacity: 0,
+        x: -80,
         scale: 0.96,
       }}
-      animate={cardInView ? { 
-        opacity: 1, 
-        x: 0, 
+      animate={cardInView ? {
+        opacity: 1,
+        x: 0,
         scale: 1,
       } : index === 0 ? {
         opacity: 1,
         x: 0,
         scale: 1,
       } : {
-        opacity: 0, 
-        x: -80, 
+        opacity: 0,
+        x: -80,
         scale: 0.96,
       }}
       transition={{
@@ -90,52 +52,24 @@ function ProjectCard({ project, index, isInView }: { project: Project; index: nu
         scale: { duration: 0.7, type: 'spring', stiffness: 200, damping: 20 },
         x: { duration: 0.7, type: 'spring', stiffness: 120, damping: 18 },
       }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      onMouseEnter={handleMouseEnter}
-      style={{
-        rotateX,
-        rotateY,
-        transformStyle: 'preserve-3d',
-      }}
-      whileHover={{ 
-        scale: 1.01,
-        y: -5,
-      }}
+      style={{}}
     >
-      {/* Animated background gradient */}
-      <motion.div
-        className={styles.cardGradient}
-        animate={isHovered ? {
-          background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(163, 255, 18, 0.12), transparent 50%)`,
-        } : {
-          background: 'transparent',
-        }}
-        transition={{ duration: 0.08 }}
-      />
 
       <div className={styles.imageWrapper}>
         <motion.div
           className={styles.imageContainer}
           initial={index === 0 ? { scale: 1, opacity: 1, x: 0 } : { scale: 1.05, opacity: 0, x: -40 }}
-          animate={cardInView ? { 
-            scale: isHovered ? 1.05 : 1, 
+          animate={cardInView ? {
             opacity: 1,
             x: 0,
           } : index === 0 ? {
-            scale: isHovered ? 1.05 : 1,
             opacity: 1,
             x: 0,
-          } : { 
-            scale: 1.05, 
+          } : {
             opacity: 0,
             x: -40,
           }}
           transition={{
-            scale: { 
-              duration: isHovered ? 0.08 : 0.7, 
-              ease: isHovered ? [0.4, 0, 0.2, 1] : [0.25, 0.46, 0.45, 0.94],
-            },
             opacity: {
               duration: index === 0 ? 0 : 0.7,
               delay: index === 0 ? 0 : 0.1,
@@ -147,11 +81,7 @@ function ProjectCard({ project, index, isInView }: { project: Project; index: nu
               ease: [0.25, 0.46, 0.45, 0.94],
             },
           }}
-          style={{
-            rotateX,
-            rotateY,
-            transformStyle: 'preserve-3d',
-          }}
+          style={{}}
         >
           <Image
             src={project.image}
@@ -164,13 +94,13 @@ function ProjectCard({ project, index, isInView }: { project: Project; index: nu
           <motion.div
             className={styles.imageOverlay}
             initial={{ opacity: index === 0 ? 0.2 : 0.4 }}
-            animate={cardInView ? { opacity: isHovered ? 0 : 0.2 } : index === 0 ? { opacity: isHovered ? 0 : 0.2 } : { opacity: 0.4 }}
-            transition={{ duration: 0.08 }}
+            animate={cardInView ? { opacity: 0.2 } : index === 0 ? { opacity: 0.2 } : { opacity: 0.4 }}
+            transition={{ duration: 0.3 }}
           />
         </motion.div>
       </div>
 
-      <motion.div 
+      <motion.div
         className={styles.projectContent}
         initial={index === 0 ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
         animate={cardInView ? { opacity: 1, x: 0 } : index === 0 ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
@@ -190,9 +120,7 @@ function ProjectCard({ project, index, isInView }: { project: Project; index: nu
               delay: index === 0 ? 0 : 0.25,
               ease: 'easeOut',
             }}
-            style={{
-              x: isHovered ? 3 : undefined,
-            }}
+            style={{}}
           >
             <p className={styles.bracket}>{'{'}</p>
             <p className={styles.category}>
@@ -213,9 +141,7 @@ function ProjectCard({ project, index, isInView }: { project: Project; index: nu
                 delay: index === 0 ? 0 : 0.3,
                 ease: [0.25, 0.46, 0.45, 0.94],
               }}
-              style={{
-                x: isHovered ? 3 : undefined,
-              }}
+              style={{}}
             >
               {project.title}
             </motion.h2>
@@ -223,52 +149,30 @@ function ProjectCard({ project, index, isInView }: { project: Project; index: nu
 
           <motion.div
             className={styles.viewMoreButton}
-            initial={index === 0 ? { opacity: 1, x: 0, scale: 1 } : { opacity: 0, x: -20, scale: 0.9 }}
-            animate={cardInView ? { 
-              opacity: 1, 
-              x: 0, 
-              scale: 1 
+            initial={index === 0 ? { opacity: 1 } : { opacity: 0 }}
+            animate={cardInView ? {
+              opacity: 1
             } : index === 0 ? {
-              opacity: 1,
-              x: 0,
-              scale: 1
-            } : { 
-              opacity: 0, 
-              x: -20, 
-              scale: 0.9 
+              opacity: 1
+            } : {
+              opacity: 0
             }}
             transition={{
-              duration: 0.6,
-              delay: index === 0 ? 0 : 0.35,
+              duration: 0.4,
+              delay: index === 0 ? 0 : 0.3,
               ease: 'easeOut',
             }}
-            style={{ 
-              opacity: 1, 
-              visibility: 'visible',
-              scale: isHovered ? 1.05 : undefined,
-              x: isHovered ? 8 : undefined,
-            }}
           >
-            <motion.div
-              className={styles.buttonContent}
-              animate={isHovered ? { rotate: 45 } : { rotate: 0 }}
-              transition={{ duration: 0.08, ease: 'easeOut' }}
-            >
-              <div className={styles.buttonIcon}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 256 256"
-                  focusable="false"
-                >
-                  <g weight="regular">
-                    <path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z" />
-                  </g>
-                </svg>
-              </div>
-            </motion.div>
-            <p className={styles.viewMoreText}>
-              View More
-            </p>
+            <span className={styles.viewMoreText}>View More</span>
+            <div className={styles.buttonIcon}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 256 256"
+                focusable="false"
+              >
+                <path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z" />
+              </svg>
+            </div>
           </motion.div>
         </div>
       </motion.div>
@@ -282,9 +186,9 @@ export default function ProjectsPage() {
   const [filter, setFilter] = useState<string>('all');
 
   const categories = ['all', ...Array.from(new Set(projectsData.map(p => p.category)))];
-  
-  const filteredProjects = filter === 'all' 
-    ? projectsData 
+
+  const filteredProjects = filter === 'all'
+    ? projectsData
     : projectsData.filter(p => p.category === filter);
 
   return (

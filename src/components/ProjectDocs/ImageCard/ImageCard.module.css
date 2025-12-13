@@ -1,0 +1,39 @@
+.container {
+  margin: 40px 0;
+}
+
+.imageWrapper {
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgb(255, 255, 255);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.imageWrapper:hover {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.06);
+  transform: translateY(-2px);
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.imageWrapper:hover .image {
+  transform: scale(1.02);
+}
+
+.caption {
+  margin-top: 16px;
+  font-size: 14px;
+  color: rgba(47, 47, 47, 0.65);
+  text-align: center;
+  font-style: italic;
+  line-height: 1.6;
+  font-family: 'Inter', sans-serif;
+}
+

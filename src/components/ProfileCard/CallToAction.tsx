@@ -1,16 +1,19 @@
 "use client";
 
 import { motion } from "motion/react";
+import { useLoading } from "@/contexts/LoadingContext";
 import { CallToActionProps } from "./types";
 import styles from "./CallToAction.module.css";
 
 export default function CallToAction({ text, href }: CallToActionProps) {
+  const { isLoading } = useLoading();
+  
   return (
     <motion.a
       href={href}
       className={styles.button}
       initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
+      animate={isLoading ? { opacity: 0, y: 20 } : { opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.6 }}
       whileHover={{
         scale: 1.02,

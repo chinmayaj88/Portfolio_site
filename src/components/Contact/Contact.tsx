@@ -185,10 +185,13 @@ export default function Contact() {
               transition={{ duration: 0.6, delay: 0.8 }}
             >
               <p className={styles.descText}>
-                Hit me up if you're looking for a{" "}
-                <span className={styles.highlight}>fast, reliable</span>{" "}
-                <span className={styles.highlight}>Full Stack Developer</span>{" "}
-                who can bring your vision to life
+                I build{" "}
+                <span className={styles.highlight}>scalable applications</span>{" "}
+                from frontend to backend, and deploy them on{" "}
+                <span className={styles.highlight}>cloud infrastructure</span>{" "}
+                with{" "}
+                <span className={styles.highlight}>DevOps best practices</span>.{" "}
+                Ready to turn your ideas into reality.
               </p>
             </motion.div>
             <motion.div

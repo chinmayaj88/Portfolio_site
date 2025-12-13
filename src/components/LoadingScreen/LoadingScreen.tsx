@@ -2,11 +2,12 @@
 
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { useLoading } from '@/contexts/LoadingContext';
 import styles from './LoadingScreen.module.css';
 
 export default function LoadingScreen() {
-  const [isLoading, setIsLoading] = useState(true);
   const [progress, setProgress] = useState(0);
+  const { isLoading, setIsLoading } = useLoading();
 
   useEffect(() => {
     // Check if loading screen has been shown in this session
@@ -43,7 +44,7 @@ export default function LoadingScreen() {
       clearInterval(progressInterval);
       clearTimeout(timer);
     };
-  }, []);
+  }, [setIsLoading]);
 
   return (
     <AnimatePresence>
@@ -55,18 +56,28 @@ export default function LoadingScreen() {
           transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
         >
           <div className={styles.content}>
+            {/* Welcome Message */}
+            <motion.div
+              className={styles.welcomeMessage}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              <p className={styles.welcomeText}>Welcome</p>
+            </motion.div>
+
             {/* Minimal Logo/Name */}
             <motion.div
               className={styles.logoContainer}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+              transition={{ duration: 0.6, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
             >
               <motion.h1
                 className={styles.logo}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
               >
                 Chinmaya Jena
               </motion.h1>
@@ -77,7 +88,7 @@ export default function LoadingScreen() {
               className={styles.progressContainer}
               initial={{ opacity: 0, width: 0 }}
               animate={{ opacity: 1, width: '200px' }}
-              transition={{ duration: 0.4, delay: 0.3 }}
+              transition={{ duration: 0.4, delay: 0.4 }}
             >
               <div className={styles.progressBar}>
                 <motion.div

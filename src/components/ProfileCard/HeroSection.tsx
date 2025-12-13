@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import { useLoading } from "@/contexts/LoadingContext";
 import OnlineStatus from "./OnlineStatus";
 import { HeroSectionProps } from "./types";
 import { GradientText, AnimatedText } from "@/components/TextAnimations";
@@ -12,13 +13,15 @@ export default function HeroSection({
   location,
   status,
 }: HeroSectionProps) {
+  const { isLoading } = useLoading();
+  
   return (
     <div className={styles.container}>
       <motion.div
         className={styles.statusSection}
         initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.4, delay: 0.1 }}
+        animate={isLoading ? { opacity: 0, x: -20 } : { opacity: 1, x: 0 }}
+        transition={{ duration: 0.4, delay: 0.4 }}
       >
         <OnlineStatus status={status} />
       </motion.div>
@@ -27,8 +30,8 @@ export default function HeroSection({
         <motion.div
           className={styles.greetingRow}
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.15 }}
+          animate={isLoading ? { opacity: 0, y: 20 } : { opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.45 }}
         >
           <motion.div
             className={styles.greetingLabel}
@@ -36,7 +39,7 @@ export default function HeroSection({
             transition={{ type: "spring", stiffness: 300 }}
           >
             <p className={styles.labelText}>
-              <AnimatedText text="Hi! I'm" type="chars" delay={0.2} />
+              <AnimatedText text="Hi! I'm" type="chars" delay={isLoading ? 0 : 0.5} />
             </p>
           </motion.div>
           <motion.div
@@ -47,7 +50,7 @@ export default function HeroSection({
             <div className={styles.namePillContent}>
               <p className={styles.nameText}>
                 <GradientText>
-                  <AnimatedText text={name} type="chars" delay={0.25} />
+                  <AnimatedText text={name} type="chars" delay={isLoading ? 0 : 0.55} />
                 </GradientText>
               </p>
             </div>
@@ -58,8 +61,8 @@ export default function HeroSection({
           <motion.div
             className={styles.roleRow}
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.3 }}
+            animate={isLoading ? { opacity: 0, y: 20 } : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.5 }}
           >
             <div className={styles.roleLabel}>
               <p className={styles.labelText}>a</p>
@@ -71,7 +74,7 @@ export default function HeroSection({
             >
               <div className={styles.rolePillContent}>
                 <p className={styles.roleText}>
-                  <AnimatedText text={role} type="words" delay={0.35} />
+                  <AnimatedText text={role} type="words" delay={isLoading ? 0 : 0.6} />
                 </p>
               </div>
             </motion.div>
@@ -80,8 +83,8 @@ export default function HeroSection({
           <motion.div
             className={styles.locationRow}
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.4 }}
+            animate={isLoading ? { opacity: 0, y: 20 } : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.55 }}
           >
             <div className={styles.locationLabel}>
               <p className={styles.labelText}>from</p>
@@ -93,7 +96,7 @@ export default function HeroSection({
             >
               <div className={styles.locationPillContent}>
                 <p className={styles.locationText}>
-                  <AnimatedText text={location} type="chars" delay={0.45} />
+                  <AnimatedText text={location} type="chars" delay={isLoading ? 0 : 0.65} />
                 </p>
               </div>
             </motion.div>

@@ -223,32 +223,126 @@
     padding: 80px 16px;
   }
 
+  .container {
+    max-width: 100%;
+  }
+
   .header {
     margin-bottom: 60px;
   }
 
+  .title {
+    font-size: clamp(36px, 8vw, 56px);
+  }
+
+  .timeline {
+    gap: 32px;
+  }
+
   .experienceCard {
-    padding: 28px;
+    padding: 28px 20px;
   }
 
   .cardHeader {
     flex-direction: column;
     align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+
+  .companyInfo {
+    min-width: 100%;
   }
 
   .meta {
     align-items: flex-start;
     flex-direction: row;
     gap: 12px;
+    width: 100%;
   }
 
   .position {
     font-size: 20px;
   }
 
+  .companyName {
+    font-size: 14px;
+  }
+
+  .responsibilities {
+    gap: 12px;
+  }
+
+  .responsibilityItem {
+    padding: 10px 0;
+    gap: 10px;
+  }
+
   .respTitle,
   .respDesc {
     font-size: 15px;
+  }
+
+  .projectsGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .projectCard {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 60px 12px;
+  }
+
+  .title {
+    font-size: 32px;
+  }
+
+  .experienceCard {
+    padding: 24px 16px;
+  }
+
+  .position {
+    font-size: 18px;
+  }
+
+  .companyName {
+    font-size: 13px;
+  }
+
+  .duration {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .type {
+    font-size: 12px;
+  }
+
+  .respTitle,
+  .respDesc {
+    font-size: 14px;
+  }
+
+  .projectsTitle {
+    font-size: 18px;
+  }
+
+  .projectName {
+    font-size: 15px;
+  }
+
+  .techTag {
+    font-size: 11px;
+    padding: 3px 10px;
+  }
+
+  .achievementText {
+    font-size: 12px;
   }
 }
 

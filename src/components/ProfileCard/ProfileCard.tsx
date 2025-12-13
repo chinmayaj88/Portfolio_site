@@ -1,7 +1,10 @@
+"use client";
+
 import ProfileImage from "./ProfileImage";
 import HeroSection from "./HeroSection";
 import CallToAction from "./CallToAction";
 import { ProfileCardProps } from "./types";
+import { useLoading } from "@/contexts/LoadingContext";
 import styles from "./ProfileCard.module.css";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { SiGmail } from "react-icons/si";
@@ -9,6 +12,8 @@ import Link from "next/link";
 import { socialLinksData } from "@/data/socialLinksData";
 
 export default function ProfileCard({ data }: ProfileCardProps) {
+  const { isLoading } = useLoading();
+  
   return (
     <section className={styles.section}>
       <div className={styles.container}>

@@ -1,0 +1,192 @@
+.container {
+  margin: 40px 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #1e1e1e;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.24),
+    0 2px 8px rgba(0, 0, 0, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, 
+    #007acc 0%, 
+    #1e90ff 25%, 
+    #00bcd4 50%, 
+    #4caf50 75%, 
+    #ff9800 100%
+  );
+  opacity: 0.6;
+}
+
+.container:hover {
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.3),
+    0 4px 12px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background: linear-gradient(180deg, 
+    rgba(0, 0, 0, 0.5) 0%, 
+    rgba(0, 0, 0, 0.3) 100%
+  );
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+}
+
+.language {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: 'Inter', sans-serif;
+  padding: 4px 12px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.copyButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.85);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.copyButton:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: rgb(255, 255, 255);
+  transform: scale(1.05);
+}
+
+.copyButton:active {
+  transform: scale(0.95);
+}
+
+.codeWrapper {
+  overflow-x: auto;
+  background: #1e1e1e;
+  position: relative;
+}
+
+.codeWrapper :global(pre) {
+  margin: 0 !important;
+  padding: 24px !important;
+  background: #1e1e1e !important;
+  border-radius: 0 !important;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  font-family: "'Fira Code', 'JetBrains Mono', 'Consolas', 'Monaco', 'Courier New', monospace" !important;
+}
+
+.codeWrapper :global(code) {
+  font-family: "'Fira Code', 'JetBrains Mono', 'Consolas', 'Monaco', 'Courier New', monospace" !important;
+  font-size: 14px !important;
+  line-height: 1.7 !important;
+  font-weight: 400 !important;
+  color: #d4d4d4 !important;
+}
+
+/* Enhanced syntax highlighting colors - VS Code Dark+ theme */
+.codeWrapper :global(.token.comment),
+.codeWrapper :global(.token.prolog),
+.codeWrapper :global(.token.doctype),
+.codeWrapper :global(.token.cdata) {
+  color: #6a9955 !important;
+  font-style: italic !important;
+}
+
+.codeWrapper :global(.token.punctuation) {
+  color: #d4d4d4 !important;
+}
+
+.codeWrapper :global(.token.property),
+.codeWrapper :global(.token.tag),
+.codeWrapper :global(.token.boolean),
+.codeWrapper :global(.token.number),
+.codeWrapper :global(.token.constant),
+.codeWrapper :global(.token.symbol),
+.codeWrapper :global(.token.deleted) {
+  color: #b5cea8 !important;
+}
+
+.codeWrapper :global(.token.selector),
+.codeWrapper :global(.token.attr-name),
+.codeWrapper :global(.token.string),
+.codeWrapper :global(.token.char),
+.codeWrapper :global(.token.builtin),
+.codeWrapper :global(.token.inserted) {
+  color: #ce9178 !important;
+}
+
+.codeWrapper :global(.token.operator),
+.codeWrapper :global(.token.entity),
+.codeWrapper :global(.token.url),
+.codeWrapper :global(.language-css .token.string),
+.codeWrapper :global(.style .token.string) {
+  color: #d4d4d4 !important;
+}
+
+.codeWrapper :global(.token.atrule),
+.codeWrapper :global(.token.attr-value),
+.codeWrapper :global(.token.keyword) {
+  color: #569cd6 !important;
+}
+
+.codeWrapper :global(.token.function),
+.codeWrapper :global(.token.class-name) {
+  color: #dcdcaa !important;
+}
+
+.codeWrapper :global(.token.regex),
+.codeWrapper :global(.token.important),
+.codeWrapper :global(.token.variable) {
+  color: #d16969 !important;
+}
+
+/* Custom scrollbar for code blocks */
+.codeWrapper :global(pre::-webkit-scrollbar) {
+  height: 10px;
+}
+
+.codeWrapper :global(pre::-webkit-scrollbar-track) {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+}
+
+.codeWrapper :global(pre::-webkit-scrollbar-thumb) {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 5px;
+  border: 2px solid rgba(0, 0, 0, 0.3);
+}
+
+.codeWrapper :global(pre::-webkit-scrollbar-thumb:hover) {
+  background: rgba(255, 255, 255, 0.25);
+}
+

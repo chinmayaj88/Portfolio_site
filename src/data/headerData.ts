@@ -14,8 +14,9 @@ export const headerData: HeaderData = {
   resumeLink: "https://drive.google.com/file/d/1dgn70ciGsKTJAyJyKGr5G_X3fGwDg_wh/view?usp=sharing",
   navLinks: [
     { label: "Projects", href: "/projects" },
-    { label: "Contact", href: "/about" },
-    { label: "Blogs", href: "/blog" },
+    { label: "About", href: "/about" },
+    { label: "Contact", href: "/contact" },
+    // { label: "Blogs", href: "/blog" },
   ],
 };
 

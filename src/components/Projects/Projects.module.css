@@ -239,15 +239,17 @@
   }
 
   .projectInfo {
-    padding: 24px;
+    padding: 24px 20px;
   }
 
   .projectTitle {
     font-size: 24px;
+    line-height: 1.3;
   }
 
   .projectSubtitle {
     font-size: 14px;
+    line-height: 1.5;
   }
 
   .imageWrapper {
@@ -259,11 +261,77 @@
   }
 
   .ctaCard {
-    padding: 36px;
-    border-radius: 10px;
+    margin: 24px;
+    padding: 32px 24px;
+    border-radius: 12px;
+    min-height: 400px;
   }
 
   .ctaTitle {
     font-size: 28px;
+    line-height: 1.2;
+  }
+
+  .ctaSubtitle {
+    font-size: 16px;
+  }
+
+  .ctaIcon {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 16px;
+  }
+
+  .projectItem,
+  .projectItemSmall {
+    min-height: 350px;
+  }
+
+  .projectInfo {
+    padding: 20px 16px;
+    gap: 10px;
+  }
+
+  .projectTitle {
+    font-size: 20px;
+  }
+
+  .projectSubtitle {
+    font-size: 13px;
+  }
+
+  .category {
+    font-size: 12px;
+  }
+
+  .imageWrapper {
+    padding: 0 12px 12px 12px;
+  }
+
+  .ctaCard {
+    margin: 16px;
+    padding: 24px 20px;
+    min-height: 300px;
+  }
+
+  .ctaTitle {
+    font-size: 24px;
+  }
+
+  .ctaSubtitle {
+    font-size: 14px;
+  }
+
+  .ctaIcon {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    margin-top: 12px;
   }
 }

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
+import { useLoading } from "@/contexts/LoadingContext";
 import styles from "./Header.module.css";
 import { FaRegFileAlt } from "react-icons/fa";
 import { headerData } from "@/data/headerData";
@@ -12,6 +13,7 @@ export default function Header() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const { scrollY } = useScroll();
+  const { isLoading } = useLoading();
 
   const headerBlur = useTransform(scrollY, [0, 50], [20, 30]);
 
@@ -28,8 +30,8 @@ export default function Header() {
     <motion.header
       className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}
       initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.3, ease: [0.6, -0.05, 0.01, 0.99] }}
+      animate={isLoading ? { y: -100, opacity: 0 } : { y: 0, opacity: 1 }}
+      transition={{ duration: 0.5, ease: [0.6, -0.05, 0.01, 0.99], delay: 0.2 }}
       style={{
         backdropFilter: useTransform(headerBlur, (blur) => `blur(${blur}px)`),
       }}
@@ -39,8 +41,8 @@ export default function Header() {
         <motion.div
           className={styles.logoSection}
           initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.3, delay: 0.1 }}
+          animate={isLoading ? { opacity: 0, x: -20 } : { opacity: 1, x: 0 }}
+          transition={{ duration: 0.4, delay: 0.3 }}
         >
           <Link href="/" className={styles.logoLink}>
             <motion.h3
@@ -59,16 +61,16 @@ export default function Header() {
           <motion.nav
             className={styles.nav}
             initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.15 }}
+            animate={isLoading ? { opacity: 0, y: -10 } : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.35 }}
           >
             {headerData.navLinks.map((link, index) => (
               <motion.div
                 key={link.href}
                 className={styles.navItem}
                 initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: 0.15 + index * 0.05 }}
+                animate={isLoading ? { opacity: 0, y: -10 } : { opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: 0.35 + index * 0.05 }}
               >
                 <Link
                   href={link.href}
@@ -95,14 +97,14 @@ export default function Header() {
           <motion.div
             className={styles.rightSection}
             initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.3, delay: 0.2 }}
+            animate={isLoading ? { opacity: 0, x: 20 } : { opacity: 1, x: 0 }}
+            transition={{ duration: 0.4, delay: 0.4 }}
           >
             <motion.div
               className={styles.emailSection}
               initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.3, delay: 0.25 }}
+              animate={isLoading ? { opacity: 0 } : { opacity: 1 }}
+              transition={{ duration: 0.3, delay: 0.45 }}
             >
               <p className={styles.emailLabel}>Email:</p>
               <p className={styles.emailValue}>{headerData.email}</p>

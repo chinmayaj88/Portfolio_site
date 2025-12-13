@@ -450,47 +450,103 @@
 }
 
 @media (max-width: 640px) {
+  .section {
+    min-height: auto;
+  }
+
   .container {
     padding: 40px 16px;
+    gap: 40px;
   }
 
   .topBar {
     padding: 16px;
   }
 
+  .topBarContent {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
   .mainHeading {
-    font-size: 36px;
+    font-size: clamp(32px, 8vw, 48px);
+    line-height: 1.1;
+  }
+
+  .subtext {
+    font-size: 16px;
   }
 
   .profileCard {
-    padding: 32px 24px;
+    padding: 28px 20px;
+    gap: 24px;
   }
 
   .profileHeader {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    gap: 16px;
   }
 
   .profileInfo {
     align-items: center;
   }
 
+  .profileName {
+    font-size: 20px;
+  }
+
+  .profileRole {
+    font-size: 14px;
+  }
+
   .socialLinks {
     justify-content: center;
+    gap: 6px;
+  }
+
+  .socialIcon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .contactDetails {
+    text-align: center;
   }
 
   .email {
     font-size: 18px;
+    word-break: break-all;
+  }
+
+  .descText {
+    font-size: 15px;
+    text-align: center;
   }
 
   .behanceButton {
     width: 100%;
+    justify-content: center;
   }
 
-  .madeInFramer {
-    position: static;
-    margin: 32px 16px;
-    justify-content: center;
+  .headingPattern {
+    left: -40px;
+    right: -40px;
+  }
+}
+
+@media (max-width: 375px) {
+  .mainHeading {
+    font-size: 28px;
+  }
+
+  .profileCard {
+    padding: 24px 16px;
+  }
+
+  .email {
+    font-size: 16px;
   }
 }

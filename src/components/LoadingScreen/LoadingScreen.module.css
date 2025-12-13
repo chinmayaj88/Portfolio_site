@@ -16,7 +16,22 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 40px;
+  gap: 24px;
+}
+
+.welcomeMessage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.welcomeText {
+  font-family: Manrope, sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: rgba(47, 47, 47, 0.7);
+  margin: 0;
+  letter-spacing: 0.5px;
 }
 
 .logoContainer {
@@ -59,6 +74,10 @@
 }
 
 @media (max-width: 768px) {
+  .welcomeText {
+    font-size: 16px;
+  }
+
   .logo {
     font-size: 32px;
   }
