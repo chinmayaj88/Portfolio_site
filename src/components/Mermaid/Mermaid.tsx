@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { COLORS } from '@/constants/colors';
 
 interface MermaidProps {
   chart: string;
@@ -21,12 +22,12 @@ export default function Mermaid({ chart, id }: MermaidProps) {
             theme: 'default',
             securityLevel: 'loose',
             themeVariables: {
-              primaryColor: '#a3ff12',
-              primaryTextColor: '#000000',
-              primaryBorderColor: '#a3ff12',
-              lineColor: '#a3ff12',
-              secondaryColor: '#f8f8f8',
-              tertiaryColor: '#ffffff',
+              primaryColor: COLORS.accent,
+              primaryTextColor: COLORS.textDark,
+              primaryBorderColor: COLORS.accent,
+              lineColor: COLORS.accent,
+              secondaryColor: COLORS.backgroundLight,
+              tertiaryColor: COLORS.text,
             },
           });
           setIsLoaded(true);
@@ -35,11 +36,10 @@ export default function Mermaid({ chart, id }: MermaidProps) {
             const uniqueId = id || `mermaid-${Math.random().toString(36).substr(2, 9)}`;
             mermaidRef.current.id = uniqueId;
             await mermaid.contentLoaded();
-            mermaid.render(uniqueId, chart, (svgCode) => {
-              if (mermaidRef.current) {
-                mermaidRef.current.innerHTML = svgCode;
-              }
-            });
+            const { svg } = await mermaid.render(uniqueId, chart);
+            if (mermaidRef.current) {
+              mermaidRef.current.innerHTML = svg;
+            }
           }
         } catch (error) {
           console.error('Error loading Mermaid:', error);
@@ -59,9 +59,9 @@ export default function Mermaid({ chart, id }: MermaidProps) {
         justifyContent: 'center', 
         alignItems: 'center',
         padding: '24px',
-        background: '#ffffff',
+        background: COLORS.surfaceCardLight,
         borderRadius: '12px',
-        border: '1px solid rgba(0, 0, 0, 0.08)',
+        border: `1px solid ${COLORS.borderLight}`,
         margin: '24px 0',
         overflow: 'auto'
       }}
