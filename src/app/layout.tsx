@@ -27,16 +27,6 @@ const autography = localFont({
   variable: "--font-autography",
 });
 
-const christmas = localFont({
-  src: "../../public/christmas_market_2/Christmas Market.otf",
-  variable: "--font-christmas",
-});
-
-const superChiby = localFont({
-  src: "../../public/super_chiby/Super Chiby.ttf",
-  variable: "--font-super-chiby",
-});
-
 export const metadata: Metadata = {
   title: `${profileData.name} - ${profileData.role}`,
   description: profileData.bio,
@@ -49,7 +39,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${manrope.variable} ${inter.variable} ${autography.variable} ${christmas.variable} ${superChiby.variable}`}>
+      <body className={`${manrope.variable} ${inter.variable} ${autography.variable}`}>
         <LoadingProvider>
           <LoadingScreen />
           <SmoothScroll />

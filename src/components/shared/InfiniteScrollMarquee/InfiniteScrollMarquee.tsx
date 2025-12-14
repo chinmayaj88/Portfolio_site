@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import styles from "./InfiniteScrollMarquee.module.css";
+import { COLORS } from "@/constants/colors";
 
 type InfiniteScrollMarqueeProps = {
   items: string[];
@@ -19,7 +20,7 @@ export default function InfiniteScrollMarquee({
   direction = "left",
   repeatCount = 4,
   hoverScale = 1.1,
-  hoverColor = "#a3ff12",
+  hoverColor = COLORS.accent,
   showIcon = true,
 }: InfiniteScrollMarqueeProps) {
   const repeatedItems = Array(repeatCount).fill(items).flat();

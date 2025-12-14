@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useScroll, useSpring } from "motion/react";
+import { COLORS } from "@/constants/colors";
 
 export default function ScrollProgress() {
   const { scrollYProgress } = useScroll();
@@ -18,7 +19,7 @@ export default function ScrollProgress() {
         left: 0,
         right: 0,
         height: "3px",
-        background: "linear-gradient(90deg, #a3ff12, #b5ff3a)",
+        background: `linear-gradient(90deg, ${COLORS.accent}, ${COLORS.accentHover})`,
         transformOrigin: "0%",
         scaleX,
         zIndex: 9999,

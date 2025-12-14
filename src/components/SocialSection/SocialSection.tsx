@@ -123,8 +123,7 @@ export default function SocialSection() {
                 animate={{ x: [0, 3, 0], y: [0, 3, 0] }}
                 transition={{ 
                   x: { duration: 1.5, repeat: Infinity },
-                  y: { duration: 1.5, repeat: Infinity },
-                  hover: { duration: 0.2 }
+                  y: { duration: 1.5, repeat: Infinity }
                 }}
               >
                 ↘

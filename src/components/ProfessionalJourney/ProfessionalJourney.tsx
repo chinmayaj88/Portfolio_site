@@ -4,6 +4,7 @@ import { motion, useInView } from "motion/react";
 import { useRef } from "react";
 import { experienceData } from "@/data/experienceData";
 import { AnimatedText, TypewriterText } from "@/components/TextAnimations/AnimatedText";
+import { COLORS } from "@/constants/colors";
 import styles from "./ProfessionalJourney.module.css";
 import Image from "next/image";
 
@@ -125,8 +126,8 @@ export default function ProfessionalJourney() {
                         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                         whileHover={{
                           y: -4,
-                          backgroundColor: "rgba(163, 255, 18, 0.05)",
-                          borderColor: "rgba(163, 255, 18, 0.2)",
+                          backgroundColor: COLORS.accent10,
+                          borderColor: COLORS.borderAccent,
                         }}
                         transition={{
                           duration: 0.4,

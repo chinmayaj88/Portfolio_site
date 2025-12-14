@@ -1,5 +1,6 @@
 'use client';
 
+// @ts-ignore - motion package re-exports from framer-motion
 import { motion, useInView } from 'motion/react';
 import { useRef } from 'react';
 import { aboutData } from '@/data/aboutData';
@@ -26,91 +27,184 @@ export default function AboutPage() {
       >
         <div className={styles.heroContainer}>
           <div className={styles.heroContent}>
+            {/* Left Column - Profile Info */}
             <motion.div
-              className={styles.heroImageSection}
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0.95, opacity: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+              className={styles.leftColumn}
+              initial={{ opacity: 0, x: -20 }}
+              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
             >
-                <div className={styles.imageFrame}>
-                  <Image
-                    src={profileData.avatar.src}
-                    alt={profileData.avatar.alt}
-                    width={240}
-                    height={240}
-                    className={styles.profileImage}
-                    priority
-                  />
-                </div>
-              <div className={styles.socialIcons}>
-                {contactData.socialLinks.slice(0, 3).map((link) => (
-                  <a
-                    key={link.id}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.socialIcon}
-                    aria-label={link.name}
-                  >
-                    {link.icon === 'in' && (
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                      </svg>
-                    )}
-                    {link.icon === 'ig' && (
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                      </svg>
-                    )}
-                    {link.icon === '✉' && (
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 12.713l-11.985-9.713h23.97l-11.985 9.713zm0 2.574l-12-9.725v10.438h24v-10.438l-12 9.725z"/>
-                      </svg>
-                    )}
-                  </a>
-                ))}
-              </div>
-            </motion.div>
-            
-            <div className={styles.heroTextSection}>
+              {/* Status Badge */}
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
+                className={styles.statusBadge}
               >
-                <a href={`mailto:${contactData.email}`} className={styles.emailLink}>
-                  {contactData.email}
-                </a>
+                <span className={styles.statusDot}></span>
+                <span>{aboutData.statusText}</span>
               </motion.div>
-              
-              <motion.div
-                className={styles.heroBio}
+
+              {/* Title */}
+              <motion.h1
+                className={styles.aboutTitle}
                 initial={{ opacity: 0, y: 10 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-                transition={{ duration: 0.5, delay: 0.4 }}
+                transition={{ duration: 0.5, delay: 0.35 }}
               >
-                <p>{aboutData.shortBio}</p>
-              </motion.div>
-              
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-                transition={{ duration: 0.5, delay: 0.5 }}
-              >
-                <a
-                  href={contactData.socialLinks.find(l => l.id === 'instagram')?.href || '#'}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.ctaButton}
+                {aboutData.title}
+              </motion.h1>
+
+              {/* Profile Picture with Social Icons */}
+              <div className={styles.profileSection}>
+                <motion.div
+                  className={styles.avatarWrapper}
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0.8, opacity: 0 }}
+                  transition={{
+                    duration: 0.5,
+                    delay: 0.4,
+                    type: "spring",
+                    stiffness: 200,
+                  }}
+                  whileHover={{ scale: 1.05, rotate: 5 }}
                 >
-                  <span>Follow on Insta</span>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <line x1="7" y1="17" x2="17" y2="7"></line>
-                    <polyline points="7 7 17 7 17 17"></polyline>
-                  </svg>
-                </a>
-              </motion.div>
-            </div>
+                  <Image
+                    src={profileData.avatar.src}
+                    alt={profileData.avatar.alt}
+                    width={200}
+                    height={200}
+                    className={styles.profileImage}
+                    priority
+                  />
+                </motion.div>
+
+                {/* Social Icons - To the right of profile picture */}
+                <motion.div
+                  className={styles.socialLinks}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
+                  transition={{ duration: 0.5, delay: 0.5 }}
+                >
+                  {contactData.socialLinks
+                    .filter((link) =>
+                      ["github", "linkedin", "instagram"].includes(link.id)
+                    )
+                    .map((link, index) => (
+                      <motion.a
+                        key={link.id}
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.socialIcon}
+                        initial={{ opacity: 0, scale: 0 }}
+                        animate={
+                          isInView
+                            ? { opacity: 1, scale: 1 }
+                            : { opacity: 0, scale: 0 }
+                        }
+                        transition={{
+                          duration: 0.3,
+                          delay: 0.6 + index * 0.1,
+                          type: "spring",
+                          stiffness: 200,
+                        }}
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        whileTap={{ scale: 0.9 }}
+                        aria-label={link.name}
+                      >
+                        {link.icon === "gh" && (
+                          <svg
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                          >
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                          </svg>
+                        )}
+                        {link.icon === "in" && (
+                          <svg
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                          >
+                            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+                          </svg>
+                        )}
+                        {link.icon === "ig" && (
+                          <svg
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                          >
+                            <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z" />
+                          </svg>
+                        )}
+                      </motion.a>
+                    ))}
+                </motion.div>
+              </div>
+
+              {/* Email */}
+              <motion.a
+                href={`mailto:${contactData.email}`}
+                className={styles.emailLink}
+                initial={{ opacity: 0, y: 10 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+                transition={{ duration: 0.5, delay: 0.7 }}
+              >
+                {contactData.email}
+              </motion.a>
+
+              {/* Short Bio */}
+              <motion.p
+                className={styles.shortBio}
+                initial={{ opacity: 0, y: 10 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+                transition={{ duration: 0.5, delay: 0.8 }}
+              >
+                {aboutData.shortBio}
+              </motion.p>
+
+              {/* Follow on Insta Button */}
+              <motion.a
+                href={contactData.socialLinks.find(l => l.id === 'instagram')?.href || '#'}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.instaButton}
+                initial={{ opacity: 0, y: 10 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+                transition={{ duration: 0.5, delay: 0.9 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span>Follow on Insta</span>
+                <span className={styles.arrowIcon}>↗</span>
+              </motion.a>
+            </motion.div>
+
+            {/* Right Column - Detailed Bio */}
+            <motion.div
+              className={styles.rightColumn}
+              initial={{ opacity: 0, x: 20 }}
+              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              {aboutData.bioParagraphs.map((paragraph, index) => (
+                <motion.p
+                  key={index}
+                  className={styles.bioText}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+                  transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
+                >
+                  {paragraph}
+                </motion.p>
+              ))}
+            </motion.div>
           </div>
         </div>
       </motion.section>

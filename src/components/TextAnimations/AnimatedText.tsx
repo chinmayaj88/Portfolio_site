@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import { ReactNode } from "react";
+import { COLORS } from "@/constants/colors";
 
 interface AnimatedTextProps {
   text: string;
@@ -114,7 +115,7 @@ export function GradientText({
     <motion.span
       className={className}
       style={{
-        background: "linear-gradient(90deg, #a3ff12, #ffffff, #a3ff12, #ffffff)",
+        background: `linear-gradient(90deg, ${COLORS.accent}, ${COLORS.text}, ${COLORS.accent}, ${COLORS.text})`,
         backgroundSize: "200% auto",
         WebkitBackgroundClip: "text",
         WebkitTextFillColor: "transparent",

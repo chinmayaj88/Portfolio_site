@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "motion/react";
 import { useLoading } from "@/contexts/LoadingContext";
 import { ProfileImageProps } from "./types";
+import { COLORS } from "@/constants/colors";
 import styles from "./ProfileImage.module.css";
 
 export default function ProfileImage({
@@ -40,9 +41,9 @@ export default function ProfileImage({
         <motion.div
           animate={{
             boxShadow: [
-              "0 0 20px rgba(163, 255, 18, 0.2)",
-              "0 0 40px rgba(163, 255, 18, 0.4)",
-              "0 0 20px rgba(163, 255, 18, 0.2)",
+              `0 0 20px ${COLORS.accent20}`,
+              `0 0 40px ${COLORS.accent30}`,
+              `0 0 20px ${COLORS.accent20}`,
             ],
           }}
           transition={{

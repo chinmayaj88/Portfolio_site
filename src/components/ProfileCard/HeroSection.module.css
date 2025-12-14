@@ -51,16 +51,16 @@
 }
 
 .labelText {
-  border-color: rgb(47, 47, 47);
-  color: rgb(47, 47, 47);
+  border-color: var(--color-text-dark-gray);
+  color: var(--color-text-dark-gray);
   font-family: var(--font-manrope), sans-serif;
   font-size: 64px;
   font-weight: 400;
   letter-spacing: -2.56px;
   line-height: 64px;
   margin: 0;
-  outline-color: rgb(47, 47, 47);
-  text-decoration-color: rgb(47, 47, 47);
+  outline-color: var(--color-text-dark-gray);
+  text-decoration-color: var(--color-text-dark-gray);
   text-emphasis-color: rgb(47, 47, 47);
   text-wrap: balance;
   white-space: pre-wrap;
@@ -71,7 +71,7 @@
   align-content: center;
   align-items: center;
   /* background-color: rgb(255, 255, 255); */
-  background-color: black;
+  background-color: var(--color-background);
   border-radius: 110px;
   display: flex;
   gap: 10px;
@@ -97,15 +97,15 @@
 }
 
 .nameText {
-  border-color: rgb(47, 47, 47);
-  color: rgb(47, 47, 47);
+  border-color: var(--color-text-dark-gray);
+  color: var(--color-text-dark-gray);
   font-family: var(--font-manrope), sans-serif;
   font-size: 32px;
   font-weight: 500;
   line-height: 32px;
   margin: 0;
-  outline-color: rgb(47, 47, 47);
-  text-decoration-color: rgb(47, 47, 47);
+  outline-color: var(--color-text-dark-gray);
+  text-decoration-color: var(--color-text-dark-gray);
   text-wrap: nowrap;
   white-space: pre;
   white-space-collapse: preserve;
@@ -119,17 +119,17 @@
       rgb(240, 83, 41) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  border-color: rgb(47, 47, 47);
-  color: rgb(47, 47, 47);
+  border-color: var(--color-text-dark-gray);
+  color: var(--color-text-dark-gray);
   display: inline-block;
   font-family: var(--font-manrope), sans-serif;
   font-size: 32px;
   font-weight: 500;
   line-height: 32px;
   margin: -6.3px;
-  outline-color: rgb(47, 47, 47);
+  outline-color: var(--color-text-dark-gray);
   padding: 6.3px;
-  text-decoration-color: rgb(47, 47, 47);
+  text-decoration-color: var(--color-text-dark-gray);
   text-wrap: nowrap;
   white-space: pre;
   white-space-collapse: preserve;
@@ -203,17 +203,17 @@
 }
 
 .roleText {
-  border-color: rgb(255, 255, 255);
-  /* color: rgb(255, 255, 255); */
-  color: #ffffff;
+  border-color: var(--color-text);
+  /* color: var(--color-text); */
+  color: var(--color-text);
   font-family: var(--font-manrope), sans-serif;
   font-size: 32px;
   font-weight: 500;
   letter-spacing: -1.28px;
   line-height: 32px;
   margin: 0;
-  outline-color: rgb(255, 255, 255);
-  text-decoration-color: rgb(255, 255, 255);
+  outline-color: var(--color-text);
+  text-decoration-color: var(--color-text);
   text-wrap: nowrap;
   white-space: pre;
   white-space-collapse: preserve;
@@ -244,7 +244,7 @@
 .locationPill {
   align-content: center;
   align-items: center;
-  background-color: rgb(255, 255, 255);
+  background-color: var(--color-surface-card-light);
   border-radius: 110px;
   display: flex;
   gap: 10px;
@@ -271,17 +271,17 @@
 }
 
 .locationText {
-  border-color: rgb(47, 47, 47);
+  border-color: var(--color-text-dark-gray);
   /* color: rgb(47, 47, 47); */
-  color: black;
+  color: var(--color-text-dark);
   font-family: var(--font-manrope), sans-serif;
   font-size: 32px;
   font-weight: 500;
   letter-spacing: -1.28px;
   line-height: 32px;
   margin: 0;
-  outline-color: rgb(47, 47, 47);
-  text-decoration-color: rgb(47, 47, 47);
+  outline-color: var(--color-text-dark-gray);
+  text-decoration-color: var(--color-text-dark-gray);
   text-wrap: nowrap;
   white-space: pre;
   white-space-collapse: preserve;

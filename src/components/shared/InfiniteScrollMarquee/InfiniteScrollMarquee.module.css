@@ -3,7 +3,7 @@
   min-width: 500px;
   overflow: hidden;
   padding: 32px 0;
-  background-color: #1c1c1c;
+  background-color: var(--color-surface-light);
   margin-top: auto;
 }
 
@@ -19,15 +19,16 @@
   gap: 16px;
   font-size: 26px;
   font-weight: 500;
-  color: rgba(163, 255, 18, 0.8);
+  color: var(--color-accent);
   letter-spacing: -0.01em;
+  opacity: 0.8;
 }
 
 .item:nth-child(even) {
-  color: #ffffff;
+  color: var(--color-text);
 }
 
 .icon {
-  color: #D3D3D3;
+  color: var(--color-text-secondary);
   font-size: 20px;
 }

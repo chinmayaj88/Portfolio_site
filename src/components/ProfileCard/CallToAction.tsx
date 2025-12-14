@@ -3,6 +3,7 @@
 import { motion } from "motion/react";
 import { useLoading } from "@/contexts/LoadingContext";
 import { CallToActionProps } from "./types";
+import { COLORS } from "@/constants/colors";
 import styles from "./CallToAction.module.css";
 
 export default function CallToAction({ text, href }: CallToActionProps) {
@@ -17,7 +18,7 @@ export default function CallToAction({ text, href }: CallToActionProps) {
       transition={{ duration: 0.6, delay: 0.6 }}
       whileHover={{
         scale: 1.02,
-        boxShadow: "0 10px 40px rgba(163, 255, 18, 0.3)",
+        boxShadow: `0 10px 40px ${COLORS.accent30}`,
       }}
       whileTap={{ scale: 0.98 }}
     >

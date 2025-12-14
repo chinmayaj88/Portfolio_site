@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import { useLoading } from "@/contexts/LoadingContext";
+import { COLORS } from "@/constants/colors";
 import styles from "./Header.module.css";
 import { FaRegFileAlt } from "react-icons/fa";
 import { headerData } from "@/data/headerData";
@@ -119,7 +120,7 @@ export default function Header() {
               className={styles.resumeButton}
               whileHover={{
                 scale: 1.08,
-                boxShadow: "0 8px 30px rgba(163, 255, 18, 0.5)",
+                boxShadow: `0 8px 30px ${COLORS.accent30}`,
               }}
               whileTap={{ scale: 0.92 }}
               transition={{ type: "spring", stiffness: 500, damping: 15 }}

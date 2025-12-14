@@ -1,3 +1,5 @@
+import { COLORS } from "@/constants/colors";
+
 export interface StatItem {
   id: string;
   value: number;
@@ -15,8 +17,8 @@ export const statsData: StatItem[] = [
     suffix: "+",
     label: "Projects",
     sublabel: "Completed",
-    bgColor: "#a3ff12",
-    textColor: "#000000",
+    bgColor: COLORS.accent,
+    textColor: COLORS.textDark,
   },
   {
     id: "experience",
@@ -24,8 +26,8 @@ export const statsData: StatItem[] = [
     suffix: "",
     label: "Years",
     sublabel: "of experience",
-    bgColor: "#1a1a1a",
-    textColor: "#ffffff",
+    bgColor: COLORS.surfaceLight,
+    textColor: COLORS.text,
   },
   {
     id: "technologies",
@@ -34,7 +36,6 @@ export const statsData: StatItem[] = [
     label: "Technologies",
     sublabel: "Used",
     bgColor: "grey",
-    textColor: "#ffffff",
+    textColor: COLORS.text,
   },
 ];
-

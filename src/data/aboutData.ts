@@ -3,6 +3,12 @@ export interface AboutData {
   statusText: string;
   bioParagraphs: string[];
   shortBio: string;
+  location: string;
+  hobbies: string[];
+  quote: {
+    text: string;
+    author?: string;
+  };
 }
 
 export const aboutData: AboutData = {
@@ -14,5 +20,11 @@ export const aboutData: AboutData = {
     "Let's create something amazing together!",
   ],
   shortBio: "I'm Chinmaya, a Full Stack & Cloud Engineer focused on building scalable backend systems, Kubernetes, and production-grade cloud architecture.",
+  location: "Bhubaneswar, Odisha, India",
+  hobbies: ["Traveling", "Riding"],
+  quote: {
+    text: "Building the future, one line of code at a time. Passion drives innovation, and curiosity fuels growth.",
+    author: "Chinmaya Jena"
+  },
 };
 

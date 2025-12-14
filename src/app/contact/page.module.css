@@ -1,5 +1,5 @@
 .main {
-  background: rgb(248, 248, 248);
+  background: var(--color-background-light);
   min-height: 100vh;
   width: 100%;
   padding: 120px 40px 80px 40px;
@@ -26,7 +26,7 @@
   font-weight: 700;
   letter-spacing: -2px;
   line-height: 1.2;
-  color: rgb(47, 47, 47);
+  color: var(--color-text-dark-gray);
   margin: 0 0 16px 0;
 }
 
@@ -62,7 +62,7 @@
   font-weight: 700;
   letter-spacing: -0.5px;
   line-height: 1.2;
-  color: rgb(47, 47, 47);
+  color: var(--color-text-dark-gray);
   margin: 0 0 24px 0;
 }
 
@@ -85,8 +85,8 @@
   padding: 14px 18px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 12px;
-  background: rgb(248, 248, 248);
-  color: rgb(47, 47, 47);
+  background: var(--color-background-light);
+  color: var(--color-text-dark-gray);
   transition: all 0.2s ease;
   width: 100%;
 }
@@ -111,7 +111,7 @@
   font-weight: 600;
   padding: 14px 28px;
   background: rgba(140, 255, 46, 0.8);
-  color: rgb(47, 47, 47);
+  color: var(--color-text-dark-gray);
   border: none;
   border-radius: 12px;
   cursor: pointer;
@@ -143,7 +143,7 @@
   align-items: center;
   gap: 16px;
   padding: 16px;
-  background: rgb(248, 248, 248);
+  background: var(--color-background-light);
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 12px;
   text-decoration: none;
@@ -189,7 +189,7 @@
   font-family: Manrope, sans-serif;
   font-size: 15px;
   font-weight: 600;
-  color: rgb(47, 47, 47);
+  color: var(--color-text-dark-gray);
 }
 
 /* Availability */
@@ -210,7 +210,7 @@
   font-family: Manrope, sans-serif;
   font-size: 13px;
   font-weight: 500;
-  color: rgb(47, 47, 47);
+  color: var(--color-text-dark-gray);
 }
 
 .greenDot {
@@ -230,7 +230,7 @@
   font-family: Manrope, sans-serif;
   font-size: 16px;
   font-weight: 600;
-  color: rgb(47, 47, 47);
+  color: var(--color-text-dark-gray);
   margin: 0 0 12px 0;
 }
 
@@ -242,14 +242,14 @@
 .socialLink {
   width: 44px;
   height: 44px;
-  background: rgb(248, 248, 248);
+  background: var(--color-background-light);
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  color: rgb(47, 47, 47);
+  color: var(--color-text-dark-gray);
   transition: all 0.2s ease;
 }
 

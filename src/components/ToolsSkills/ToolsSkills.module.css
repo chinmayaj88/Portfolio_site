@@ -1,6 +1,6 @@
 .section {
   padding: 120px 20px;
-  background: rgb(248, 248, 248);
+  background: var(--color-background-light);
   position: relative;
   overflow: hidden;
 }
@@ -46,15 +46,15 @@
   position: relative;
   padding: 40px 24px;
   border-radius: 24px;
-  background: rgb(255, 255, 255);
+  background: var(--color-surface-card-light);
   border: 1px solid rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
 .loopSection:hover {
-  border-color: rgba(163, 255, 18, 0.3);
-  box-shadow: 0 8px 30px rgba(163, 255, 18, 0.15);
+  border-color: var(--color-accent-30);
+  box-shadow: 0 8px 30px var(--color-accent-15);
   transform: translateY(-4px);
 }
 
@@ -69,7 +69,7 @@
 .loopTitle {
   font-size: 18px;
   font-weight: 600;
-  color: rgb(47, 47, 47);
+  color: var(--color-text-dark-gray);
   margin: 0;
   text-align: center;
   position: relative;
@@ -101,7 +101,7 @@
 }
 
 .square:hover {
-  filter: drop-shadow(0 8px 20px rgba(163, 255, 18, 0.2));
+  filter: drop-shadow(0 8px 20px var(--color-accent-20));
 }
 
 .squareContent {
@@ -110,15 +110,15 @@
   height: 100%;
   border-radius: 16px;
   overflow: hidden;
-  background: rgb(255, 255, 255);
+  background: var(--color-surface-card-light);
   border: 1px solid rgba(0, 0, 0, 0.08);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
 }
 
 .square:hover .squareContent {
-  border-color: rgba(163, 255, 18, 0.3);
-  box-shadow: 0 4px 16px rgba(163, 255, 18, 0.2);
+  border-color: var(--color-accent-30);
+  box-shadow: 0 4px 16px var(--color-accent-20);
   transform: scale(1.05);
 }
 
@@ -142,7 +142,7 @@
 }
 
 .squareWithOffset .squareContent {
-  background: rgb(255, 255, 255);
+  background: var(--color-surface-card-light);
   border: 1px solid rgba(0, 0, 0, 0.08);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
@@ -183,7 +183,7 @@
 .dot {
   width: 8px;
   height: 8px;
-  background: #a3ff12;
+  background: var(--color-accent);
   border-radius: 50%;
   display: inline-block;
   animation: pulse 2s ease-in-out infinite;
@@ -203,7 +203,7 @@
   font-size: clamp(48px, 6vw, 72px);
   font-weight: 400;
   line-height: 1.1;
-  color: rgb(47, 47, 47);
+  color: var(--color-text-dark-gray);
   margin: 0;
   letter-spacing: -0.02em;
   position: relative;
@@ -219,7 +219,7 @@
 }
 
 .skillCard {
-  background: #ffffff;
+  background: var(--color-surface-card-light);
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 24px;
   padding: 32px;
@@ -234,9 +234,9 @@
 }
 
 .skillCard:hover {
-  background: #ffffff;
-  border-color: rgba(163, 255, 18, 0.5);
-  box-shadow: 0 8px 30px rgba(163, 255, 18, 0.2);
+  background: var(--color-surface-card-light);
+  border-color: var(--color-accent-30);
+  box-shadow: 0 8px 30px var(--color-accent-20);
 }
 
 .iconWrapper {
@@ -252,7 +252,7 @@
 }
 
 .skillCard:hover .iconWrapper {
-  background: rgba(163, 255, 18, 0.15);
+  background: var(--color-accent-15);
 }
 
 .icon {
@@ -269,8 +269,8 @@
   justify-content: center;
   font-size: 24px;
   font-weight: 700;
-  color: #a3ff12;
-  background: rgba(163, 255, 18, 0.1);
+  color: var(--color-accent);
+  background: var(--color-accent-10);
   border-radius: 12px;
 }
 
@@ -281,7 +281,7 @@
 .skillName {
   font-size: 20px;
   font-weight: 600;
-  color: #000000;
+  color: var(--color-text-dark);
   margin: 0 0 8px 0;
   letter-spacing: -0.01em;
 }
@@ -312,16 +312,16 @@
 
 .progressFill {
   height: 100%;
-  background: #a3ff12;
+  background: var(--color-accent);
   border-radius: 10px;
   position: relative;
-  box-shadow: 0 0 15px rgba(163, 255, 18, 0.4);
+  box-shadow: 0 0 15px var(--color-accent-30);
 }
 
 .percentage {
   font-size: 16px;
   font-weight: 700;
-  color: #a3ff12;
+  color: var(--color-accent);
   min-width: 45px;
   text-align: right;
   font-feature-settings: "tnum";

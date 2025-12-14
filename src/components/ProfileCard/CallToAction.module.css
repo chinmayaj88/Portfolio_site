@@ -1,7 +1,7 @@
 .button {
   align-content: center;
   align-items: center;
-  background-color: rgb(140, 255, 46);
+  background-color: var(--color-accent);
   border-radius: 35px;
   cursor: pointer;
   display: flex;
@@ -13,13 +13,13 @@
   text-decoration: none;
   width: min-content;
   will-change: transform;
-  box-shadow: rgba(132, 255, 31, 0.32) 0px 12px 40px 0px;
+  box-shadow: var(--color-accent-30) 0px 12px 40px 0px;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .button:hover {
   transform: translateY(-2px);
-  box-shadow: rgba(132, 255, 31, 0.4) 0px 16px 50px 0px;
+  box-shadow: var(--color-accent-30) 0px 16px 50px 0px;
 }
 
 .button:active {
@@ -38,8 +38,8 @@
 }
 
 .buttonText {
-  border-color: rgb(47, 47, 47);
-  color: rgb(47, 47, 47);
+  border-color: var(--color-text-dark);
+  color: var(--color-text-dark);
   cursor: pointer;
   font-family: var(--font-manrope), sans-serif;
   font-size: 20px;
@@ -47,8 +47,8 @@
   letter-spacing: -0.8px;
   line-height: 20px;
   margin: 0;
-  outline-color: rgb(47, 47, 47);
-  text-decoration-color: rgb(47, 47, 47);
+  outline-color: var(--color-text-dark);
+  text-decoration-color: var(--color-text-dark);
   text-wrap: nowrap;
   white-space: pre;
   white-space-collapse: preserve;
@@ -58,7 +58,7 @@
   align-content: center;
   align-items: center;
   aspect-ratio: 1 / 1;
-  background-color: rgb(255, 255, 255);
+  background-color: var(--color-surface-card-light);
   border-radius: 23px;
   cursor: pointer;
   display: flex;
@@ -90,14 +90,14 @@
 }
 
 .icon {
-  border-color: rgb(47, 47, 47);
-  color: rgb(47, 47, 47);
+  border-color: var(--color-text-dark);
+  color: var(--color-text-dark);
   cursor: pointer;
   display: inline-block;
-  fill: rgb(47, 47, 47);
+  fill: var(--color-text-dark);
   height: 100%;
-  outline-color: rgb(47, 47, 47);
-  text-decoration-color: rgb(47, 47, 47);
+  outline-color: var(--color-text-dark);
+  text-decoration-color: var(--color-text-dark);
   user-select: none;
   width: 100%;
 }

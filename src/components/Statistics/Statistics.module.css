@@ -1,6 +1,6 @@
 .section {
   padding: 100px 20px;
-  background: black;
+  background: var(--color-background);
 }
 
 .container {

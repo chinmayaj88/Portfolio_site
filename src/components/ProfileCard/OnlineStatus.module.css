@@ -1,7 +1,7 @@
 .container {
   align-content: center;
   align-items: center;
-  background-color: rgb(255, 255, 255);
+  background-color: var(--color-surface-card-light);
   border-radius: 100px;
   display: flex;
   gap: 8px;
@@ -15,23 +15,23 @@
 
 .statusDot {
   aspect-ratio: 1 / 1;
-  background-color: rgb(140, 255, 46);
+  background-color: var(--color-accent);
   border-radius: 100%;
   position: relative;
   width: 10px;
 }
 
 .statusText {
-  border-color: rgb(47, 47, 47);
-  color: rgb(47, 47, 47);
+  border-color: var(--color-text-dark);
+  color: var(--color-text-dark);
   font-family: var(--font-manrope), sans-serif;
   font-size: 14px;
   font-weight: 600;
   letter-spacing: -0.42px;
   line-height: 20px;
   margin: 0;
-  outline-color: rgb(47, 47, 47);
-  text-decoration-color: rgb(47, 47, 47);
+  outline-color: var(--color-text-dark);
+  text-decoration-color: var(--color-text-dark);
   text-wrap: nowrap;
   white-space: pre;
   white-space-collapse: preserve;

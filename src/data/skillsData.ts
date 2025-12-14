@@ -1,3 +1,5 @@
+import { COLORS } from "@/constants/colors";
+
 export interface Skill {
   id: string;
   name: string;
@@ -14,7 +16,7 @@ export const skillsData: Skill[] = [
     description: "JavaScript runtime for backend development",
     icon: "",
     percentage: 85,
-    color: "#a3ff12",
+    color: COLORS.accent,
   },
   {
     id: "python",
@@ -22,7 +24,7 @@ export const skillsData: Skill[] = [
     description: "High-level programming language",
     icon: "",
     percentage: 80,
-    color: "#a3ff12",
+    color: COLORS.accent,
   },
   {
     id: "react",
@@ -30,7 +32,7 @@ export const skillsData: Skill[] = [
     description: "JavaScript library for building user interfaces",
     icon: "",
     percentage: 85,
-    color: "#a3ff12",
+    color: COLORS.accent,
   },
   {
     id: "postgresql",
@@ -38,7 +40,7 @@ export const skillsData: Skill[] = [
     description: "Open-source relational database",
     icon: "",
     percentage: 80,
-    color: "#a3ff12",
+    color: COLORS.accent,
   },
   {
     id: "aws",
@@ -46,7 +48,7 @@ export const skillsData: Skill[] = [
     description: "Amazon Web Services cloud platform",
     icon: "",
     percentage: 75,
-    color: "#a3ff12",
+    color: COLORS.accent,
   },
   {
     id: "docker",
@@ -54,7 +56,7 @@ export const skillsData: Skill[] = [
     description: "Containerization platform",
     icon: "",
     percentage: 80,
-    color: "#a3ff12",
+    color: COLORS.accent,
   },
   {
     id: "kubernetes",
@@ -62,7 +64,7 @@ export const skillsData: Skill[] = [
     description: "Container orchestration platform",
     icon: "",
     percentage: 75,
-    color: "#a3ff12",
+    color: COLORS.accent,
   },
 ];
 

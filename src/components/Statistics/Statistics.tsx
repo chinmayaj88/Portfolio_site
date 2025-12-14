@@ -4,6 +4,7 @@ import { motion, useInView, useMotionValue, useTransform, animate } from "motion
 import { useRef, useEffect } from "react";
 import { statsData } from "@/data/statsData";
 import { AnimatedText } from "@/components/TextAnimations";
+import { COLORS } from "@/constants/colors";
 import styles from "./Statistics.module.css";
 
 function CounterAnimation({ value, suffix }: { value: number; suffix: string }) {
@@ -78,10 +79,10 @@ export default function Statistics() {
               className={styles.decorativeCircle}
               style={{
                 backgroundColor:
-                  stat.bgColor === "#a3ff12"
-                    ? "rgba(0, 0, 0, 0.05)"
-                    : stat.bgColor === "#1a1a1a"
-                    ? "rgba(255, 255, 255, 0.05)"
+                  stat.bgColor === COLORS.accent
+                    ? COLORS.black05
+                    : stat.bgColor === COLORS.surfaceLight
+                    ? COLORS.white05
                     : "rgba(0, 0, 0, 0.03)",
               }}
               initial={{ scale: 0 }}

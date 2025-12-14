@@ -1,6 +1,6 @@
 .section {
   padding: 120px 20px;
-  background: #000000;
+  background: var(--color-background);
   position: relative;
 }
 
@@ -19,7 +19,7 @@
   align-items: center;
   gap: 8px;
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--color-text-secondary);
   margin-bottom: 16px;
   font-weight: 500;
   letter-spacing: 0.5px;
@@ -28,7 +28,7 @@
 .dot {
   width: 8px;
   height: 8px;
-  background: #a3ff12;
+  background: var(--color-accent);
   border-radius: 50%;
   display: inline-block;
   animation: pulse 2s ease-in-out infinite;
@@ -48,7 +48,7 @@
   font-size: clamp(42px, 5vw, 64px);
   font-weight: 400;
   line-height: 1.2;
-  color: #ffffff;
+  color: var(--color-text);
   margin: 0;
   letter-spacing: -0.02em;
 }
@@ -61,8 +61,8 @@
 }
 
 .experienceCard {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--color-white-03);
+  border: 1px solid var(--color-border);
   border-radius: 24px;
   padding: 40px;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -80,7 +80,7 @@
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(163, 255, 18, 0.5),
+    var(--color-accent-30),
     transparent
   );
   opacity: 0;
@@ -88,8 +88,8 @@
 }
 
 .experienceCard:hover {
-  background: rgba(255, 255, 255, 0.04);
-  border-color: rgba(163, 255, 18, 0.3);
+  background: var(--color-white-05);
+  border-color: var(--color-accent-30);
   transform: translateX(8px);
 }
 
@@ -136,7 +136,7 @@
 .position {
   font-size: 24px;
   font-weight: 600;
-  color: #ffffff;
+  color: var(--color-text);
   margin: 0;
   letter-spacing: -0.01em;
 }
@@ -144,7 +144,7 @@
 .companyName {
   font-size: 16px;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--color-text-muted);
   margin: 4px 0 0 0;
 }
 
@@ -156,18 +156,18 @@
 }
 
 .duration {
-  background: rgba(163, 255, 18, 0.15);
-  color: #a3ff12;
+  background: var(--color-accent-15);
+  color: var(--color-accent);
   padding: 8px 16px;
   border-radius: 20px;
   font-size: 14px;
   font-weight: 600;
-  border: 1px solid rgba(163, 255, 18, 0.3);
+  border: 1px solid var(--color-accent-30);
 }
 
 .type {
   font-size: 13px;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--color-text-muted);
   display: flex;
   align-items: center;
   gap: 6px;
@@ -177,7 +177,7 @@
   content: "";
   width: 6px;
   height: 6px;
-  background: rgba(255, 255, 255, 0.5);
+  background: var(--color-text-muted);
   border-radius: 50%;
 }
 
@@ -192,7 +192,7 @@
   align-items: flex-start;
   gap: 12px;
   padding: 12px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid var(--color-white-03);
 }
 
 .responsibilityItem:last-child {
@@ -200,7 +200,7 @@
 }
 
 .star {
-  color: #a3ff12;
+  color: var(--color-accent);
   font-size: 12px;
   margin-top: 4px;
   flex-shrink: 0;
@@ -209,12 +209,12 @@
 .respTitle {
   font-size: 16px;
   font-weight: 600;
-  color: #ffffff;
+  color: var(--color-text);
 }
 
 .respDesc {
   font-size: 16px;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--color-text-secondary);
   font-weight: 400;
 }
 
@@ -350,13 +350,13 @@
 .projectsSection {
   margin-top: 48px;
   padding-top: 32px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--color-border);
 }
 
 .projectsTitle {
   font-size: 20px;
   font-weight: 600;
-  color: #ffffff;
+  color: var(--color-text);
   margin: 0 0 24px 0;
   letter-spacing: -0.01em;
 }
@@ -368,8 +368,8 @@
 }
 
 .projectCard {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--color-white-03);
+  border: 1px solid var(--color-border);
   border-radius: 16px;
   padding: 24px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -382,7 +382,7 @@
 .projectName {
   font-size: 18px;
   font-weight: 600;
-  color: #ffffff;
+  color: var(--color-text);
   margin: 0 0 12px 0;
   letter-spacing: -0.01em;
 }
@@ -394,13 +394,13 @@
 }
 
 .techTag {
-  background: rgba(163, 255, 18, 0.1);
-  color: #a3ff12;
+  background: var(--color-accent-10);
+  color: var(--color-accent);
   padding: 4px 12px;
   border-radius: 12px;
   font-size: 12px;
   font-weight: 500;
-  border: 1px solid rgba(163, 255, 18, 0.2);
+  border: 1px solid var(--color-border-accent);
 }
 
 .achievementsList {
@@ -416,13 +416,13 @@
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--color-text-secondary);
   font-size: 14px;
   line-height: 1.6;
 }
 
 .achievementBullet {
-  color: #a3ff12;
+  color: var(--color-accent);
   font-size: 16px;
   flex-shrink: 0;
   margin-top: 2px;

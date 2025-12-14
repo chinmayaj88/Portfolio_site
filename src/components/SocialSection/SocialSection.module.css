@@ -87,7 +87,7 @@
 .dot {
   width: 8px;
   height: 8px;
-  background: #a3ff12;
+  background: var(--color-accent);
   border-radius: 50%;
 }
 
@@ -95,7 +95,7 @@
   font-size: clamp(48px, 6vw, 72px);
   font-weight: 400;
   line-height: 1.1;
-  color: #000000;
+  color: var(--color-text-dark);
   margin: 0;
   letter-spacing: -0.03em;
 }
@@ -111,7 +111,7 @@
 }
 
 .card {
-  background: #ffffff;
+  background: var(--color-surface-card-light);
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 24px;
   padding: 48px 40px;
@@ -232,7 +232,7 @@
 
 .card:hover {
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-  border-color: rgba(163, 255, 18, 0.3);
+  border-color: var(--color-accent-30);
 }
 
 .card:hover::before,
@@ -243,7 +243,7 @@
 
 .cardLabel {
   font-size: 18px;
-  color: #000000;
+  color: var(--color-text-dark);
   font-weight: 600;
   position: relative;
   z-index: 1;
@@ -260,14 +260,14 @@
 .iconCircle {
   width: 48px;
   height: 48px;
-  background: #a3ff12;
+  background: var(--color-accent);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 18px;
   font-weight: 600;
-  color: #000000;
+  color: var(--color-text-dark);
 }
 
 .iconText {
@@ -276,18 +276,18 @@
 
 /* Green CTA Card Styling */
 .ctaCard {
-  background: #a3ff12;
+  background: var(--color-accent);
   border: none;
 }
 
 .ctaCard:hover {
   background: #b5ff3a;
-  box-shadow: 0 12px 30px rgba(163, 255, 18, 0.4);
+  box-shadow: 0 12px 30px var(--color-accent-30);
 }
 
 .ctaLabel {
   font-size: 18px;
-  color: #000000;
+  color: var(--color-text-dark);
   font-weight: 600;
   position: relative;
   z-index: 1;
@@ -295,7 +295,7 @@
 
 .arrowIcon {
   font-size: 20px;
-  color: #000000;
+  color: var(--color-text-dark);
   font-weight: 500;
 }
 
