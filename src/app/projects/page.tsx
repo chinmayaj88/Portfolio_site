@@ -1,12 +1,20 @@
-'use client';
+"use client";
 
-import { motion, useInView } from 'motion/react';
-import { useRef, useState } from 'react';
-import Image from 'next/image';
-import styles from './projects.module.css';
-import { projectsData, Project } from '@/data/projectsData';
+import { motion, useInView } from "motion/react";
+import { useRef, useState } from "react";
+import Image from "next/image";
+import styles from "./projects.module.css";
+import { projectsData, Project } from "@/data/projectsData";
 
-function ProjectCard({ project, index, isInView }: { project: Project; index: number; isInView: boolean }) {
+function ProjectCard({
+  project,
+  index,
+  isInView,
+}: {
+  project: Project;
+  index: number;
+  isInView: boolean;
+}) {
   const cardRef = useRef<HTMLAnchorElement>(null);
 
   // Individual scroll tracking for each card
@@ -14,61 +22,80 @@ function ProjectCard({ project, index, isInView }: { project: Project; index: nu
   const cardInView = useInView(cardRef, {
     once: false,
     amount: index === 0 ? 0 : 0.2,
-    margin: index === 0 ? "0px" : "0px 0px -150px 0px"
+    margin: index === 0 ? "0px" : "0px 0px -150px 0px",
   });
 
   return (
     <motion.a
       ref={cardRef}
-      href={project.link}
+      href={`${project.link}/overview`}
       className={styles.projectLink}
-      initial={index === 0 ? {
-        opacity: 1,
-        x: 0,
-        scale: 1,
-      } : {
-        opacity: 0,
-        x: -80,
-        scale: 0.96,
-      }}
-      animate={cardInView ? {
-        opacity: 1,
-        x: 0,
-        scale: 1,
-      } : index === 0 ? {
-        opacity: 1,
-        x: 0,
-        scale: 1,
-      } : {
-        opacity: 0,
-        x: -80,
-        scale: 0.96,
-      }}
+      initial={
+        index === 0
+          ? {
+              opacity: 1,
+              x: 0,
+              scale: 1,
+            }
+          : {
+              opacity: 0,
+              x: -80,
+              scale: 0.96,
+            }
+      }
+      animate={
+        cardInView
+          ? {
+              opacity: 1,
+              x: 0,
+              scale: 1,
+            }
+          : index === 0
+          ? {
+              opacity: 1,
+              x: 0,
+              scale: 1,
+            }
+          : {
+              opacity: 0,
+              x: -80,
+              scale: 0.96,
+            }
+      }
       transition={{
         duration: 0.7,
         delay: index === 0 ? 0 : 0,
         ease: [0.25, 0.46, 0.45, 0.94],
         opacity: { duration: 0.6 },
-        scale: { duration: 0.7, type: 'spring', stiffness: 200, damping: 20 },
-        x: { duration: 0.7, type: 'spring', stiffness: 120, damping: 18 },
+        scale: { duration: 0.7, type: "spring", stiffness: 200, damping: 20 },
+        x: { duration: 0.7, type: "spring", stiffness: 120, damping: 18 },
       }}
       style={{}}
     >
-
       <div className={styles.imageWrapper}>
         <motion.div
           className={styles.imageContainer}
-          initial={index === 0 ? { scale: 1, opacity: 1, x: 0 } : { scale: 1.05, opacity: 0, x: -40 }}
-          animate={cardInView ? {
-            opacity: 1,
-            x: 0,
-          } : index === 0 ? {
-            opacity: 1,
-            x: 0,
-          } : {
-            opacity: 0,
-            x: -40,
-          }}
+          initial={
+            index === 0
+              ? { scale: 1, opacity: 1, x: 0 }
+              : { scale: 1.05, opacity: 0, x: -40 }
+          }
+          animate={
+            cardInView
+              ? {
+                  opacity: 1,
+                  x: 0,
+                }
+              : index === 0
+              ? {
+                  opacity: 1,
+                  x: 0,
+                }
+              : {
+                  opacity: 0,
+                  x: -40,
+                }
+          }
           transition={{
             opacity: {
               duration: index === 0 ? 0 : 0.7,
@@ -94,7 +121,13 @@ function ProjectCard({ project, index, isInView }: { project: Project; index: nu
           <motion.div
             className={styles.imageOverlay}
             initial={{ opacity: index === 0 ? 0.2 : 0.4 }}
-            animate={cardInView ? { opacity: 0.2 } : index === 0 ? { opacity: 0.2 } : { opacity: 0.4 }}
+            animate={
+              cardInView
+                ? { opacity: 0.2 }
+                : index === 0
+                ? { opacity: 0.2 }
+                : { opacity: 0.4 }
+            }
             transition={{ duration: 0.3 }}
           />
         </motion.div>
@@ -103,7 +136,13 @@ function ProjectCard({ project, index, isInView }: { project: Project; index: nu
       <motion.div
         className={styles.projectContent}
         initial={index === 0 ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
-        animate={cardInView ? { opacity: 1, x: 0 } : index === 0 ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
+        animate={
+          cardInView
+            ? { opacity: 1, x: 0 }
+            : index === 0
+            ? { opacity: 1, x: 0 }
+            : { opacity: 0, x: -30 }
+        }
         transition={{
           duration: 0.7,
           delay: index === 0 ? 0 : 0.2,
@@ -113,20 +152,26 @@ function ProjectCard({ project, index, isInView }: { project: Project; index: nu
         <div className={styles.projectMeta}>
           <motion.div
             className={styles.codeBrackets}
-            initial={index === 0 ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-            animate={cardInView ? { opacity: 1, x: 0 } : index === 0 ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+            initial={
+              index === 0 ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }
+            }
+            animate={
+              cardInView
+                ? { opacity: 1, x: 0 }
+                : index === 0
+                ? { opacity: 1, x: 0 }
+                : { opacity: 0, x: -20 }
+            }
             transition={{
               duration: 0.6,
               delay: index === 0 ? 0 : 0.25,
-              ease: 'easeOut',
+              ease: "easeOut",
             }}
             style={{}}
           >
-            <p className={styles.bracket}>{'{'}</p>
-            <p className={styles.category}>
-              {project.category}
-            </p>
-            <p className={styles.bracket}>{'}'}</p>
+            <p className={styles.bracket}>{"{"}</p>
+            <p className={styles.category}>{project.category}</p>
+            <p className={styles.bracket}>{"}"}</p>
           </motion.div>
         </div>
 
@@ -134,8 +179,16 @@ function ProjectCard({ project, index, isInView }: { project: Project; index: nu
           <div className={styles.titleSection}>
             <motion.h2
               className={styles.projectTitle}
-              initial={index === 0 ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
-              animate={cardInView ? { opacity: 1, x: 0 } : index === 0 ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
+              initial={
+                index === 0 ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }
+              }
+              animate={
+                cardInView
+                  ? { opacity: 1, x: 0 }
+                  : index === 0
+                  ? { opacity: 1, x: 0 }
+                  : { opacity: 0, x: -30 }
+              }
               transition={{
                 duration: 0.7,
                 delay: index === 0 ? 0 : 0.3,
@@ -150,17 +203,23 @@ function ProjectCard({ project, index, isInView }: { project: Project; index: nu
           <motion.div
             className={styles.viewMoreButton}
             initial={index === 0 ? { opacity: 1 } : { opacity: 0 }}
-            animate={cardInView ? {
-              opacity: 1
-            } : index === 0 ? {
-              opacity: 1
-            } : {
-              opacity: 0
-            }}
+            animate={
+              cardInView
+                ? {
+                    opacity: 1,
+                  }
+                : index === 0
+                ? {
+                    opacity: 1,
+                  }
+                : {
+                    opacity: 0,
+                  }
+            }
             transition={{
               duration: 0.4,
               delay: index === 0 ? 0 : 0.3,
-              ease: 'easeOut',
+              ease: "easeOut",
             }}
           >
             <span className={styles.viewMoreText}>View More</span>
@@ -183,13 +242,17 @@ function ProjectCard({ project, index, isInView }: { project: Project; index: nu
 export default function ProjectsPage() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
-  const [filter, setFilter] = useState<string>('all');
+  const [filter, setFilter] = useState<string>("all");
 
-  const categories = ['all', ...Array.from(new Set(projectsData.map(p => p.category)))];
+  const categories = [
+    "all",
+    ...Array.from(new Set(projectsData.map((p) => p.category))),
+  ];
 
-  const filteredProjects = filter === 'all'
-    ? projectsData
-    : projectsData.filter(p => p.category === filter);
+  const filteredProjects =
+    filter === "all"
+      ? projectsData
+      : projectsData.filter((p) => p.category === filter);
 
   return (
     <main className={styles.main} ref={ref}>
@@ -208,7 +271,7 @@ export default function ProjectsPage() {
               duration: 3 + Math.random() * 2,
               repeat: Infinity,
               delay: Math.random() * 2,
-              ease: 'easeInOut',
+              ease: "easeInOut",
             }}
             style={{
               left: `${Math.random() * 100}%`,
@@ -235,7 +298,7 @@ export default function ProjectsPage() {
               transition={{
                 duration: 2,
                 repeat: Infinity,
-                ease: 'easeInOut',
+                ease: "easeInOut",
               }}
             />
             <p className={styles.badgeText}>Definitely not Recent</p>
@@ -259,7 +322,9 @@ export default function ProjectsPage() {
             {categories.map((category) => (
               <motion.button
                 key={category}
-                className={`${styles.filterButton} ${filter === category ? styles.active : ''}`}
+                className={`${styles.filterButton} ${
+                  filter === category ? styles.active : ""
+                }`}
                 onClick={() => setFilter(category)}
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
@@ -271,10 +336,7 @@ export default function ProjectsPage() {
           </motion.div>
         </motion.section>
 
-        <motion.div
-          className={styles.projectsGrid}
-          layout
-        >
+        <motion.div className={styles.projectsGrid} layout>
           {filteredProjects.map((project, index) => (
             <ProjectCard
               key={project.id}
