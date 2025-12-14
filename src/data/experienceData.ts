@@ -29,12 +29,9 @@ export const experienceData: ExperienceItem[] = [
     type: "Full Time",
     responsibilities: [
       {
-        title: "Collaboration & Client Engagement:",
-        description: "Collaborated with client to understand medical data requirements, troubleshoot inconsistencies, and refine pipeline logic for improved reliability and compliance.",
-      },
-      {
-        title: "Production Support:",
-        description: "Implemented hotfixes and performance optimizations after production deployments, ensuring system stability and reliability.",
+        title: "",
+        description:
+          "In my role as a Junior Software Developer, I worked across backend and DevOps to build scalable APIs, secure data pipelines, and cloud-native services. I developed backend features using Node.js and FastAPI, designed database structures, and implemented data workflows for AI-driven systems. On the DevOps side, I containerized applications, set up CI/CD automation, and deployed microservices on AWS ECS/EC2, ensuring reliability, security, and high performance across environments.",
       },
     ],
     projects: [
@@ -62,4 +59,3 @@ export const experienceData: ExperienceItem[] = [
     ],
   },
 ];
-
