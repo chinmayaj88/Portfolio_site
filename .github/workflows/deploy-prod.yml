@@ -1,0 +1,126 @@
+name: Deploy to Production (OCI) - Docker
+
+on:
+  push:
+    branches:
+      - prod
+  workflow_dispatch: # Allow manual trigger
+
+env:
+  REGISTRY: docker.io
+  IMAGE_NAME: ${{ secrets.DOCKER_USERNAME }}/portfolio-app
+
+jobs:
+  build-and-deploy:
+    name: Build Docker Image and Deploy to OCI
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.IMAGE_NAME }}
+          tags: |
+            type=ref,event=branch
+            type=sha,prefix={{branch}}-
+            type=raw,value=latest,enable={{is_default_branch}}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            NEXT_PUBLIC_SITE_URL=${{ secrets.NEXT_PUBLIC_SITE_URL }}
+          cache-from: type=registry,ref=${{ env.IMAGE_NAME }}:buildcache
+          cache-to: type=registry,ref=${{ env.IMAGE_NAME }}:buildcache,mode=max
+
+      - name: Run linter
+        run: |
+          docker run --rm -v ${{ github.workspace }}:/app -w /app node:20-alpine sh -c "npm ci && npm run lint" || true
+
+      - name: Deploy to OCI Compute Instance
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.OCI_HOST }}
+          username: ${{ secrets.OCI_USERNAME }}
+          key: ${{ secrets.OCI_SSH_KEY }}
+          port: ${{ secrets.OCI_SSH_PORT || 22 }}
+          script: |
+            # Login to Docker Hub (optional for public repos, but helps with rate limits)
+            if [ -n "${{ secrets.DOCKER_PASSWORD }}" ]; then
+              echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin || echo "Login failed, trying public pull..."
+            fi
+            
+            # Pull latest image (works for public repos without login)
+            docker pull ${{ env.IMAGE_NAME }}:latest || docker pull ${{ env.IMAGE_NAME }}:prod
+            
+            # Stop and remove old container if exists
+            docker stop portfolio-app || true
+            docker rm portfolio-app || true
+            
+            # Remove old image to save space (keep only latest)
+            docker image prune -f || true
+            
+            # Run new container
+            docker run -d \
+              --name portfolio-app \
+              --restart unless-stopped \
+              -p 3000:3000 \
+              -e NODE_ENV=production \
+              -e NEXT_PUBLIC_SITE_URL="${{ secrets.NEXT_PUBLIC_SITE_URL }}" \
+              ${{ env.IMAGE_NAME }}:latest || docker run -d \
+              --name portfolio-app \
+              --restart unless-stopped \
+              -p 3000:3000 \
+              -e NODE_ENV=production \
+              -e NEXT_PUBLIC_SITE_URL="${{ secrets.NEXT_PUBLIC_SITE_URL }}" \
+              ${{ env.IMAGE_NAME }}:prod
+            
+            # Cleanup unused images
+            docker image prune -f || true
+            
+            echo "✅ Container deployed successfully!"
+
+      - name: Health Check
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.OCI_HOST }}
+          username: ${{ secrets.OCI_USERNAME }}
+          key: ${{ secrets.OCI_SSH_KEY }}
+          port: ${{ secrets.OCI_SSH_PORT || 22 }}
+          script: |
+            sleep 10
+            if docker exec portfolio-app wget --quiet --tries=1 --spider http://localhost:3000 || curl -f http://localhost:3000 > /dev/null 2>&1; then
+              echo "✅ Application is running successfully!"
+            else
+              echo "⚠️ Health check failed. Checking container logs..."
+              docker logs portfolio-app --tail 50
+              exit 1
+            fi
+
+      - name: Deployment Summary
+        run: |
+          echo "## 🚀 Deployment Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Branch**: prod" >> $GITHUB_STEP_SUMMARY
+          echo "- **Commit**: ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Docker Image**: \`${{ env.IMAGE_NAME }}:latest\`" >> $GITHUB_STEP_SUMMARY
+          echo "- **Status**: ✅ Deployed successfully" >> $GITHUB_STEP_SUMMARY
+          echo "- **Time**: $(date)" >> $GITHUB_STEP_SUMMARY

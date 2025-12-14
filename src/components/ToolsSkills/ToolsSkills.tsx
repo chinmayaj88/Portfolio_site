@@ -5,7 +5,7 @@ import { motion, useMotionValue, useTransform, animate, useInView } from "motion
 import Image from "next/image";
 import { skillsData } from "@/data/skillsData";
 import { frontendImages, backendImages, devopsImages } from "@/data/toolsImagesData";
-import { AnimatedText } from "@/components/TextAnimations/AnimatedText";
+import { AnimatedText } from "@/components/TextAnimations";
 import styles from "./ToolsSkills.module.css";
 
 export default function ToolsSkills() {

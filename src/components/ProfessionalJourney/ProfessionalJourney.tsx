@@ -3,7 +3,7 @@
 import { motion, useInView } from "motion/react";
 import { useRef } from "react";
 import { experienceData } from "@/data/experienceData";
-import { AnimatedText, TypewriterText } from "@/components/TextAnimations/AnimatedText";
+import { AnimatedText, TypewriterText } from "@/components/TextAnimations";
 import { COLORS } from "@/constants/colors";
 import styles from "./ProfessionalJourney.module.css";
 import Image from "next/image";

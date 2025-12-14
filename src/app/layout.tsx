@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Manrope, Inter } from "next/font/google";
 import localFont from "next/font/local";
 import { Header } from "@/components/Header";
@@ -28,8 +28,62 @@ const autography = localFont({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://yourdomain.com'), // Update with your actual domain
   title: `${profileData.name} - ${profileData.role}`,
   description: profileData.bio,
+  keywords: [
+    'Full Stack Developer',
+    'Cloud Engineer',
+    'DevOps Engineer',
+    'Backend Developer',
+    'AWS',
+    'OCI',
+    'Python',
+    'Node.js',
+    'Portfolio',
+    profileData.name,
+  ],
+  authors: [{ name: profileData.name }],
+  creator: profileData.name,
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: '/',
+    title: `${profileData.name} - ${profileData.role}`,
+    description: profileData.bio,
+    siteName: `${profileData.name} Portfolio`,
+    images: [
+      {
+        url: profileData.avatar.src,
+        width: profileData.avatar.width,
+        height: profileData.avatar.height,
+        alt: profileData.avatar.alt,
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `${profileData.name} - ${profileData.role}`,
+    description: profileData.bio,
+    images: [profileData.avatar.src],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
 };
 
 export default function RootLayout({
