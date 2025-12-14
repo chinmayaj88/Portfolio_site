@@ -63,7 +63,7 @@ export default function LoadingScreen() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              <p className={styles.welcomeText}>Welcome</p>
+              <p className={styles.welcomeText}>Compiling creativity…</p>
             </motion.div>
 
             {/* Minimal Logo/Name */}
@@ -79,7 +79,7 @@ export default function LoadingScreen() {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
               >
-                Chinmaya Jena
+                Welcome
               </motion.h1>
             </motion.div>
 

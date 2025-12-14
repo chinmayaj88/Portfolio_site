@@ -29,7 +29,7 @@ export const profileData: ProfileData = {
   location: "Bhubaneswar, Odisha, India",
   status: "Online Now",
   bio: "Full Stack, Cloud & DevOps Engineer with ~2 years of experience building scalable backend systems, cloud-native applications, and high-impact customer integrations. Skilled in Python, Node.js, API design, and deploying reliable solutions on AWS and OCI.",
-  experience: "2+ Years of Experience",
+  experience: "2 Years of Experience",
   cta: {
     text: "GitHub",
     href: "https://github.com/chinmayaj88",

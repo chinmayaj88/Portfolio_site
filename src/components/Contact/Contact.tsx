@@ -3,7 +3,7 @@
 import { motion, useInView } from "motion/react";
 import { useRef } from "react";
 import { contactData } from "@/data/contactData";
-import { AnimatedText } from "@/components/TextAnimations/AnimatedText";
+import { AnimatedText } from "@/components/TextAnimations";
 import styles from "./Contact.module.css";
 import Image from "next/image";
 import CallToAction from "../ProfileCard/CallToAction";

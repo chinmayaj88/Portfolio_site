@@ -3,7 +3,7 @@
 import { motion, useInView } from "motion/react";
 import { useRef } from "react";
 import { contactData } from "@/data/contactData";
-import { AnimatedText, GradientText } from "@/components/TextAnimations/AnimatedText";
+import { AnimatedText, GradientText } from "@/components/TextAnimations";
 import styles from "./SocialSection.module.css";
 
 export default function SocialSection() {
