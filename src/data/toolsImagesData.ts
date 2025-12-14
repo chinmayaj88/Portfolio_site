@@ -15,9 +15,9 @@ export const frontendImages: TechnologyImage[] = [
     url: "https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg",
   },
   {
-    id: "react-native",
-    name: "React Native",
-    url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+    id: "tailwind",
+    name: "Tailwind CSS",
+    url: "/tech-stack/frontend/tailwind.png",
   },
   {
     id: "nextjs",
@@ -35,9 +35,9 @@ export const frontendImages: TechnologyImage[] = [
     url: "https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg",
   },
   {
-    id: "tailwind",
-    name: "Tailwind CSS",
-    url: "https://raw.githubusercontent.com/devicons/devicon/master/icons/tailwindcss/tailwindcss-plain.svg",
+    id: "react-native",
+    name: "React Native",
+    url: "/tech-stack/frontend/react-native.jpg",
   },
   {
     id: "javascript",
@@ -118,4 +118,3 @@ export const devopsImages: TechnologyImage[] = [
     url: "https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original-wordmark.svg",
   },
 ];
-
