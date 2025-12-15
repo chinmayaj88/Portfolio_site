@@ -3,8 +3,8 @@ name: Deploy to Production (OCI) - Docker
 on:
   push:
     branches:
-      - prod
-  workflow_dispatch: # Allow manual trigger
+      - production
+  workflow_dispatch: 
 
 env:
   REGISTRY: docker.io
@@ -69,7 +69,7 @@ jobs:
             fi
             
             # Pull latest image (works for public repos without login)
-            docker pull ${{ env.IMAGE_NAME }}:latest || docker pull ${{ env.IMAGE_NAME }}:prod
+            docker pull ${{ env.IMAGE_NAME }}:latest || docker pull ${{ env.IMAGE_NAME }}:production
             
             # Stop and remove old container if exists
             docker stop portfolio-app || true
@@ -91,7 +91,7 @@ jobs:
               -p 3000:3000 \
               -e NODE_ENV=production \
               -e NEXT_PUBLIC_SITE_URL="${{ secrets.NEXT_PUBLIC_SITE_URL }}" \
-              ${{ env.IMAGE_NAME }}:prod
+              ${{ env.IMAGE_NAME }}:production
             
             # Cleanup unused images
             docker image prune -f || true
@@ -119,7 +119,7 @@ jobs:
         run: |
           echo "## 🚀 Deployment Summary" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "- **Branch**: prod" >> $GITHUB_STEP_SUMMARY
+          echo "- **Branch**: production" >> $GITHUB_STEP_SUMMARY
           echo "- **Commit**: ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
           echo "- **Docker Image**: \`${{ env.IMAGE_NAME }}:latest\`" >> $GITHUB_STEP_SUMMARY
           echo "- **Status**: ✅ Deployed successfully" >> $GITHUB_STEP_SUMMARY

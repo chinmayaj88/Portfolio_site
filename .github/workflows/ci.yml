@@ -4,12 +4,12 @@ on:
   push:
     branches:
       - main
-      - develop
+      - production
       - 'feature/**'
   pull_request:
     branches:
       - main
-      - develop
+      - production
       - prod
 
 env:
