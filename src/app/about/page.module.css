@@ -7,12 +7,52 @@
   overflow-x: hidden;
 }
 
+/* Background Pattern */
+.main::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background-image:
+    repeating-linear-gradient(45deg,
+      transparent,
+      transparent 100px,
+      rgba(0, 0, 0, 0.08) 100px,
+      rgba(0, 0, 0, 0.08) 101px),
+    repeating-linear-gradient(-45deg,
+      transparent,
+      transparent 100px,
+      rgba(0, 0, 0, 0.08) 100px,
+      rgba(0, 0, 0, 0.08) 101px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.main::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: repeating-linear-gradient(0deg,
+      transparent,
+      transparent 80px,
+      rgba(0, 0, 0, 0.08) 80px,
+      rgba(0, 0, 0, 0.08) 81px);
+  pointer-events: none;
+  z-index: 0;
+}
+
 /* Hero Section - About Me */
 .hero {
   max-width: 1400px;
   margin: 0 auto;
   padding: 120px 40px 80px 40px;
   position: relative;
+  z-index: 1;
 }
 
 .heroContent {
@@ -40,18 +80,21 @@
 .statusDot {
   width: 10px;
   height: 10px;
-  background: #a3ff12;
+  background: var(--color-accent);
   border-radius: 50%;
   display: inline-block;
-  box-shadow: 0 0 10px rgba(163, 255, 18, 0.5);
+  box-shadow: 0 0 10px var(--color-accent-30);
   animation: pulse 2s ease-in-out infinite;
 }
 
 @keyframes pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 1;
-    box-shadow: 0 0 0 0 rgba(163, 255, 18, 0.5);
+    box-shadow: 0 0 0 0 var(--color-accent-30);
   }
+
   50% {
     opacity: 0.8;
     box-shadow: 0 0 0 6px transparent;
@@ -67,8 +110,8 @@
 
 .aboutTitle {
   font-family: Manrope, sans-serif;
-  font-size: 64px;
-  font-weight: 700;
+  font-size: 84px;
+  font-weight: 400;
   color: rgb(51, 51, 51);
   margin: 0;
   line-height: 1.1;
@@ -87,8 +130,16 @@
   height: 150px;
   border-radius: 50%;
   overflow: hidden;
-  border: 3px solid rgba(163, 255, 18, 0.3);
+  border: 3px solid var(--color-accent-30);
   flex-shrink: 0;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 0 0 var(--color-accent-10);
+}
+
+.avatarWrapper:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 20px var(--color-accent-30);
+  transform: scale(1.05);
 }
 
 .avatar {
@@ -108,21 +159,21 @@
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: rgba(163, 255, 18, 0.15);
+  background: var(--color-accent-15);
   display: flex;
   align-items: center;
   justify-content: center;
   color: rgb(47, 47, 47);
   text-decoration: none;
-  border: 1px solid rgba(163, 255, 18, 0.3);
+  border: 1px solid var(--color-accent-30);
   transition: all 0.3s ease;
 }
 
 .socialIcon:hover {
-  background: #a3ff12;
+  background: var(--color-accent);
   color: rgb(0, 0, 0);
   transform: scale(1.1);
-  box-shadow: 0 4px 12px rgba(163, 255, 18, 0.3);
+  box-shadow: 0 4px 12px var(--color-accent-30);
 }
 
 .emailLink {
@@ -138,14 +189,38 @@
 }
 
 .emailLink:hover {
-  color: #a3ff12;
+  color: var(--color-accent);
 }
 
 .quote {
   margin: 16px 0;
   padding: 20px 0;
-  border-left: 3px solid #a3ff12;
+  border-left: 3px solid var(--color-accent);
   padding-left: 20px;
+  position: relative;
+}
+
+.quote::before {
+  content: '';
+  position: absolute;
+  left: -3px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--color-accent);
+  opacity: 0.3;
+  animation: quoteGlow 2s ease-in-out infinite;
+}
+
+@keyframes quoteGlow {
+  0%, 100% {
+    opacity: 0.3;
+    box-shadow: 0 0 5px var(--color-accent-30);
+  }
+  50% {
+    opacity: 0.6;
+    box-shadow: 0 0 15px var(--color-accent-30);
+  }
 }
 
 .quoteText {
@@ -198,6 +273,8 @@
   display: flex;
   flex-direction: column;
   gap: 80px;
+  position: relative;
+  z-index: 1;
 }
 
 /* Section Styles */
@@ -226,7 +303,7 @@
 .sectionLine {
   flex: 1;
   height: 2px;
-  background: linear-gradient(90deg, rgba(140, 255, 46, 0.3) 0%, transparent 100%);
+  background: linear-gradient(90deg, var(--color-accent-30) 0%, transparent 100%);
   border-radius: 2px;
 }
 
@@ -243,7 +320,7 @@
   top: 0;
   bottom: 0;
   width: 2px;
-  background: linear-gradient(180deg, rgba(140, 255, 46, 0.3) 0%, transparent 100%);
+  background: linear-gradient(180deg, var(--color-accent-30) 0%, transparent 100%);
 }
 
 .timelineItem {
@@ -264,8 +341,17 @@
   height: 16px;
   border-radius: 50%;
   background: rgb(255, 255, 255);
-  border: 3px solid rgba(140, 255, 46, 0.5);
-  box-shadow: 0 0 0 4px rgba(140, 255, 46, 0.1);
+  border: 3px solid var(--color-accent-30);
+  box-shadow: 0 0 0 4px var(--color-accent-10), 0 0 12px var(--color-accent-20);
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.timelineItem:hover .timelineMarker {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 4px var(--color-accent-10), 0 0 20px var(--color-accent-30);
+  transform: scale(1.2);
 }
 
 .timelineContent {
@@ -274,6 +360,52 @@
   border-radius: 20px;
   padding: 28px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.timelineContent::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-accent) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.timelineContent::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background-image: 
+    radial-gradient(circle at 20% 30%, var(--color-accent-10) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, var(--color-accent-10) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.timelineItem:hover .timelineContent {
+  border-color: var(--color-accent-30);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08), 0 0 0 1px var(--color-accent-10);
+  transform: translateY(-2px);
+}
+
+.timelineItem:hover .timelineContent::before {
+  opacity: 1;
+}
+
+.timelineItem:hover .timelineContent::after {
+  opacity: 1;
 }
 
 .timelineHeader {
@@ -299,8 +431,16 @@
   color: rgba(47, 47, 47, 0.6);
   white-space: nowrap;
   padding: 4px 12px;
-  background: rgba(140, 255, 46, 0.1);
+  background: var(--color-accent-10);
   border-radius: 12px;
+  border: 1px solid var(--color-accent-20);
+  transition: all 0.3s ease;
+}
+
+.timelineItem:hover .timelineDuration {
+  background: var(--color-accent-15);
+  border-color: var(--color-accent-30);
+  color: var(--color-text-dark-gray);
 }
 
 .timelinePosition {
@@ -333,8 +473,13 @@
   content: '→';
   position: absolute;
   left: 0;
-  color: rgba(140, 255, 46, 0.6);
+  color: var(--color-accent);
   font-weight: 700;
+  transition: transform 0.3s ease;
+}
+
+.timelineItem:hover .timelineListItem::before {
+  transform: translateX(4px);
 }
 
 /* Certifications - Improved Design */
@@ -356,11 +501,47 @@
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
   position: relative;
   overflow: hidden;
-  transition: box-shadow 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.trophyCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-accent) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.trophyCard::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, var(--color-accent-10) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
 }
 
 .trophyCard:hover {
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12), 0 0 0 1px var(--color-accent-20);
+  transform: translateY(-4px);
+  border-color: var(--color-accent-30);
+}
+
+.trophyCard:hover::before {
+  opacity: 1;
+}
+
+.trophyCard:hover::after {
+  opacity: 1;
 }
 
 .trophyImage {
@@ -374,6 +555,13 @@
   align-items: center;
   justify-content: center;
   padding: 20px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.trophyCard:hover .trophyImage {
+  border-bottom-color: var(--color-accent-30);
+  background: linear-gradient(135deg, var(--color-background-light) 0%, var(--color-accent-10) 100%);
 }
 
 .certImage {
@@ -389,6 +577,9 @@
   flex-direction: column;
   gap: 12px;
   flex: 1;
+  position: relative;
+  z-index: 2;
+  background: rgb(255, 255, 255);
 }
 
 .trophyName {
@@ -398,6 +589,11 @@
   color: var(--color-text-dark-gray);
   margin: 0;
   line-height: 1.3;
+  transition: color 0.3s ease;
+}
+
+.trophyCard:hover .trophyName {
+  color: var(--color-text-dark-gray);
 }
 
 .trophyIssuer {
@@ -415,6 +611,11 @@
   margin-top: 4px;
   padding-top: 16px;
   border-top: 1px solid rgba(0, 0, 0, 0.08);
+  transition: border-color 0.3s ease;
+}
+
+.trophyCard:hover .trophyMeta {
+  border-top-color: var(--color-accent-20);
 }
 
 .trophyDate {
