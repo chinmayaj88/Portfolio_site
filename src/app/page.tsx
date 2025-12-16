@@ -7,7 +7,6 @@ import { ProfessionalJourney } from "@/components/ProfessionalJourney";
 import { Statistics } from "@/components/Statistics";
 import { Projects } from "@/components/Projects";
 import { SocialSection } from "@/components/SocialSection";
-import { Contact } from "@/components/Contact";
 import { profileData } from "@/data/profileData";
 
 export default function Home() {
@@ -23,7 +22,6 @@ export default function Home() {
       <ProfessionalJourney />
       <Statistics />
       <SocialSection />
-      <Contact />
     </motion.main>
   );
 }

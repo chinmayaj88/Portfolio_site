@@ -9,6 +9,8 @@ import LoadingScreen from "@/components/LoadingScreen";
 import { LoadingProvider } from "@/contexts/LoadingContext";
 import { profileData } from "@/data/profileData";
 import "./globals.css";
+import { Contact } from "@/components/Contact";
+
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -28,27 +30,29 @@ const autography = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://yourdomain.com'), // Update with your actual domain
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "https://yourdomain.com"
+  ), // Update with your actual domain
   title: `${profileData.name} - ${profileData.role}`,
   description: profileData.bio,
   keywords: [
-    'Full Stack Developer',
-    'Cloud Engineer',
-    'DevOps Engineer',
-    'Backend Developer',
-    'AWS',
-    'OCI',
-    'Python',
-    'Node.js',
-    'Portfolio',
+    "Full Stack Developer",
+    "Cloud Engineer",
+    "DevOps Engineer",
+    "Backend Developer",
+    "AWS",
+    "OCI",
+    "Python",
+    "Node.js",
+    "Portfolio",
     profileData.name,
   ],
   authors: [{ name: profileData.name }],
   creator: profileData.name,
   openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: '/',
+    type: "website",
+    locale: "en_US",
+    url: "/",
     title: `${profileData.name} - ${profileData.role}`,
     description: profileData.bio,
     siteName: `${profileData.name} Portfolio`,
@@ -62,7 +66,7 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    card: 'summary_large_image',
+    card: "summary_large_image",
     title: `${profileData.name} - ${profileData.role}`,
     description: profileData.bio,
     images: [profileData.avatar.src],
@@ -73,15 +77,15 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
 };
 
 export const viewport: Viewport = {
-  width: 'device-width',
+  width: "device-width",
   initialScale: 1,
   maximumScale: 5,
 };
@@ -93,13 +97,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${manrope.variable} ${inter.variable} ${autography.variable}`}>
+      <body
+        className={`${manrope.variable} ${inter.variable} ${autography.variable}`}
+      >
         <LoadingProvider>
           <LoadingScreen />
           <SmoothScroll />
           <ScrollProgress />
           <Header />
           {children}
+          <Contact />
           <Footer />
         </LoadingProvider>
       </body>
