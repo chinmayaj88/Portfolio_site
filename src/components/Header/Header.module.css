@@ -139,7 +139,7 @@
 .emailValue {
   color: var(--color-text);
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 400;
   font-family: var(--font-manrope), sans-serif;
   margin: 0;
   white-space: nowrap;

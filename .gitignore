@@ -45,3 +45,5 @@ next-env.d.ts
 deployment.tar.gz
 deployment/
 !.github/workflows/
+
+.vscode
