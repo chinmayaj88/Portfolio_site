@@ -32,30 +32,30 @@ function ProjectCard({
       initial={
         index === 0
           ? {
-              opacity: 1,
-              x: 0,
-              scale: 1,
-            }
+            opacity: 1,
+            x: 0,
+            scale: 1,
+          }
           : {
-              opacity: 0,
-              x: -80,
-              scale: 0.96,
-            }
+            opacity: 0,
+            x: -80,
+            scale: 0.96,
+          }
       }
       animate={
         cardInView
           ? {
-              opacity: 1,
-              x: 0,
-              scale: 1,
-            }
+            opacity: 1,
+            x: 0,
+            scale: 1,
+          }
           : index === 0
-          ? {
+            ? {
               opacity: 1,
               x: 0,
               scale: 1,
             }
-          : {
+            : {
               opacity: 0,
               x: -80,
               scale: 0.96,
@@ -82,15 +82,15 @@ function ProjectCard({
           animate={
             cardInView
               ? {
-                  opacity: 1,
-                  x: 0,
-                }
+                opacity: 1,
+                x: 0,
+              }
               : index === 0
-              ? {
+                ? {
                   opacity: 1,
                   x: 0,
                 }
-              : {
+                : {
                   opacity: 0,
                   x: -40,
                 }
@@ -124,8 +124,8 @@ function ProjectCard({
               cardInView
                 ? { opacity: 0.2 }
                 : index === 0
-                ? { opacity: 0.2 }
-                : { opacity: 0.4 }
+                  ? { opacity: 0.2 }
+                  : { opacity: 0.4 }
             }
             transition={{ duration: 0.3 }}
           />
@@ -139,8 +139,8 @@ function ProjectCard({
           cardInView
             ? { opacity: 1, x: 0 }
             : index === 0
-            ? { opacity: 1, x: 0 }
-            : { opacity: 0, x: -30 }
+              ? { opacity: 1, x: 0 }
+              : { opacity: 0, x: -30 }
         }
         transition={{
           duration: 0.7,
@@ -150,7 +150,7 @@ function ProjectCard({
       >
         <div className={styles.projectMeta}>
           <motion.div
-            className={styles.codeBrackets}
+            className={styles.projectTypeTag}
             initial={
               index === 0 ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }
             }
@@ -158,8 +158,8 @@ function ProjectCard({
               cardInView
                 ? { opacity: 1, x: 0 }
                 : index === 0
-                ? { opacity: 1, x: 0 }
-                : { opacity: 0, x: -20 }
+                  ? { opacity: 1, x: 0 }
+                  : { opacity: 0, x: -20 }
             }
             transition={{
               duration: 0.6,
@@ -168,9 +168,13 @@ function ProjectCard({
             }}
             style={{}}
           >
-            <p className={styles.bracket}>{"{"}</p>
-            <p className={styles.category}>{project.category}</p>
-            <p className={styles.bracket}>{"}"}</p>
+            <span className={`${styles.typeTag} ${
+              project.projectType === 'personal' ? styles.typeTagPersonal :
+              project.projectType === 'company' ? styles.typeTagCompany :
+              styles.typeTagFreelance
+            }`}>
+              {project.projectType.charAt(0).toUpperCase() + project.projectType.slice(1)}
+            </span>
           </motion.div>
         </div>
 
@@ -185,8 +189,8 @@ function ProjectCard({
                 cardInView
                   ? { opacity: 1, x: 0 }
                   : index === 0
-                  ? { opacity: 1, x: 0 }
-                  : { opacity: 0, x: -30 }
+                    ? { opacity: 1, x: 0 }
+                    : { opacity: 0, x: -30 }
               }
               transition={{
                 duration: 0.7,
@@ -205,15 +209,15 @@ function ProjectCard({
             animate={
               cardInView
                 ? {
-                    opacity: 1,
-                    y: 0,
-                  }
+                  opacity: 1,
+                  y: 0,
+                }
                 : index === 0
-                ? {
+                  ? {
                     opacity: 1,
                     y: 0,
                   }
-                : {
+                  : {
                     opacity: 0,
                     y: 10,
                   }
@@ -287,15 +291,12 @@ export default function ProjectsPage() {
   const isInView = useInView(ref, { once: true, amount: 0.1 });
   const [filter, setFilter] = useState<string>("all");
 
-  const categories = [
-    "all",
-    ...Array.from(new Set(projectsData.map((p) => p.category))),
-  ];
+  const projectTypes = ["all", "personal", "company", "freelance"];
 
   const filteredProjects =
     filter === "all"
       ? projectsData
-      : projectsData.filter((p) => p.category === filter);
+      : projectsData.filter((p) => p.projectType === filter);
 
   return (
     <main className={styles.main} ref={ref}>
@@ -344,7 +345,7 @@ export default function ProjectsPage() {
                 ease: "easeInOut",
               }}
             />
-            <p className={styles.badgeText}>Definitely not Recent</p>
+            <p className={styles.badgeText}>Things i love to do</p>
           </div>
           <motion.h1
             className={styles.title}
@@ -362,18 +363,17 @@ export default function ProjectsPage() {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            {categories.map((category) => (
+            {projectTypes.map((type) => (
               <motion.button
-                key={category}
-                className={`${styles.filterButton} ${
-                  filter === category ? styles.active : ""
-                }`}
-                onClick={() => setFilter(category)}
+                key={type}
+                className={`${styles.filterButton} ${filter === type ? styles.active : ""
+                  }`}
+                onClick={() => setFilter(type)}
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.08 }}
               >
-                {category.charAt(0).toUpperCase() + category.slice(1)}
+                {type.charAt(0).toUpperCase() + type.slice(1)}
               </motion.button>
             ))}
           </motion.div>

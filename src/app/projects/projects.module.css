@@ -299,48 +299,63 @@
   width: min-content;
 }
 
-.codeBrackets {
+.projectTypeTag {
   align-content: center;
   align-items: center;
   display: flex;
-  gap: 4px;
+  gap: 0;
   justify-content: flex-start;
   width: min-content;
 }
 
-.bracket {
-  border-color: rgba(0, 0, 0, 0.4);
-  color: rgba(0, 0, 0, 0.4);
-  cursor: pointer;
+.typeTag {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 20px;
   font-family: Manrope, sans-serif;
-  font-size: 17px;
+  font-size: 13px;
   font-weight: 600;
-  letter-spacing: -0.68px;
-  line-height: 17px;
-  margin: 0;
-  text-wrap: nowrap;
-  white-space: pre;
-  transition: all 0.08s ease;
-}
-
-.category {
-  border-color: var(--color-accent);
-  color: var(--color-accent);
-  cursor: pointer;
-  font-family: Manrope, sans-serif;
-  font-size: 17px;
-  font-weight: 600;
-  letter-spacing: -0.68px;
-  line-height: 17px;
-  margin: 0;
-  text-wrap: nowrap;
-  white-space: pre;
+  letter-spacing: -0.26px;
+  line-height: 1.2;
+  text-transform: capitalize;
   transition: all 0.3s ease;
+  border: 1.5px solid transparent;
 }
 
-.projectLink:hover .category {
+.typeTagPersonal {
+  background-color: rgba(163, 255, 18, 0.15);
   color: var(--color-accent);
-  text-shadow: 0 0 8px var(--color-accent-30);
+  border-color: rgba(163, 255, 18, 0.3);
+}
+
+.typeTagCompany {
+  background-color: rgba(64, 135, 199, 0.15);
+  color: rgb(64, 135, 199);
+  border-color: rgba(64, 135, 199, 0.3);
+}
+
+.typeTagFreelance {
+  background-color: rgba(240, 83, 41, 0.15);
+  color: rgb(240, 83, 41);
+  border-color: rgba(240, 83, 41, 0.3);
+}
+
+.projectLink:hover .typeTagPersonal {
+  background-color: rgba(163, 255, 18, 0.25);
+  border-color: rgba(163, 255, 18, 0.5);
+  box-shadow: 0 2px 8px rgba(163, 255, 18, 0.2);
+}
+
+.projectLink:hover .typeTagCompany {
+  background-color: rgba(64, 135, 199, 0.25);
+  border-color: rgba(64, 135, 199, 0.5);
+  box-shadow: 0 2px 8px rgba(64, 135, 199, 0.2);
+}
+
+.projectLink:hover .typeTagFreelance {
+  background-color: rgba(240, 83, 41, 0.25);
+  border-color: rgba(240, 83, 41, 0.5);
+  box-shadow: 0 2px 8px rgba(240, 83, 41, 0.2);
 }
 
 .projectInfo {
@@ -575,10 +590,9 @@
     padding: 0 16px;
   }
 
-  .bracket,
-  .category {
-    font-size: 14px;
-    letter-spacing: -0.56px;
+  .typeTag {
+    font-size: 12px;
+    padding: 5px 12px;
   }
 
   .projectInfo {

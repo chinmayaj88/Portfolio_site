@@ -25,7 +25,7 @@ export const experienceData: ExperienceItem[] = [
     company: "Hyscaler",
     logo: "",
     position: "Junior Software Developer",
-    duration: "04/2024 – 10/2025",
+    duration: "04/2024 – 11/2025",
     type: "Full Time",
     responsibilities: [
       {
