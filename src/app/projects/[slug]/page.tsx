@@ -2,7 +2,6 @@
 
 import { motion } from "motion/react";
 import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import { AnimatedText } from "@/components/TextAnimations";
 import { projectsData } from "@/data/projectsData";
@@ -10,24 +9,24 @@ import styles from "./page.module.css";
 
 export default function ProjectWorkInProgress() {
   const params = useParams();
-  const [projectName, setProjectName] = useState("");
-
-  useEffect(() => {
-    if (params?.slug) {
-      const slug = params.slug as string;
-      const project = projectsData.find((p) => p.id === slug);
-      if (project) {
-        setProjectName(project.title);
-      } else {
-        // Fallback to formatted slug if project not found
-        const formattedName = slug
-          .split("-")
-          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-          .join(" ");
-        setProjectName(formattedName);
-      }
+  
+  // Get project name synchronously to avoid empty state
+  const getProjectName = () => {
+    if (!params?.slug) return "";
+    const slug = params.slug as string;
+    const project = projectsData.find((p) => p.id === slug);
+    if (project) {
+      return project.title;
+    } else {
+      // Fallback to formatted slug if project not found
+      return slug
+        .split("-")
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ");
     }
-  }, [params]);
+  };
+  
+  const projectName = getProjectName();
 
   return (
     <main className={styles.main}>
@@ -61,9 +60,9 @@ export default function ProjectWorkInProgress() {
         {/* Status Badge */}
         <motion.div
           className={styles.statusBadge}
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.3 }}
         >
           <motion.span
             className={styles.statusDot}
@@ -83,19 +82,19 @@ export default function ProjectWorkInProgress() {
         {/* Main Content */}
         <motion.div
           className={styles.content}
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.4, delay: 0.1 }}
         >
           <h1 className={styles.title}>
-            <AnimatedText text="Coming Soon" delay={0.3} type="words" />
+            <AnimatedText text="Coming Soon" delay={0.1} type="words" />
           </h1>
 
           <motion.p
             className={styles.subtitle}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
+            transition={{ duration: 0.4, delay: 0.2 }}
           >
             {projectName && (
               <>
@@ -110,7 +109,7 @@ export default function ProjectWorkInProgress() {
             className={styles.description}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.7 }}
+            transition={{ duration: 0.4, delay: 0.3 }}
           >
             I'm working hard to bring you comprehensive insights into this project, including architecture
             decisions, technical challenges, and implementation details. Check back soon!
@@ -121,14 +120,14 @@ export default function ProjectWorkInProgress() {
             className={styles.progressSection}
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.9 }}
+            transition={{ duration: 0.4, delay: 0.4 }}
           >
             <div className={styles.progressBar}>
               <motion.div
                 className={styles.progressFill}
                 initial={{ width: 0 }}
                 animate={{ width: "65%" }}
-                transition={{ duration: 1, delay: 1.1, ease: "easeOut" }}
+                transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
               />
             </div>
             <p className={styles.progressText}>65% Complete</p>
@@ -139,7 +138,7 @@ export default function ProjectWorkInProgress() {
             className={styles.actions}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.2 }}
+            transition={{ duration: 0.4, delay: 0.5 }}
           >
             <Link href="/projects" className={styles.backButton}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

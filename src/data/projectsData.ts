@@ -6,6 +6,7 @@ export interface Project {
   date?: string;
   image: string;
   link: string;
+  github?: string;
 }
 
 export const projectsData: Project[] = [
@@ -17,6 +18,7 @@ export const projectsData: Project[] = [
     date: "2025",
     image: "/construction.webp",
     link: "/projects/ecommerce-microservices",
+    github: "https://github.com/chinmayaj88",
   },
   {
     id: "vett-task-tracker",
@@ -26,6 +28,7 @@ export const projectsData: Project[] = [
     date: "2025",
     image: "/projects/vett.png",
     link: "/projects/vett-task-tracker",
+    github: "https://github.com/chinmayaj88",
   },
   {
     id: "oci-enterprise-cloud-setup",
@@ -35,6 +38,7 @@ export const projectsData: Project[] = [
     date: "2025",
     image: "/projects/oci-cloud.webp",
     link: "/projects/oci-enterprise-cloud-setup",
+    github: "https://github.com/chinmayaj88",
   },
   {
     id: "enterprise-application-architecture",
@@ -45,5 +49,6 @@ export const projectsData: Project[] = [
     date: "2025",
     image: "/projects/web-architecture.png",
     link: "/projects/enterprise-application-architecture",
+    github: "https://github.com/chinmayaj88",
   },
 ];

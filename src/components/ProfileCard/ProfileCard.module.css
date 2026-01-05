@@ -142,6 +142,29 @@
 
 .socialLinksSection {
   margin-top: 6;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.socialLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.socialLink:hover svg {
+  filter: brightness(0.6);
+  transition: filter 0.3s ease;
+}
+
+.profileCard:hover .socialLink svg {
+  filter: brightness(0.7);
+}
+
+.profileCard:hover .socialLink:hover svg {
+  filter: brightness(0.5);
 }
 
 /* Hero section - center with greeting */

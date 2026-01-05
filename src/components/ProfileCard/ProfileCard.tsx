@@ -39,10 +39,7 @@ export default function ProfileCard({ data }: ProfileCardProps) {
                     <Link
                       key={social.id}
                       href={social.href}
-                      style={{
-                        marginLeft: 4,
-                        marginRight: 4,
-                      }}
+                      className={styles.socialLink}
                     >
                       {social.icon === "github" && (
                         <FaGithub size={20} color="#6fa717ff" />

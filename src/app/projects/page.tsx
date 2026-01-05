@@ -15,7 +15,7 @@ function ProjectCard({
   index: number;
   isInView: boolean;
 }) {
-  const cardRef = useRef<HTMLAnchorElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
 
   // Individual scroll tracking for each card
   // First card should be visible immediately, others reveal on scroll
@@ -26,9 +26,8 @@ function ProjectCard({
   });
 
   return (
-    <motion.a
+    <motion.div
       ref={cardRef}
-      href={`${project.link}/overview`}
       className={styles.projectLink}
       initial={
         index === 0
@@ -201,41 +200,85 @@ function ProjectCard({
           </div>
 
           <motion.div
-            className={styles.viewMoreButton}
-            initial={index === 0 ? { opacity: 1 } : { opacity: 0 }}
+            className={styles.actionButtons}
+            initial={index === 0 ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
             animate={
               cardInView
                 ? {
                     opacity: 1,
+                    y: 0,
                   }
                 : index === 0
                 ? {
                     opacity: 1,
+                    y: 0,
                   }
                 : {
                     opacity: 0,
+                    y: 10,
                   }
             }
             transition={{
-              duration: 0.4,
-              delay: index === 0 ? 0 : 0.3,
-              ease: "easeOut",
+              duration: 0.5,
+              delay: index === 0 ? 0 : 0.35,
+              ease: [0.25, 0.46, 0.45, 0.94],
             }}
           >
-            <span className={styles.viewMoreText}>View More</span>
-            <div className={styles.buttonIcon}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 256 256"
-                focusable="false"
+            <motion.a
+              href={`${project.link}/overview`}
+              className={styles.viewButton}
+              whileHover={{ scale: 1.05, x: 4 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            >
+              <span className={styles.buttonText}>View</span>
+              <motion.div
+                className={styles.arrowIcon}
+                whileHover={{ x: 3, y: -3 }}
+                transition={{ type: "spring", stiffness: 500 }}
               >
-                <path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z" />
-              </svg>
-            </div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 256 256"
+                  focusable="false"
+                >
+                  <path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z" />
+                </svg>
+              </motion.div>
+            </motion.a>
+
+            {project.github && (
+              <motion.a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.githubButton}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              >
+                <motion.svg
+                  className={styles.githubIcon}
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  whileHover={{ rotate: [0, -10, 10, -10, 0] }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                  <path d="M9 18c-4.51 2-5-2-7-2" />
+                </motion.svg>
+                <span className={styles.buttonText}>GitHub</span>
+              </motion.a>
+            )}
           </motion.div>
         </div>
       </motion.div>
-    </motion.a>
+    </motion.div>
   );
 }
 
