@@ -32,34 +32,34 @@ function ProjectCard({
       initial={
         index === 0
           ? {
-            opacity: 1,
-            x: 0,
-            scale: 1,
-          }
-          : {
-            opacity: 0,
-            x: -80,
-            scale: 0.96,
-          }
-      }
-      animate={
-        cardInView
-          ? {
-            opacity: 1,
-            x: 0,
-            scale: 1,
-          }
-          : index === 0
-            ? {
               opacity: 1,
               x: 0,
               scale: 1,
             }
-            : {
+          : {
               opacity: 0,
               x: -80,
               scale: 0.96,
             }
+      }
+      animate={
+        cardInView
+          ? {
+              opacity: 1,
+              x: 0,
+              scale: 1,
+            }
+          : index === 0
+            ? {
+                opacity: 1,
+                x: 0,
+                scale: 1,
+              }
+            : {
+                opacity: 0,
+                x: -80,
+                scale: 0.96,
+              }
       }
       transition={{
         duration: 0.7,
@@ -82,18 +82,18 @@ function ProjectCard({
           animate={
             cardInView
               ? {
-                opacity: 1,
-                x: 0,
-              }
-              : index === 0
-                ? {
                   opacity: 1,
                   x: 0,
                 }
+              : index === 0
+                ? {
+                    opacity: 1,
+                    x: 0,
+                  }
                 : {
-                  opacity: 0,
-                  x: -40,
-                }
+                    opacity: 0,
+                    x: -40,
+                  }
           }
           transition={{
             opacity: {
@@ -168,12 +168,17 @@ function ProjectCard({
             }}
             style={{}}
           >
-            <span className={`${styles.typeTag} ${
-              project.projectType === 'personal' ? styles.typeTagPersonal :
-              project.projectType === 'company' ? styles.typeTagCompany :
-              styles.typeTagFreelance
-            }`}>
-              {project.projectType.charAt(0).toUpperCase() + project.projectType.slice(1)}
+            <span
+              className={`${styles.typeTag} ${
+                project.projectType === "personal"
+                  ? styles.typeTagPersonal
+                  : project.projectType === "company"
+                    ? styles.typeTagCompany
+                    : styles.typeTagFreelance
+              }`}
+            >
+              {project.projectType.charAt(0).toUpperCase() +
+                project.projectType.slice(1)}
             </span>
           </motion.div>
         </div>
@@ -209,18 +214,18 @@ function ProjectCard({
             animate={
               cardInView
                 ? {
-                  opacity: 1,
-                  y: 0,
-                }
-                : index === 0
-                  ? {
                     opacity: 1,
                     y: 0,
                   }
+                : index === 0
+                  ? {
+                      opacity: 1,
+                      y: 0,
+                    }
                   : {
-                    opacity: 0,
-                    y: 10,
-                  }
+                      opacity: 0,
+                      y: 10,
+                    }
             }
             transition={{
               duration: 0.5,
@@ -229,7 +234,7 @@ function ProjectCard({
             }}
           >
             <motion.a
-              href={`${project.link}/overview`}
+              href={project.link}
               className={styles.viewButton}
               whileHover={{ scale: 1.05, x: 4 }}
               whileTap={{ scale: 0.98 }}
@@ -366,8 +371,9 @@ export default function ProjectsPage() {
             {projectTypes.map((type) => (
               <motion.button
                 key={type}
-                className={`${styles.filterButton} ${filter === type ? styles.active : ""
-                  }`}
+                className={`${styles.filterButton} ${
+                  filter === type ? styles.active : ""
+                }`}
                 onClick={() => setFilter(type)}
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
