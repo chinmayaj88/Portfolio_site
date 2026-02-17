@@ -21,6 +21,34 @@ export interface ExperienceItem {
 
 export const experienceData: ExperienceItem[] = [
   {
+    id: "freelance-ai-eng",
+    company: "Freelance",
+    logo: "",
+    position: "AI Engineer (Freelance)",
+    duration: "12/2025 – Present",
+    type: "Part Time",
+    responsibilities: [
+      {
+        title: "",
+        description:
+          "Specializing in building custom AI automation solutions for enterprise clients. Focus areas include LLM-based data extraction, autonomous agents, and RAG systems using modern tech stacks like Groq, Llama-3.1, and Pydantic.",
+      },
+    ],
+    projects: [
+      {
+        id: "shipment-extraction-demo",
+        title: "Enterprise Shipment Extraction System",
+        tech: "Python, Groq (Llama-3.1), Clean Architecture, IMAP, Pydantic",
+        achievements: [
+          "Developed a production-ready AI engine to automate shipment data extraction from unstructured emails with 93%+ accuracy.",
+          "Implemented a modular Clean Architecture with pluggable connectors for live IMAP email ingestion and batch processing.",
+          "Engineered a resilient prompt protocol with fuzzy mapping for port global aliases and unit conversion stabilization.",
+          "Integrated automated benchmarking and validation pipelines ensuring high data fidelity for downstream logistics systems.",
+        ],
+      },
+    ],
+  },
+  {
     id: "hyscaler",
     company: "Hyscaler",
     logo: "",

@@ -11,7 +11,8 @@ export interface HeaderData {
 export const headerData: HeaderData = {
   name: "Chinmaya Jena",
   email: "jenachinmaya51@gmail.com",
-  resumeLink: "https://drive.google.com/file/d/1F4tzs6yOor2Qk8aaX_jG4rPMvNh6XJCJ/view?usp=sharing",
+  resumeLink:
+    "https://drive.google.com/file/d/1cO8eSfOqUIt7fPBracdUKJLUGzHVhWb5/view?usp=sharing",
   navLinks: [
     { label: "Projects", href: "/projects" },
     { label: "About", href: "/about" },
@@ -19,4 +20,3 @@ export const headerData: HeaderData = {
     // { label: "Blogs", href: "/blog" },
   ],
 };
-
