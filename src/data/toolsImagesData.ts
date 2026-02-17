@@ -155,9 +155,4 @@ export const aiImages: TechnologyImage[] = [
     name: "Grok",
     url: "/tech-stack/ai/Grok_2025.png",
   },
-  // {
-  //   id: "groq",
-  //   name: "Groq",
-  //   url: "https://www.vectorlogo.zone/logos/groq/groq-icon.svg",
-  // },
 ];
