@@ -2,7 +2,7 @@
 
 import { motion, useInView } from "motion/react";
 import { useParams, useRouter } from "next/navigation";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { projectsData } from "@/data/projectsData";
@@ -13,6 +13,7 @@ export default function ProjectDetailPage() {
   const router = useRouter();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const slug = params?.slug as string;
   const project = projectsData.find((p) => p.id === slug);
@@ -211,7 +212,7 @@ export default function ProjectDetailPage() {
           </motion.div>
         </motion.div>
 
-        {/* Hero Image */}
+        {/* Hero Image / Carousel */}
         <motion.div
           className={styles.heroImage}
           initial={{ opacity: 0, scale: 0.95 }}
@@ -220,15 +221,99 @@ export default function ProjectDetailPage() {
           }
           transition={{ duration: 0.8, delay: 0.3 }}
         >
-          <Image
-            src={project.image}
-            alt={project.title}
-            width={1200}
-            height={800}
-            className={styles.image}
-            priority
-          />
-          <div className={styles.imageOverlay} />
+          {project.images && project.images.length > 1 ? (
+            // Carousel for multiple images
+            <>
+              <div className={styles.carouselContainer}>
+                <Image
+                  src={project.images[currentImageIndex]}
+                  alt={`${project.title} - Image ${currentImageIndex + 1}`}
+                  width={1200}
+                  height={800}
+                  className={styles.image}
+                  priority
+                />
+                <div className={styles.imageOverlay} />
+
+                {/* Previous Button */}
+                <motion.button
+                  className={`${styles.carouselButton} ${styles.carouselButtonPrev}`}
+                  onClick={() =>
+                    setCurrentImageIndex((prev) =>
+                      prev === 0 ? project.images!.length - 1 : prev - 1,
+                    )
+                  }
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  aria-label="Previous image"
+                >
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path d="M15 18l-6-6 6-6" />
+                  </svg>
+                </motion.button>
+
+                {/* Next Button */}
+                <motion.button
+                  className={`${styles.carouselButton} ${styles.carouselButtonNext}`}
+                  onClick={() =>
+                    setCurrentImageIndex((prev) =>
+                      prev === project.images!.length - 1 ? 0 : prev + 1,
+                    )
+                  }
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  aria-label="Next image"
+                >
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path d="M9 18l6-6-6-6" />
+                  </svg>
+                </motion.button>
+
+                {/* Indicator Dots */}
+                <div className={styles.carouselIndicators}>
+                  {project.images.map((_, index) => (
+                    <button
+                      key={index}
+                      className={`${styles.indicator} ${
+                        index === currentImageIndex
+                          ? styles.indicatorActive
+                          : ""
+                      }`}
+                      onClick={() => setCurrentImageIndex(index)}
+                      aria-label={`Go to image ${index + 1}`}
+                    />
+                  ))}
+                </div>
+              </div>
+            </>
+          ) : (
+            // Single image display
+            <>
+              <Image
+                src={project.image}
+                alt={project.title}
+                width={1200}
+                height={800}
+                className={styles.image}
+                priority
+              />
+              <div className={styles.imageOverlay} />
+            </>
+          )}
         </motion.div>
 
         {/* Description Section */}

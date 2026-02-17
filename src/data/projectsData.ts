@@ -6,6 +6,7 @@ export interface Project {
   projectType: "personal" | "company" | "freelance";
   date?: string;
   image: string;
+  images?: string[]; // Optional array for multiple images (carousel)
   link: string;
   github?: string;
   description?: string;
@@ -19,6 +20,97 @@ export interface Project {
 }
 
 export const projectsData: Project[] = [
+  {
+    id: "shipment-extraction-system",
+    title: "Shipment Extraction System",
+    subtitle: "AI-Powered Logistics Data Automation",
+    category: "AI & Backend Automation",
+    projectType: "freelance",
+    date: "2025",
+    duration: "1 month",
+    image: "/projects/EES/demo-ui.png",
+    images: [
+      "/projects/EES/demo-ui.png",
+      "/projects/EES/extraction-results.png",
+      "/projects/EES/history-view.png",
+    ],
+    link: "/projects/shipment-extraction-system",
+    github: "https://github.com/chinmayaj88/Task-Harmony-EES",
+    description:
+      "An AI engine designed to extract structured shipment details from unstructured logistics emails. Refactored into a modular Clean Architecture, the system features live email ingestion via IMAP, robust error handling with exponential backoff, and 93%+ extraction accuracy using Llama-3.1-8B and advanced prompt stabilization.",
+    technologies: [
+      "Python",
+      "Groq (Llama-3.1)",
+      "Pydantic (V2)",
+      "Loguru",
+      "IMAP/Email Integration",
+      "Clean Architecture",
+      "Docker",
+      "Streamlit",
+    ],
+    features: [
+      "93% Overall extraction accuracy on noisy/messy logistics data",
+      "Interactive Streamlit UI for real-time client demonstrations",
+      "Live Email Integration: Pulls and processes real emails via IMAP",
+      "AI Reasoning Display: Shows extraction logic and decision-making process",
+      "Modular Clean Architecture with isolated engine and connector layers",
+      "Robust Reliability: Built-in retries and exponential backoff for API limits",
+      "Export capabilities: JSON and CSV output for integration",
+      "Automated evaluation pipeline with checkpointing and data persistence",
+    ],
+    challenges:
+      "Transitioning from a prototype to a production-ready system that handles live external data (emails) while maintaining high performance and low operational costs.",
+    solution:
+      "Implemented a decoupled architecture separating data ingestion from the AI engine. Developed a 'Resilient Architect' protocol with fuzzy port mapping and alias-aware context injection.",
+    impact:
+      "Enables automated, real-time data entry from live emails, reducing manual overhead by 80% for logistics coordinators.",
+  },
+  {
+    id: "v8id-cloud",
+    title: "v8id-cloud",
+    subtitle: "Privacy-First Enterprise Cloud Storage",
+    category: "Cloud & Full Stack",
+    projectType: "personal",
+    date: "2025",
+    duration: "Ongoing",
+    image: "/projects/v8id-cloud/dashboard.png",
+    images: [
+      "/projects/v8id-cloud/dashboard.png",
+      "/projects/v8id-cloud/upload-ui.png",
+      "/projects/v8id-cloud/file-view.png",
+    ],
+    link: "/projects/v8id-cloud",
+    github: "https://github.com/chinmayaj88/v8id-monorepo",
+    description:
+      "A powerful, self-hosted cloud storage platform built with Clean Architecture. Offers Google Drive-like functionality with complete data control, leveraging Oracle Cloud Infrastructure for production-grade reliability.",
+    technologies: [
+      "Node.js",
+      "TypeScript",
+      "Express",
+      "Prisma",
+      "MySQL",
+      "OCI",
+      "Terraform",
+      "Docker",
+      "Kotlin",
+    ],
+    features: [
+      "Enterprise-grade Clean Architecture (Domain, Application, Infrastructure layers)",
+      "Monorepo structure using pnpm workspaces for organized development",
+      "Dynamic Dashboard: Real-time overview of storage usage and recent files",
+      "Advanced File Management: Support for nested folders, renaming, and bulk operations",
+      "Intuitive Upload Interface with support for drag-and-drop and progress tracking",
+      "Automated Infrastructure as Code (IaC) with Terraform for OCI setup",
+      "OCI Object Storage integration with MySQL HeatWave database",
+      "Native mobile support with Kotlin/Android implementation",
+    ],
+    challenges:
+      "Creating a maintainable, high-performance storage platform that balances enterprise-grade features with simple, cost-effective self-hosting requirements.",
+    solution:
+      "Implemented strictly decoupled layers and used OCI's Always Free tier for core infrastructure. Used pnpm workspaces to manage the monorepo effectively across backend, web, and mobile contexts.",
+    impact:
+      "Provides a secure, private, and high-performance cloud storage solution that empowers users with full control over their data without third-party access.",
+  },
   {
     id: "ecommerce-microservices",
     title: "Enterprise E-Commerce Backend",
@@ -184,82 +276,5 @@ export const projectsData: Project[] = [
       "Organized content into modular sections with technology-specific and framework-agnostic patterns. Included real-world case studies and decision trees to help developers choose appropriate patterns.",
     impact:
       "Helped over 500+ developers implement production-ready architectures. Reduced architecture decision-making time and improved code quality across teams. Serves as a reference for technical interviews and system design discussions.",
-  },
-  {
-    id: "shipment-extraction-system",
-    title: "Shipment Extraction System",
-    subtitle: "AI-Powered Logistics Data Automation",
-    category: "AI & Backend Automation",
-    projectType: "freelance",
-    date: "2025",
-    duration: "1 month",
-    image: "/construction.webp",
-    link: "/projects/shipment-extraction-system",
-    github: "https://github.com/chinmayaj88/Task-Harmony-EES",
-    description:
-      "An AI engine designed to extract structured shipment details from unstructured logistics emails. Refactored into a modular Clean Architecture, the system features live email ingestion via IMAP, robust error handling with exponential backoff, and 93%+ extraction accuracy using Llama-3.1-8B and advanced prompt stabilization.",
-    technologies: [
-      "Python",
-      "Groq (Llama-3.1)",
-      "Pydantic (V2)",
-      "Loguru",
-      "IMAP/Email Integration",
-      "Clean Architecture",
-      "Docker",
-    ],
-    features: [
-      "93% Overall extraction accuracy on noisy/messy logistics data",
-      "Live Email Integration: Pulls and processes real emails via IMAP",
-      "Modular Clean Architecture with isolated engine and connector layers",
-      "Robust Reliability: Built-in retries and exponential backoff for API limits",
-      "Strict Schema Validation and normalization using Pydantic Settings",
-      "Automated evaluation pipeline with checkpointing and data persistence",
-    ],
-    challenges:
-      "Transitioning from a prototype to a production-ready system that handles live external data (emails) while maintaining high performance and low operational costs.",
-    solution:
-      "Implemented a decoupled architecture separating data ingestion from the AI engine. Developed a 'Resilient Architect' protocol with fuzzy port mapping and alias-aware context injection.",
-    impact:
-      "Enables automated, real-time data entry from live emails, reducing manual overhead by 80% for logistics coordinators.",
-  },
-  {
-    id: "v8id-cloud",
-    title: "v8id-cloud",
-    subtitle: "Privacy-First Enterprise Cloud Storage",
-    category: "Cloud & Full Stack",
-    projectType: "personal",
-    date: "2025",
-    duration: "Ongoing",
-    image: "/construction.webp",
-    link: "/projects/v8id-cloud",
-    github: "https://github.com/chinmayaj88/v8id-monorepo",
-    description:
-      "A powerful, self-hosted cloud storage platform built with Clean Architecture. Offers Google Drive-like functionality with complete data control, leveraging Oracle Cloud Infrastructure for production-grade reliability.",
-    technologies: [
-      "Node.js",
-      "TypeScript",
-      "Express",
-      "Prisma",
-      "MySQL",
-      "OCI",
-      "Terraform",
-      "Docker",
-      "Kotlin",
-    ],
-    features: [
-      "Enterprise-grade Clean Architecture (Domain, Application, Infrastructure layers)",
-      "Monorepo structure using pnpm workspaces for organized development",
-      "Automated Infrastructure as Code (IaC) with Terraform for OCI setup",
-      "OCI Object Storage integration and MySQL HeatWave database",
-      "Dockerized local development environment for seamless setup",
-      "Native mobile support with Kotlin/Android implementation",
-      "Cost-optimized CI/CD pipeline using GitHub Actions and Docker Hub",
-    ],
-    challenges:
-      "Creating a maintainable, high-performance storage platform that balances enterprise-grade features with simple, cost-effective self-hosting requirements.",
-    solution:
-      "Implemented strictly decoupled layers and used OCI's Always Free tier for core infrastructure. Used pnpm workspaces to manage the monorepo effectively across backend, web, and mobile contexts.",
-    impact:
-      "Provides a secure, private, and high-performance cloud storage solution that empowers users with full control over their data without third-party access.",
   },
 ];

@@ -321,39 +321,44 @@
 }
 
 .typeTagPersonal {
-  background-color: rgba(163, 255, 18, 0.15);
-  color: var(--color-accent);
-  border-color: rgba(163, 255, 18, 0.3);
+  background-color: var(--color-accent);
+  color: #000000;
+  border-color: rgba(0, 0, 0, 0.1);
+  font-weight: 700;
 }
 
 .typeTagCompany {
   background-color: rgba(64, 135, 199, 0.15);
-  color: rgb(64, 135, 199);
-  border-color: rgba(64, 135, 199, 0.3);
+  color: rgb(34, 102, 163);
+  border-color: rgba(64, 135, 199, 0.4);
+  font-weight: 600;
 }
 
 .typeTagFreelance {
   background-color: rgba(240, 83, 41, 0.15);
-  color: rgb(240, 83, 41);
-  border-color: rgba(240, 83, 41, 0.3);
+  color: rgb(194, 58, 21);
+  border-color: rgba(240, 83, 41, 0.4);
+  font-weight: 600;
 }
 
 .projectLink:hover .typeTagPersonal {
-  background-color: rgba(163, 255, 18, 0.25);
-  border-color: rgba(163, 255, 18, 0.5);
-  box-shadow: 0 2px 8px rgba(163, 255, 18, 0.2);
+  background-color: var(--color-accent);
+  box-shadow: 0 4px 12px var(--color-accent-30);
+  transform: scale(1.05);
 }
 
 .projectLink:hover .typeTagCompany {
   background-color: rgba(64, 135, 199, 0.25);
-  border-color: rgba(64, 135, 199, 0.5);
-  box-shadow: 0 2px 8px rgba(64, 135, 199, 0.2);
+  border-color: rgba(64, 135, 199, 0.6);
+  box-shadow: 0 4px 12px rgba(64, 135, 199, 0.2);
+  transform: scale(1.05);
 }
 
 .projectLink:hover .typeTagFreelance {
   background-color: rgba(240, 83, 41, 0.25);
-  border-color: rgba(240, 83, 41, 0.5);
-  box-shadow: 0 2px 8px rgba(240, 83, 41, 0.2);
+  border-color: rgba(240, 83, 41, 0.6);
+  box-shadow: 0 4px 12px rgba(240, 83, 41, 0.2);
+  transform: scale(1.05);
 }
 
 .projectInfo {
