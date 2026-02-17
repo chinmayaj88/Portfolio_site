@@ -20,12 +20,12 @@ export const aboutData: AboutData = {
     "I believe that the best ideas come when you step away from the screen and experience life. Whether it's discovering a hidden gem in a new city 🌆 or feeling the wind on a long ride 🏍️, these moments recharge my creativity and bring fresh energy to everything I do.",
     "Let's create something amazing together! ✨",
   ],
-  shortBio: "I'm Chinmaya, a passionate Full Stack & Cloud Engineer with a love for crafting scalable backend systems, cloud-native applications, and production-grade infrastructure.",
+  shortBio:
+    "I'm Chinmaya, a passionate Full Stack, Cloud & AI Engineer with a love for crafting scalable backend systems, AI-ready solutions (RAG, Agents), and production-grade cloud infrastructure.",
   location: "Bhubaneswar, Odisha, India",
   hobbies: ["Traveling", "Riding"],
   quote: {
     text: "Dream, dream, dream. Dreams transform into thoughts and thoughts result in action.",
-    author: "Dr. A. P. J. Abdul Kalam"
+    author: "Dr. A. P. J. Abdul Kalam",
   },
 };
-

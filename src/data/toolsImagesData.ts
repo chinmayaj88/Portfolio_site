@@ -118,3 +118,46 @@ export const devopsImages: TechnologyImage[] = [
     url: "https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original-wordmark.svg",
   },
 ];
+// AI & LLM technologies
+export const aiImages: TechnologyImage[] = [
+  {
+    id: "openai",
+    name: "OpenAI",
+    url: "/tech-stack/ai/OpenAI_Logo.svg",
+  },
+  {
+    id: "claude",
+    name: "Claude",
+    url: "/tech-stack/ai/Claude_AI_logo.svg",
+  },
+  {
+    id: "gemini",
+    name: "Gemini",
+    url: "/tech-stack/ai/Google_Gemini_logo_2025.svg",
+  },
+  {
+    id: "meta",
+    name: "Llama",
+    url: "/tech-stack/ai/Meta_Platforms_Inc._logo.svg",
+  },
+  {
+    id: "huggingface",
+    name: "Hugging Face",
+    url: "https://huggingface.co/front/assets/huggingface_logo-noborder.svg",
+  },
+  {
+    id: "langchain",
+    name: "LangChain",
+    url: "/tech-stack/ai/LangChain_Logo.svg",
+  },
+  {
+    id: "grok",
+    name: "Grok",
+    url: "/tech-stack/ai/Grok_2025.png",
+  },
+  // {
+  //   id: "groq",
+  //   name: "Groq",
+  //   url: "https://www.vectorlogo.zone/logos/groq/groq-icon.svg",
+  // },
+];

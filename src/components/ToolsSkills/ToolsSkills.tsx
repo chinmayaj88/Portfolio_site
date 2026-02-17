@@ -1,10 +1,21 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import { motion, useMotionValue, useTransform, animate, useInView } from "motion/react";
+import {
+  motion,
+  useMotionValue,
+  useTransform,
+  animate,
+  useInView,
+} from "motion/react";
 import Image from "next/image";
 import { skillsData } from "@/data/skillsData";
-import { frontendImages, backendImages, devopsImages } from "@/data/toolsImagesData";
+import {
+  frontendImages,
+  backendImages,
+  devopsImages,
+  aiImages,
+} from "@/data/toolsImagesData";
 import { AnimatedText } from "@/components/TextAnimations";
 import styles from "./ToolsSkills.module.css";
 
@@ -24,11 +35,17 @@ export default function ToolsSkills() {
           <motion.span
             className={styles.badge}
             initial={{ opacity: 0, scale: 0.8 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+            animate={
+              isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }
+            }
             transition={{ duration: 0.3 }}
           >
             <span className={styles.dot}></span>
-            <AnimatedText text="[02] — Tools & Skills" delay={0.1} type="chars" />
+            <AnimatedText
+              text="[02] — Tools & Skills"
+              delay={0.1}
+              type="chars"
+            />
           </motion.span>
           <h2 className={styles.title}>
             <AnimatedText text="My creative" delay={0.2} type="words" />
@@ -39,7 +56,7 @@ export default function ToolsSkills() {
 
       <div className={styles.loopingContainer}>
         <div className={styles.loopsGrid}>
-          <motion.div 
+          <motion.div
             className={styles.loopSection}
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
@@ -47,10 +64,10 @@ export default function ToolsSkills() {
           >
             <h3 className={styles.loopTitle}>Frontend</h3>
             <div className={styles.loopWrapper}>
-              <LoopingImages images={frontendImages.map(img => img.url)} />
+              <LoopingImages images={frontendImages.map((img) => img.url)} />
             </div>
           </motion.div>
-          <motion.div 
+          <motion.div
             className={styles.loopSection}
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
@@ -58,18 +75,29 @@ export default function ToolsSkills() {
           >
             <h3 className={styles.loopTitle}>Backend</h3>
             <div className={styles.loopWrapper}>
-              <LoopingImages images={backendImages.map(img => img.url)} />
+              <LoopingImages images={backendImages.map((img) => img.url)} />
             </div>
           </motion.div>
-          <motion.div 
+          <motion.div
             className={styles.loopSection}
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.5, delay: 0.5 }}
           >
+            <h3 className={styles.loopTitle}>AI & Automation</h3>
+            <div className={styles.loopWrapper}>
+              <LoopingImages images={aiImages.map((img) => img.url)} />
+            </div>
+          </motion.div>
+          <motion.div
+            className={styles.loopSection}
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+          >
             <h3 className={styles.loopTitle}>DevOps & Cloud</h3>
             <div className={styles.loopWrapper}>
-              <LoopingImages images={devopsImages.map(img => img.url)} />
+              <LoopingImages images={devopsImages.map((img) => img.url)} />
             </div>
           </motion.div>
         </div>
@@ -90,7 +118,9 @@ export function LoopingImages({ images }: LoopingImagesProps) {
       <div className={styles.loopingInner}>
         {/* Render all squares except the last one */}
         {Array.from({ length: images.length }).map((_, index) =>
-          index === lastIndex ? null : <Square index={index} images={images} key={index} />
+          index === lastIndex ? null : (
+            <Square index={index} images={images} key={index} />
+          ),
         )}
 
         {/* Render the last square with the duplicate first (index 0) square masked inside it */}
@@ -136,8 +166,10 @@ function SquareWithOffset({
   // Transform the offset to x and y coordinates relative to the parent square
   const x = useTransform(firstSquareOffset, (offset) => {
     // Calculate the angle for both the first square and the last square
-    const firstAngle = ((getPathOffset(index, images.length) + offset) % 1) * Math.PI * 2;
-    const lastAngle = ((getPathOffset(parentIndex, images.length) + offset) % 1) * Math.PI * 2;
+    const firstAngle =
+      ((getPathOffset(index, images.length) + offset) % 1) * Math.PI * 2;
+    const lastAngle =
+      ((getPathOffset(parentIndex, images.length) + offset) % 1) * Math.PI * 2;
 
     // Calculate the x position difference
     return Math.cos(firstAngle) * radius - Math.cos(lastAngle) * radius;
@@ -145,18 +177,17 @@ function SquareWithOffset({
 
   const y = useTransform(firstSquareOffset, (offset) => {
     // Calculate the angle for both the first square and the last square
-    const firstAngle = ((getPathOffset(index, images.length) + offset) % 1) * Math.PI * 2;
-    const lastAngle = ((getPathOffset(parentIndex, images.length) + offset) % 1) * Math.PI * 2;
+    const firstAngle =
+      ((getPathOffset(index, images.length) + offset) % 1) * Math.PI * 2;
+    const lastAngle =
+      ((getPathOffset(parentIndex, images.length) + offset) % 1) * Math.PI * 2;
 
     // Calculate the y position difference
     return Math.sin(firstAngle) * radius - Math.sin(lastAngle) * radius;
   });
 
   return (
-    <motion.div
-      className={styles.squareWithOffset}
-      style={{ x, y }}
-    >
+    <motion.div className={styles.squareWithOffset} style={{ x, y }}>
       <div className={styles.squareContent}>
         <Image
           src={imageUrl}
@@ -289,4 +320,3 @@ function Square({
 function getPathOffset(index: number, total: number) {
   return index / total;
 }
-

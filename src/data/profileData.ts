@@ -25,10 +25,10 @@ export const profileData: ProfileData = {
     height: 1000,
   },
   name: "Chinmaya Jena",
-  role: "Developer / Cloud & DevOps Engineer",
+  role: "Full Stack / AI & Cloud Automation Engineer",
   location: "Bhubaneswar, Odisha, India",
   status: "Online Now",
-  bio: "Full Stack, Cloud & DevOps Engineer with ~2 years of experience building scalable backend systems, cloud-native applications, and high-impact customer integrations. Skilled in Python, Node.js, API design, and deploying reliable solutions on AWS and OCI.",
+  bio: "Full Stack, Cloud & AI Engineer with ~2 years of experience building scalable backend systems, AI-ready solutions (RAG, Agents), and high-impact cloud integrations. Skilled in Python, Node.js, LLM orchestration, and deploying reliable solutions on AWS and OCI.",
   experience: "2 Years of Experience",
   cta: {
     text: "GitHub",

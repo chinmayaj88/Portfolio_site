@@ -11,7 +11,6 @@ import { profileData } from "@/data/profileData";
 import "./globals.css";
 import { Contact } from "@/components/Contact";
 
-
 const manrope = Manrope({
   variable: "--font-manrope",
   subsets: ["latin"],
@@ -31,20 +30,22 @@ const autography = localFont({
 
 export const metadata: Metadata = {
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "https://yourdomain.com"
+    process.env.NEXT_PUBLIC_SITE_URL || "https://yourdomain.com",
   ), // Update with your actual domain
   title: `${profileData.name} - ${profileData.role}`,
   description: profileData.bio,
   keywords: [
     "Full Stack Developer",
-    "Cloud Engineer",
-    "DevOps Engineer",
+    "Cloud & AI Engineer",
+    "AI Automation",
+    "RAG Specialist",
     "Backend Developer",
     "AWS",
     "OCI",
     "Python",
     "Node.js",
     "Portfolio",
+    "LLM Orchestration",
     profileData.name,
   ],
   authors: [{ name: profileData.name }],

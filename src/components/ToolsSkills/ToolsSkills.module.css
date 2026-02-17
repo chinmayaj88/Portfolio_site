@@ -31,11 +31,19 @@
 
 .loopsGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 60px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
   width: 100%;
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
+}
+
+@media (min-width: 1400px) {
+  .loopsGrid {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 1600px;
+    gap: 30px;
+  }
 }
 
 .loopSection {
@@ -337,7 +345,7 @@
 
 @media (max-width: 1200px) {
   .loopsGrid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 40px;
   }
 
@@ -509,4 +517,3 @@
     font-size: 12px;
   }
 }
-
