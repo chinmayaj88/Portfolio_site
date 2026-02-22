@@ -1,400 +1,198 @@
 "use client";
 
-import { motion, useInView } from "motion/react";
 import { useRef, useState } from "react";
+import { motion, useInView } from "motion/react";
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./projects.module.css";
 import { projectsData, Project } from "@/data/projectsData";
 
-function ProjectCard({
-  project,
-  index,
-  isInView,
-}: {
-  project: Project;
-  index: number;
-  isInView: boolean;
-}) {
+/* ─── CARD ─────────────────────────────────────────────── */
+function ProjectCard({ project, index }: { project: Project; index: number }) {
   const cardRef = useRef<HTMLDivElement>(null);
-
-  // Individual scroll tracking for each card
-  // First card should be visible immediately, others reveal on scroll
-  const cardInView = useInView(cardRef, {
-    once: false,
-    amount: index === 0 ? 0 : 0.2,
-    margin: index === 0 ? "0px" : "0px 0px -150px 0px",
+  // once:true + GPU-friendly translateY — no x-slide, no scale, no nested animations
+  const inView = useInView(cardRef, {
+    once: true,
+    amount: 0.12,
+    margin: "0px 0px -60px 0px",
   });
+
+  const typeClass =
+    project.projectType === "personal"
+      ? styles.tagPersonal
+      : project.projectType === "company"
+        ? styles.tagCompany
+        : styles.tagFreelance;
+
+  // Stagger: max 3 per row, cap delay to avoid long waits
+  const delay = Math.min(index % 3, 2) * 0.08;
 
   return (
     <motion.div
       ref={cardRef}
-      className={styles.projectLink}
-      initial={
-        index === 0
-          ? {
-              opacity: 1,
-              x: 0,
-              scale: 1,
-            }
-          : {
-              opacity: 0,
-              x: -80,
-              scale: 0.96,
-            }
-      }
-      animate={
-        cardInView
-          ? {
-              opacity: 1,
-              x: 0,
-              scale: 1,
-            }
-          : index === 0
-            ? {
-                opacity: 1,
-                x: 0,
-                scale: 1,
-              }
-            : {
-                opacity: 0,
-                x: -80,
-                scale: 0.96,
-              }
-      }
+      className={styles.card}
+      initial={{ opacity: 0, y: 32 }}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 32 }}
       transition={{
-        duration: 0.7,
-        delay: index === 0 ? 0 : 0,
-        ease: [0.25, 0.46, 0.45, 0.94],
-        opacity: { duration: 0.6 },
-        scale: { duration: 0.7, type: "spring", stiffness: 200, damping: 20 },
-        x: { duration: 0.7, type: "spring", stiffness: 120, damping: 18 },
+        duration: 0.45,
+        delay,
+        ease: [0.22, 1, 0.36, 1],
       }}
-      style={{}}
     >
-      <div className={styles.imageWrapper}>
-        <motion.div
-          className={styles.imageContainer}
-          initial={
-            index === 0
-              ? { scale: 1, opacity: 1, x: 0 }
-              : { scale: 1.05, opacity: 0, x: -40 }
-          }
-          animate={
-            cardInView
-              ? {
-                  opacity: 1,
-                  x: 0,
-                }
-              : index === 0
-                ? {
-                    opacity: 1,
-                    x: 0,
-                  }
-                : {
-                    opacity: 0,
-                    x: -40,
-                  }
-          }
-          transition={{
-            opacity: {
-              duration: index === 0 ? 0 : 0.7,
-              delay: index === 0 ? 0 : 0.1,
-              ease: [0.25, 0.46, 0.45, 0.94],
-            },
-            x: {
-              duration: 0.7,
-              delay: index === 0 ? 0 : 0.1,
-              ease: [0.25, 0.46, 0.45, 0.94],
-            },
-          }}
-          style={{}}
-        >
-          <Image
-            src={project.image}
-            alt={project.title}
-            width={1853}
-            height={1126}
-            className={styles.image}
-          />
-          {/* Image overlay gradient */}
-          <motion.div
-            className={styles.imageOverlay}
-            initial={{ opacity: index === 0 ? 0.2 : 0.4 }}
-            animate={
-              cardInView
-                ? { opacity: 0.2 }
-                : index === 0
-                  ? { opacity: 0.2 }
-                  : { opacity: 0.4 }
-            }
-            transition={{ duration: 0.3 }}
-          />
-        </motion.div>
+      {/* Image section */}
+      <div className={styles.imageWrap}>
+        <Image
+          src={project.image}
+          alt={project.title}
+          width={900}
+          height={506}
+          className={styles.image}
+          priority={index < 3}
+        />
+        <div className={styles.imageOverlay} />
+
+        {/* Project type badge — on the image */}
+        <span className={`${styles.typeBadge} ${typeClass}`}>
+          {project.projectType.charAt(0).toUpperCase() +
+            project.projectType.slice(1)}
+        </span>
       </div>
 
-      <motion.div
-        className={styles.projectContent}
-        initial={index === 0 ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
-        animate={
-          cardInView
-            ? { opacity: 1, x: 0 }
-            : index === 0
-              ? { opacity: 1, x: 0 }
-              : { opacity: 0, x: -30 }
-        }
-        transition={{
-          duration: 0.7,
-          delay: index === 0 ? 0 : 0.2,
-          ease: [0.25, 0.46, 0.45, 0.94],
-        }}
-      >
-        <div className={styles.projectMeta}>
-          <motion.div
-            className={styles.projectTypeTag}
-            initial={
-              index === 0 ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }
-            }
-            animate={
-              cardInView
-                ? { opacity: 1, x: 0 }
-                : index === 0
-                  ? { opacity: 1, x: 0 }
-                  : { opacity: 0, x: -20 }
-            }
-            transition={{
-              duration: 0.6,
-              delay: index === 0 ? 0 : 0.25,
-              ease: "easeOut",
-            }}
-            style={{}}
-          >
-            <span
-              className={`${styles.typeTag} ${
-                project.projectType === "personal"
-                  ? styles.typeTagPersonal
-                  : project.projectType === "company"
-                    ? styles.typeTagCompany
-                    : styles.typeTagFreelance
-              }`}
-            >
-              {project.projectType.charAt(0).toUpperCase() +
-                project.projectType.slice(1)}
-            </span>
-          </motion.div>
-        </div>
+      {/* Card body */}
+      <div className={styles.body}>
+        {/* Category small label */}
+        <p className={styles.category}>{project.category}</p>
 
-        <div className={styles.projectInfo}>
-          <div className={styles.titleSection}>
-            <motion.h2
-              className={styles.projectTitle}
-              initial={
-                index === 0 ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }
-              }
-              animate={
-                cardInView
-                  ? { opacity: 1, x: 0 }
-                  : index === 0
-                    ? { opacity: 1, x: 0 }
-                    : { opacity: 0, x: -30 }
-              }
-              transition={{
-                duration: 0.7,
-                delay: index === 0 ? 0 : 0.3,
-                ease: [0.25, 0.46, 0.45, 0.94],
-              }}
-              style={{}}
-            >
-              {project.title}
-            </motion.h2>
-          </div>
+        {/* Title */}
+        <h2 className={styles.title}>{project.title}</h2>
 
-          <motion.div
-            className={styles.actionButtons}
-            initial={index === 0 ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-            animate={
-              cardInView
-                ? {
-                    opacity: 1,
-                    y: 0,
-                  }
-                : index === 0
-                  ? {
-                      opacity: 1,
-                      y: 0,
-                    }
-                  : {
-                      opacity: 0,
-                      y: 10,
-                    }
-            }
-            transition={{
-              duration: 0.5,
-              delay: index === 0 ? 0 : 0.35,
-              ease: [0.25, 0.46, 0.45, 0.94],
-            }}
-          >
-            <motion.a
-              href={project.link}
-              className={styles.viewButton}
-              whileHover={{ scale: 1.05, x: 4 }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
-            >
-              <span className={styles.buttonText}>View</span>
-              <motion.div
-                className={styles.arrowIcon}
-                whileHover={{ x: 3, y: -3 }}
-                transition={{ type: "spring", stiffness: 500 }}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 256 256"
-                  focusable="false"
-                >
-                  <path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z" />
-                </svg>
-              </motion.div>
-            </motion.a>
+        {/* Description */}
+        {project.description && (
+          <p className={styles.desc}>{project.description}</p>
+        )}
 
-            {project.github && (
-              <motion.a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.githubButton}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.98 }}
-                transition={{ type: "spring", stiffness: 400, damping: 17 }}
-              >
-                <motion.svg
-                  className={styles.githubIcon}
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  whileHover={{ rotate: [0, -10, 10, -10, 0] }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-                  <path d="M9 18c-4.51 2-5-2-7-2" />
-                </motion.svg>
-                <span className={styles.buttonText}>GitHub</span>
-              </motion.a>
+        {/* Tech chips */}
+        {project.technologies && project.technologies.length > 0 && (
+          <div className={styles.techRow}>
+            {project.technologies.slice(0, 5).map((t) => (
+              <span key={t} className={styles.techChip}>
+                {t}
+              </span>
+            ))}
+            {project.technologies.length > 5 && (
+              <span className={styles.techChipMore}>
+                +{project.technologies.length - 5}
+              </span>
             )}
-          </motion.div>
+          </div>
+        )}
+
+        {/* Action buttons */}
+        <div className={styles.actions}>
+          <Link href={project.link} className={styles.viewBtn}>
+            <span>View Project</span>
+            <svg
+              width="15"
+              height="15"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+            >
+              <path d="M7 17L17 7M17 7H7M17 7v10" />
+            </svg>
+          </Link>
+
+          {project.github && (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.ghBtn}
+              title="View on GitHub"
+            >
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+              </svg>
+            </a>
+          )}
         </div>
-      </motion.div>
+      </div>
     </motion.div>
   );
 }
 
+/* ─── PAGE ─────────────────────────────────────────────── */
+const PROJECT_TYPES = ["all", "personal", "company", "freelance"] as const;
+
 export default function ProjectsPage() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.1 });
+  const heroRef = useRef(null);
+  const heroInView = useInView(heroRef, { once: true, amount: 0.2 });
   const [filter, setFilter] = useState<string>("all");
 
-  const projectTypes = ["all", "personal", "company", "freelance"];
-
-  const filteredProjects =
+  const filtered =
     filter === "all"
       ? projectsData
       : projectsData.filter((p) => p.projectType === filter);
 
   return (
-    <main className={styles.main} ref={ref}>
-      {/* Animated background particles */}
-      <div className={styles.particlesBackground}>
-        {Array.from({ length: 20 }).map((_, i) => (
-          <motion.div
-            key={i}
-            className={styles.particle}
-            animate={{
-              y: [0, -30, 0],
-              x: [0, Math.random() * 20 - 10, 0],
-              opacity: [0.1, 0.3, 0.1],
-            }}
-            transition={{
-              duration: 3 + Math.random() * 2,
-              repeat: Infinity,
-              delay: Math.random() * 2,
-              ease: "easeInOut",
-            }}
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-          />
-        ))}
-      </div>
+    <main className={styles.main}>
+      {/* CSS-only ambient background — no JS per-frame cost */}
+      <div className={styles.orbA} aria-hidden="true" />
+      <div className={styles.orbB} aria-hidden="true" />
+      <div className={styles.gridBg} aria-hidden="true" />
 
       <div className={styles.container}>
+        {/* ── HERO ── */}
         <motion.section
-          className={styles.header}
-          initial={{ opacity: 0, y: -20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
-          transition={{ duration: 0.6 }}
+          ref={heroRef}
+          className={styles.hero}
+          initial={{ opacity: 0, y: 24 }}
+          animate={heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className={styles.badge}>
-            <motion.span
-              className={styles.badgeDot}
-              animate={{
-                scale: [1, 1.2, 1],
-                opacity: [1, 0.7, 1],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            />
-            <p className={styles.badgeText}>Things i love to do</p>
+          <div className={styles.pill}>
+            <span className={styles.pillDot} />
+            <span>Things I love to build</span>
           </div>
-          <motion.h1
-            className={styles.title}
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            Some of my Work
-          </motion.h1>
 
-          {/* Filter buttons */}
-          <motion.div
-            className={styles.filters}
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            {projectTypes.map((type) => (
-              <motion.button
+          <h1 className={styles.heroTitle}>
+            Some of my <span className={styles.heroAccent}>Work</span>
+            <span className={styles.heroDot}>.</span>
+          </h1>
+
+          {/* Filter chips */}
+          <div className={styles.filters}>
+            {PROJECT_TYPES.map((type) => (
+              <button
                 key={type}
-                className={`${styles.filterButton} ${
-                  filter === type ? styles.active : ""
-                }`}
+                className={`${styles.filterBtn} ${filter === type ? styles.filterActive : ""}`}
                 onClick={() => setFilter(type)}
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ duration: 0.08 }}
               >
                 {type.charAt(0).toUpperCase() + type.slice(1)}
-              </motion.button>
+                {filter === type && (
+                  <motion.span
+                    className={styles.filterIndicator}
+                    layoutId="filterIndicator"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
+              </button>
             ))}
-          </motion.div>
+          </div>
         </motion.section>
 
-        <motion.div className={styles.projectsGrid} layout>
-          {filteredProjects.map((project, index) => (
-            <ProjectCard
-              key={project.id}
-              project={project}
-              index={index}
-              isInView={isInView}
-            />
+        {/* ── GRID ── */}
+        <div className={styles.grid}>
+          {filtered.map((project, index) => (
+            <ProjectCard key={project.id} project={project} index={index} />
           ))}
-        </motion.div>
+        </div>
       </div>
     </main>
   );
