@@ -146,7 +146,7 @@ export default function Contact() {
                 <div className={styles.socialLinks}>
                   {contactData.socialLinks
                     .filter((link) =>
-                      ["github", "linkedin", "instagram"].includes(link.id)
+                      ["github", "linkedin", "instagram"].includes(link.id),
                     )
                     .map((link, index) => (
                       <motion.a
